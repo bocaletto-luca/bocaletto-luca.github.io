@@ -1,18 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bocaletto Luca Aka Elektronoide</title>
-  <link href="style.css" rel="stylesheet" type="text/css">
+	<title>Bocaletto Luca Aka Elektronoide - Open Source Project</title>
+<link href="style.css" rel="stylesheet" type="text/css">
 </head>
-<body class="cyberpunk">
-  <header class="cyberpunk">
-    <h1 class="cyberpunk">Bocaletto Luca Aka Elektronoide</h1>
-    <p class="cyberpunk">Bocaletto Luca: Computer Programmer, Artist, Musician, Freelance Writer. Projects Published Freely on Github in different programming languages ​​including: Python, sql, php, html, css and other languages. Many examples of small basic software, an excellent starting point for students and computer programming enthusiasts.</p>
-  </header>
-  <section class="cyberpunk">
-    <h5 class="cyberpunk">Sito Ufficiale:<a href="https://www.elektronoide.it">www.elektronoide.it</a></h5>
-  </section>
-<footer class="cyberpunk">  
-</footer>
+<body>
+<div id="app">
+	<div class="welcome-msg gloweffect">
+		<h1>Elektronoide - Github Open Source Project</h1>
+		<p>Bocaletto Luca: Computer Programmer, Artist, Musician, Freelance Writer. Projects Published Freely on Github in different programming languages ​​including: Python, sql, php, html, css and other languages. Many examples of small basic software, an excellent starting point for students and computer programming enthusiasts.</p>
+		<h2>Something of Me</h2>
+		<hr>
+		<p>
+I have enjoyed computing for over 30 years, I like to administer the Windows and Gnu/Linux operating systems that I have been following since the beginning.
+I hope my experience can help you solve some daily headaches with computers and technology so you can be more productive with your work/study/entertainment.
+My experiences/hobbies: Freelance writer, technology expert, "full stack" web and software developer, IT technician, maker, 3D prints, 3D drawings, I experiment and promote electronics, robotics and home automation with Arduino.
+The experience with videogames/computers/consoles began with the C64 and cassette copies, my first hack as a child.
+As I grew up I also learned about video game development environments, the so-called Videogames Engine.
+Other interests: astronomy, radio, chess, music. Sound: piano, keyboards, synthesizers, organ, guitar, bass, “Pump High the Volume!”.
+		</p>
+		
+		<div class="buttons">
+			<div class="left">
+				<button type="button" id="answerNo">Contacts</button>
+			</div>
+			
+			<div class="right">
+				<button type="button" id="answerYes">Project</button>
+			</div>
+		</div>
+	</div>
+	<!-- BYE MESSAGE -->
+	<div class="goodbye-msg hidden gloweffect">
+		<nav>
+			<a href="index2.html" class="right">Back</a>
+		</nav>
+		<h1>Contacts</h1>
+		<p><b>Youtube: </b><a href="https://www.youtube.com/@elektronoide">@elektronoide</a></p>
+		<p><b>Telegram: </b><a href="http://t.me/ElektronoideIT">t.me/ElektronoideIT</a></p>
+		<p><b>GitHub: </b><a href="https://github.com/elektronoide">https://github.com/elektronoide</a></p>
+		<p><b>Email: </b><a href="mailto:bocalettoluca82@gmail.com">bocalettoluca82@gmail.com</a></p>		
+		</div>
+	<!-- WEBSITE BEGIN -->
+	<div class="webpage hidden gloweffect">
+		<nav>
+			<a href="index2.html" class="right">Back</a>
+		</nav>
+		<header>
+			<div class="container">
+				<div class="half-col">
+				<img class="web-img" src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Header">
+			</div>			
+			<div class="half-col">
+				<h2>Project Open Source</h2>
+				<p>Here you can find my Open Source projects:<a href="https://github.com/elektronoide">Github Repository</a></p>
+			</div>
+			</div>
+		</header>
+	</div>
+</div>
+<script type="text/javascript">
+var answerYes = document.getElementById("answerYes");
+var answerNo = document.getElementById("answerNo");
+
+
+answerYes.addEventListener("click", function() {
+	var website = document.querySelector(".webpage");
+	var welcomeMsg = document.querySelector(".welcome-msg");
+	website.setAttribute("class", "webpage show");
+	welcomeMsg.setAttribute("class", "welcome-msg hidden");
+	
+})
+
+answerNo.addEventListener("click", function() {
+	var goodbyeMsg = document.querySelector(".goodbye-msg");
+	var welcomeMsg = document.querySelector(".welcome-msg");
+	goodbyeMsg.setAttribute("class", "webpage show");
+	welcomeMsg.setAttribute("class", "welcome-msg hidden");
+	
+})	
+</script>	
 </body>
 </html>

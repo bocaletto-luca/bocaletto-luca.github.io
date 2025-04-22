@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bocaletto Luca | Repository</title>
-  <meta name="description" content="Browse the repositories of Bocaletto Luca featuring innovative web projects and open source contributions with a cyberpunk style.">
-  <meta name="keywords" content="Bocaletto Luca, GitHub, repository, open source, web development, cyberpunk">
+  <meta name="description" content="Browse the repositories of Bocaletto Luca featuring innovative web projects and open source contributions.">
+  <meta name="keywords" content="Bocaletto Luca, GitHub, repository, open source, web development">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bocaletto-luca.github.io/repository.html">
   <meta name="author" content="Bocaletto Luca">
@@ -16,9 +16,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bocaletto-luca.github.io/repository.html">
   <meta property="og:image" content="URL_of_logo_or_image">
-  <meta name="twitter:card" content="summary_large_image">
-  
-  <!-- Structured Data -->
+
+  <!-- Structured Data (se necessario) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,18 +31,32 @@
     }
   }
   </script>
-  
+
   <!-- Theme CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
-  
+
   <style>
     body { padding-top: 70px; }
   </style>
 </head>
 <body>
-  <!-- Navbar (same header structure) -->
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- Header (con il selettore lingua identico a index.html) -->
+  <header style="position: relative;">
+    <div id="lang-selector">
+      <select id="languageSelect" onchange="changeLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="it">Italiano</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="pt">Português</option>
+        <option value="ja">日本語</option>
+        <option value="zh">中文</option>
+        <option value="ru">Русский</option>
+      </select>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-top: 40px;">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
           <img src="logo.png" alt="Bocaletto Luca Logo" width="40" height="40" class="me-2">
@@ -64,9 +77,6 @@
             <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
             <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
-            <li class="nav-item">
-              <div id="google_translate_element"></div>
-            </li>
           </ul>
         </div>
       </div>
@@ -76,10 +86,8 @@
   <!-- Main Content -->
   <main class="container mt-5">
     <h1 class="text-center">Repositories</h1>
-    <p class="lead text-center">
-      Browse the innovative repositories of Bocaletto Luca, full of web projects and open source contributions.
-    </p>
-    <!-- Qui potresti inserire l'elenco dei repository o delle schede per alcuni progetti -->
+    <p class="lead text-center">Browse the innovative repositories of Bocaletto Luca.</p>
+    <!-- Inserisci qui l'elenco dei repository o le schede dei progetti -->
   </main>
   
   <!-- Footer -->
@@ -89,17 +97,25 @@
     </div>
   </footer>
   
-  <!-- JS -->
+  <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'en,it,fr,es,de,pt,ja,zh-CN,ru',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
-    }
+  <!-- Inizializzazione i18next -->
+  <script>
+    i18next.init({
+      lng: 'en',
+      resources: {
+        en: { translation: {} },
+        it: { translation: {} },
+        fr: { translation: {} },
+        es: { translation: {} },
+        de: { translation: {} },
+        pt: { translation: {} },
+        ja: { translation: {} },
+        zh: { translation: {} },
+        ru: { translation: {} }
+      }
+    }, function(err, t) { /* Nessun testo specifico in questa pagina */ });
+    function changeLanguage(lang) { /* Definisci se ci sono testi da tradurre */ }
   </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

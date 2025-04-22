@@ -1,84 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Bocaletto Luca Aka Elektronoide - Open Source Project</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+  <!-- Basic Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bocaletto Luca | Home</title>
+  <meta name="description" content="Welcome to the official website of Bocaletto Luca – a computer programmer, artist, musician, and freelance writer. Discover cutting-edge web projects and open source innovations with a cyberpunk twist.">
+  <meta name="keywords" content="Bocaletto Luca, GitHub, programmer, open source, cyberpunk, web development, projects">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bocaletto-luca.github.io/">
+  <meta name="author" content="Bocaletto Luca">
+
+  <!-- Open Graph / Twitter Cards -->
+  <meta property="og:title" content="Bocaletto Luca">
+  <meta property="og:description" content="Discover the innovative web projects and open source contributions of Bocaletto Luca.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bocaletto-luca.github.io/">
+  <meta property="og:image" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bocaletto Luca">
+  <meta name="twitter:description" content="Welcome to the official website of Bocaletto Luca.">
+  <meta name="twitter:image" content="">
+
+  <!-- Structured Data in JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bocaletto Luca",
+    "url": "https://bocaletto-luca.github.io/",
+    "sameAs": [
+      "https://github.com/bocaletto-luca"
+    ],
+    "jobTitle": "Computer Programmer, Artist, Musician, Freelance Writer"
+  }
+  </script>
+
+  <!-- Theme CSS: Bootswatch Cyborg for Cyberpunk Look -->
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding-top: 70px; /* For fixed navbar */
+    }
+    #google_translate_element {
+  border: 1px solid red;
+  padding: 5px;
+}
+
+  </style>
 </head>
 <body>
-<div id="app">
-	<div class="welcome-msg gloweffect">
-		<h1>Elektronoide - Github Open Source Project</h1>
-		<p>Bocaletto Luca: Computer Programmer, Artist, Musician, Freelance Writer. Projects Published Freely on Github in different programming languages ​​including: Python, sql, php, html, css and other languages. Many examples of small basic software, an excellent starting point for students and computer programming enthusiasts.</p>
-		<h2>Something of Me</h2>
-		<hr>
-		<p>
-I have enjoyed computing for over 30 years, I like to administer the Windows and Gnu/Linux operating systems that I have been following since the beginning.
-I hope my experience can help you solve some daily headaches with computers and technology so you can be more productive with your work/study/entertainment.
-My experiences/hobbies: Freelance writer, technology expert, "full stack" web and software developer, IT technician, maker, 3D prints, 3D drawings, I experiment and promote electronics, robotics and home automation with Arduino.
-The experience with videogames/computers/consoles began with the C64 and cassette copies, my first hack as a child.
-As I grew up I also learned about video game development environments, the so-called Videogames Engine.
-Other interests: astronomy, radio, chess, music. Sound: piano, keyboards, synthesizers, organ, guitar, bass, “Pump High the Volume!”.
-		</p>
-		
-		<div class="buttons">
-			<div class="left">
-				<button type="button" id="answerNo">Contacts</button>
-			</div>
-			
-			<div class="right">
-				<button type="button" id="answerYes">Project</button>
-			</div>
-		</div>
-	</div>
-	<!-- BYE MESSAGE -->
-	<div class="goodbye-msg hidden gloweffect">
-		<nav>
-			<a href="index.html" class="right">Back</a>
-		</nav>
-		<h1>Contacts</h1>
-		<p><b>Youtube: </b><a href="https://www.youtube.com/@elektronoide">@elektronoide</a></p>
-		<p><b>Telegram: </b><a href="http://t.me/ElektronoideIT">t.me/ElektronoideIT</a></p>
-		<p><b>GitHub: </b><a href="https://github.com/elektronoide">https://github.com/elektronoide</a></p>
-		<p><b>Email: </b><a href="mailto:bocalettoluca82@gmail.com">bocalettoluca82@gmail.com</a></p>		
-		</div>
-	<!-- WEBSITE BEGIN -->
-	<div class="webpage hidden gloweffect">
-		<nav>
-			<a href="index.html" class="right">Back</a>
-		</nav>
-		<header>
-			<div class="container">
-				<div class="half-col">
-				<img class="web-img" src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Header">
-			</div>			
-			<div class="half-col">
-				<h2>Project Open Source</h2>
-				<p>Here you can find my Open Source projects:<a href="https://github.com/elektronoide">Github Repository</a></p>
-			</div>
-			</div>
-		</header>
-	</div>
-</div>
-<script type="text/javascript">
-var answerYes = document.getElementById("answerYes");
-var answerNo = document.getElementById("answerNo");
+  <!-- Header / Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <!-- Replace "logo.png" with your actual logo -->
+          <img src="logo.png" alt="Bocaletto Luca Logo" width="40" height="40" class="me-2">
+          <div>
+            <div class="fw-bold">Bocaletto Luca</div>
+            <small class="text-muted">Official GitHub Page</small>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+            <!-- Google Translate Widget -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+     <div id="google_translate_element"></div>
+  </header>
 
+  <!-- Main Content -->
+  <main class="container mt-5">
+    <div class="text-center">
+      <h1>Welcome, im Bocaletto Luca</h1>
+      <p class="lead">
+        Discover innovative web projects and open source contributions.
+      </p>
+    </div>
+  </main>
 
-answerYes.addEventListener("click", function() {
-	var website = document.querySelector(".webpage");
-	var welcomeMsg = document.querySelector(".welcome-msg");
-	website.setAttribute("class", "webpage show");
-	welcomeMsg.setAttribute("class", "welcome-msg hidden");
-	
-})
-
-answerNo.addEventListener("click", function() {
-	var goodbyeMsg = document.querySelector(".goodbye-msg");
-	var welcomeMsg = document.querySelector(".welcome-msg");
-	goodbyeMsg.setAttribute("class", "webpage show");
-	welcomeMsg.setAttribute("class", "welcome-msg hidden");
-	
-})	
-</script>	
+  <!-- Footer -->
+  <footer class="bg-dark text-light text-center py-3 mt-5">
+    <div class="container">
+      <p class="mb-0">© 2023 Bocaletto Luca. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,it,fr,es,de,pt,ja,zh-CN,ru',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

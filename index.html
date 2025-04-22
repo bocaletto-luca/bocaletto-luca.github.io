@@ -35,6 +35,22 @@
     "jobTitle": "Computer Programmer, Artist, Musician, Freelance Writer"
   }
   </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var navbarCollapse = document.getElementById("navbarNav");
+    var mainContent = document.querySelector("main");
+    // Quando il navbar viene mostrato (evento Bootstrap)
+    navbarCollapse.addEventListener('shown.bs.collapse', function () {
+      // Aggiusta il padding-top del main content in base all'altezza della navbar espansa
+      var navHeight = document.querySelector("nav").offsetHeight;
+      mainContent.style.marginTop = navHeight + "px";
+    });
+    // Quando il navbar viene nascosto, ripristina il padding
+    navbarCollapse.addEventListener('hidden.bs.collapse', function () {
+      mainContent.style.marginTop = "70px"; // o il valore predefinito
+    });
+  });
+</script>
 
   <!-- Theme CSS: Bootswatch Cyborg for Cyberpunk Look -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
@@ -49,15 +65,16 @@
   padding: 5px;
   }
   /* Forza il menu traduttore a posizionarsi sotto l'header */
-  .goog-te-menu-frame {
-    position: fixed !important;
-    top: 80px !important;  /* Regola questo valore in base all'altezza del tuo header */
-    z-index: 1000 !important; /* Assicurati che sia sotto l'header se necessario */
+  /* Nasconde il banner di Google Translate */
+  .goog-te-banner-frame.skiptranslate {
+    display: none !important;
   }
-    /* Nasconde il banner (iframe) di Google Translate */
-  .goog-te-banner-frame.skiptranslate { 
-    display: none !important; 
-  }  
+      /* Per schermi fino a 992px, rimuoviamo la posizione fissa */
+  @media (max-width: 992px) {
+    .fixed-top {
+      position: static !important;
+    }
+  }
   </style>
 </head>
 <body>

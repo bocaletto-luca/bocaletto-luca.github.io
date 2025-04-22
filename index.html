@@ -47,7 +47,12 @@
   border: 1px solid red;
   padding: 5px;
 }
-
+  /* Forza il menu traduttore a posizionarsi sotto l'header */
+  .goog-te-menu-frame {
+    position: fixed !important;
+    top: 80px !important;  /* Regola questo valore in base all'altezza del tuo header */
+    z-index: 1000 !important; /* Assicurati che sia sotto l'header se necessario */
+  }
   </style>
 </head>
 <body>

@@ -1,4 +1,4 @@
-/* Global Reset & Font (puoi personalizzare in base alle tue necessità) */
+/* Global reset e font */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -57,7 +57,7 @@ body {
   }
 }
 
-/* Spazio per il contenuto: aggiungiamo un margine per non farlo scontrare con il menu */
+/* Spazio per il contenuto (sostanzialmente usato all'interno dei main) */
 main {
   margin-top: 20px;
 }

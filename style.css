@@ -1,71 +1,37 @@
-/* Global reset e font */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
+/* --- RULES GIÀ PRESENTI (branding, menu, ecc.) --- */
+/* ... [Il resto del tuo CSS esistente] ... */
 
-/* Branding: logo, titolo e motto */
-.branding {
-  text-align: center;
-  padding: 1rem 0;
-  background-color: #212529;
-  color: #fff;
-}
-.branding img {
-  width: 80px;
-  height: auto;
-}
-.branding h1 {
-  margin: 0.5rem 0 0.25rem;
-  font-size: 2rem;
-}
-.branding p {
-  margin: 0;
-  font-size: 1rem;
-  color: #ccc;
-}
-
-/* Menu di navigazione sempre visibile */
-.navbar-always {
-  background-color: #343a40;
-  padding: 0.5rem 1rem;
-}
-.navbar-always .navbar-nav {
+/* Regole per schede progetto/repository a dimensione fissa */
+.repo-card .card,
+.project-card .card {
+  /* Impostiamo una dimensione fissa (modifica "300px" se necessario) */
+  height: 300px;
+  overflow: hidden;
   display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  flex-direction: column;  /* per default: verticale */
-  align-items: center;
-}
-.navbar-always .nav-item {
-  margin: 0.5rem;
-}
-.navbar-always .nav-link {
-  color: #fff;
-  font-size: 1.1rem;
-  text-decoration: none;
-}
-.navbar-always .nav-link:hover {
-  text-decoration: underline;
-}
-/* Layout orizzontale per dispositivi larghi (min-width: 768px) */
-@media (min-width: 768px) {
-  .navbar-always .navbar-nav {
-    flex-direction: row;
-    justify-content: center;
-  }
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* Spazio per il contenuto (sostanzialmente usato all'interno dei main) */
-main {
-  margin-top: 20px;
+/* Le sezioni di testo all’interno della card occupano lo spazio residuo */
+.repo-card .card-body,
+.project-card .card-body {
+  flex: 1;
+  overflow: hidden;
 }
 
-/* Footer */
-footer {
-  background-color: #212529;
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
+/* Se vuoi che anche il titolo abbia una dimensione fissa e il testo venga troncato, puoi aggiungere: */
+.repo-card .card-title,
+.project-card .card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Per le descrizioni, se il testo è troppo lungo, lo tronchiamo dopo 3 righe */
+.repo-card .card-text,
+.project-card .card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Mostra massimo 3 righe */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

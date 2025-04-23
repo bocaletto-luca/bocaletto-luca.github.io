@@ -3,40 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bocaletto Luca | Repository</title>
-  <meta name="description" content="Browse the repositories of Bocaletto Luca featuring innovative web projects and open source contributions.">
-  <meta name="keywords" content="Bocaletto Luca, GitHub, repository, open source, web development">
+  <title>Bocaletto Luca | Contacts</title>
+  <meta name="description" content="Contact Bocaletto Luca for collaborations, inquiries, or a friendly chat.">
+  <meta name="keywords" content="Bocaletto Luca, contacts, email, social, open source, support">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://bocaletto-luca.github.io/repository.html">
+  <link rel="canonical" href="https://bocaletto-luca.github.io/contacts.html">
   <meta name="author" content="Bocaletto Luca">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Bocaletto Luca - Repository">
-  <meta property="og:description" content="Discover repositories showcasing web projects and open source innovations by Bocaletto Luca.">
+  <meta property="og:title" content="Bocaletto Luca - Contacts">
+  <meta property="og:description" content="Get in touch with Bocaletto Luca for more information, collaborations, or inquiries.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://bocaletto-luca.github.io/repository.html">
+  <meta property="og:url" content="https://bocaletto-luca.github.io/contacts.html">
   <meta property="og:image" content="URL_of_logo_or_image">
 
-  <!-- Structured Data (JSON‑LD) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Bocaletto Luca",
-    "url": "https://bocaletto-luca.github.io/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://bocaletto-luca.github.io/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "your_email@example.com",
+    "url": "https://bocaletto-luca.github.io/contacts.html"
   }
   </script>
-  
+
   <!-- Theme CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   
   <style>
     body { padding-top: 70px; }
+    .social-links a {
+      margin-right: 15px;
+      font-size: 1.25rem;
+      color: #0dcaf0;
+    }
+    .social-links a:hover { color: #ffffff; }
   </style>
 </head>
 <body>
@@ -59,10 +61,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-           <li class="nav-item"><a class="nav-link active" aria-current="page" href="repository.html">Repository</a></li>
+           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
            <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-           <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+           <li class="nav-item"><a class="nav-link active" aria-current="page" href="contacts.html">Contacts</a></li>
           </ul>
         </div>
       </div>
@@ -71,9 +73,50 @@
   
   <!-- Main Content -->
   <main class="container mt-5">
-    <h1 class="text-center">Repositories</h1>
-    <p class="lead text-center">Browse the innovative repositories of Bocaletto Luca.</p>
-    <!-- Inserisci qui l'elenco dei repository o delle schede dei progetti -->
+    <h1>Contacts</h1>
+    <p class="lead">Get in touch with Bocaletto Luca for collaborations, questions, or a friendly chat!</p>
+    
+    <div class="row">
+      <!-- Informazioni e Social Media -->
+      <div class="col-md-6">
+        <h4>Email</h4>
+        <p>
+          <a href="mailto:your_email@example.com">your_email@example.com</a>
+        </p>
+        <h4>Social Media</h4>
+        <div class="social-links">
+          <a href="https://twitter.com/your_username" target="_blank" title="Twitter">
+            <i class="bi bi-twitter"></i> Twitter
+          </a>
+          <a href="https://linkedin.com/in/your_username" target="_blank" title="LinkedIn">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+          <a href="https://github.com/bocaletto-luca" target="_blank" title="GitHub">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+      <!-- Modulo di Contatto -->
+      <div class="col-md-6">
+        <h4>Send a Message</h4>
+        <!-- Sostituisci 'your_form_id' con l'endpoint del servizio di contatto scelto (es. Formspree) -->
+        <form action="https://formspree.io/f/your_form_id" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="_replyto" placeholder="Your email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+    </div>
   </main>
   
   <!-- Footer -->
@@ -83,7 +126,8 @@
     </div>
   </footer>
   
-  <!-- Bootstrap Bundle JS -->
+  <!-- Bootstrap Bundle JS e Bootstrap Icons -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </body>
 </html>

@@ -55,19 +55,6 @@
 <body>
   <!-- Header con selettore lingua -->
   <header style="position: relative;">
-    <div id="lang-selector">
-      <select id="languageSelect" onchange="changeLanguage(this.value)">
-        <option value="en">English</option>
-        <option value="it">Italiano</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-        <option value="de">Deutsch</option>
-        <option value="pt">Português</option>
-        <option value="ja">日本語</option>
-        <option value="zh">中文</option>
-        <option value="ru">Русский</option>
-      </select>
-    </div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-top: 40px;">
@@ -116,79 +103,5 @@
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- i18next initialization -->
-  <script>
-    // Inizializza i18next con le traduzioni
-    i18next.init({
-      lng: 'en', // lingua di default
-      resources: {
-        en: {
-          translation: {
-            "welcome": "Welcome to Bocaletto Luca",
-            "lead": "Discover innovative web projects and open source contributions."
-          }
-        },
-        it: {
-          translation: {
-            "welcome": "Benvenuto su Bocaletto Luca",
-            "lead": "Scopri progetti web innovativi e contributi open source."
-          }
-        },
-        fr: {
-          translation: {
-            "welcome": "Bienvenue chez Bocaletto Luca",
-            "lead": "Découvrez des projets web innovants et des contributions open source."
-          }
-        },
-        es: {
-          translation: {
-            "welcome": "Bienvenido a Bocaletto Luca",
-            "lead": "Descubre proyectos web innovadores y contribuciones de código abierto."
-          }
-        },
-        de: {
-          translation: {
-            "welcome": "Willkommen bei Bocaletto Luca",
-            "lead": "Entdecken Sie innovative Webprojekte und Open-Source-Beiträge."
-          }
-        },
-        pt: {
-          translation: {
-            "welcome": "Bem-vindo ao Bocaletto Luca",
-            "lead": "Descubra projetos web inovadores e contribuições de código aberto."
-          }
-        },
-        ja: {
-          translation: {
-            "welcome": "Bocaletto Lucaへようこそ",
-            "lead": "革新的なウェブプロジェクトとオープンソースの貢献を発見してください。"
-          }
-        },
-        zh: {
-          translation: {
-            "welcome": "欢迎来到 Bocaletto Luca",
-            "lead": "发现创新的网络项目和开源贡献。"
-          }
-        },
-        ru: {
-          translation: {
-            "welcome": "Добро пожаловать в Bocaletto Luca",
-            "lead": "Откройте для себя инновационные веб-проекты и вклад в открытый исходный код."
-          }
-        }
-      }
-    }, function(err, t) {
-      updateContent();
-    });
-
-    function updateContent() {
-      document.getElementById('welcome-text').innerText = i18next.t('welcome');
-      document.getElementById('lead-text').innerText = i18next.t('lead');
-    }
-
-    function changeLanguage(lang) {
-      i18next.changeLanguage(lang, updateContent);
-    }
-  </script>
 </body>
 </html>

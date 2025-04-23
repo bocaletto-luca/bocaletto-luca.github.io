@@ -32,7 +32,7 @@
   <!-- CSS Locale -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- CSS Unificato (layout uguale a project.html) -->
+  <!-- CSS Unificato (stile uguale a project.html) -->
   <style>
     /* Global reset, font e branding */
     body {
@@ -115,7 +115,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    /* Il footer viene spinto in basso grazie a margin-top: auto */
+    /* Il footer viene spinto in fondo grazie a margin-top: auto */
     .repo-card .card-footer {
       margin-top: auto;
       display: flex;
@@ -133,7 +133,6 @@
     }
     .repo-thumbnail-placeholder {
       margin-top: 8px;
-      /* Puoi anche impostare un'altezza fissa di placeholder se preferisci */
     }
     /* Loader */
     .loader {
@@ -243,7 +242,7 @@
         .then(data => {
           if (data && data.content) {
             const content = atob(data.content);
-            // Cerca il primo match di immagine con URL http o https
+            // Cerca il primo match di immagine markdown (solo URL http/https)
             const match = content.match(/!
 
 \[[^\]
@@ -270,10 +269,17 @@
 
       try {
         const repos = await fetchAllRepos();
+        // Rimuovi il loader
         if (loader) loader.remove();
+
+        if(!repos || repos.length === 0){
+          totalElem.innerText = "No repositories found or API rate limit exceeded.";
+          return;
+        }
+        
         totalElem.innerText = "Total Repository: " + repos.length;
 
-        // Raggruppa i repository per linguaggio (usa "Other" se null)
+        // Raggruppa i repository per linguaggio (usa "Other" se il campo è null)
         const groups = {};
         repos.forEach(repo => {
           const lang = repo.language ? repo.language : "Other";
@@ -283,7 +289,7 @@
 
         const sortedLanguages = Object.keys(groups).sort();
 
-        // Per ogni gruppo di linguaggio crea i tab e il relativo contenuto con paginazione
+        // Per ogni gruppo, crea i tab e il contenuto con paginazione
         sortedLanguages.forEach(language => {
           const reposGroup = groups[language];
           const totalCount = reposGroup.length;
@@ -338,7 +344,7 @@
               const url = repo.html_url;
               const languageTag = repo.language ? repo.language : "Unknown";
 
-              // Crea la card per il repository con layout simile a project.html
+              // Crea la card per il repository con layout uniforme
               const col = document.createElement("div");
               col.className = "col-md-4 repo-card";
               col.innerHTML = `
@@ -356,7 +362,7 @@
               `;
               rowContainer.appendChild(col);
 
-              // Estrae ed inserisce la miniatura, se presente
+              // Estrae e inserisce la miniatura dalla README.md (se presente)
               fetchThumbnail(repo.name).then(thumbnailUrl => {
                 if (thumbnailUrl) {
                   const placeholder = col.querySelector(".repo-thumbnail-placeholder");
@@ -365,7 +371,7 @@
                     img.src = thumbnailUrl;
                     img.alt = "Thumbnail for " + repo.name;
                     img.classList.add("repo-thumbnail");
-                    placeholder.innerHTML = ""; // Pulisce eventuali contenuti precedenti
+                    placeholder.innerHTML = "";
                     placeholder.appendChild(img);
                   }
                 }
@@ -401,7 +407,7 @@
           renderPage(currentPage);
         });
 
-        // Attiva automaticamente il primo tab (se esiste)
+        // Attiva automaticamente il primo tab, se esiste
         const firstTabBtn = languageTabs.querySelector("button.nav-link");
         if (firstTabBtn) {
           firstTabBtn.classList.add("active");

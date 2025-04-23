@@ -9,14 +9,14 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bocaletto-luca.github.io/repository.html">
   <meta name="author" content="Bocaletto Luca">
-  
+
   <!-- Open Graph -->
   <meta property="og:title" content="Bocaletto Luca - Repository">
   <meta property="og:description" content="Discover repositories showcasing web projects and open source innovations by Bocaletto Luca.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bocaletto-luca.github.io/repository.html">
   <meta property="og:image" content="URL_of_logo_or_image">
-  
+
   <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
   {
@@ -31,11 +31,56 @@
     }
   }
   </script>
-  
-  <!-- Theme CSS -->
+
+  <!-- Bootstrap CSS (utilizzando Bootswatch Cyborg) -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   <!-- CSS Locale -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Nuovo CSS per risolvere problemi di allineamento -->
+  <style>
+    /* Loader style */
+    .loader {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    /* Stili per le repository cards */
+    .repo-card .card {
+      height: 320px; /* Altezza fissa: regola se necessario */
+      display: flex;
+      flex-direction: column;
+    }
+    .repo-card .card-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    /* Titolo: una sola riga + ellissi se troppo lungo */
+    .repo-card .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 0.5rem;
+    }
+    /* La descrizione: occupa lo spazio centrale e viene troncata se troppo lunga */
+    .repo-card .card-text {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 100px; /* Puoi regolare */
+    }
+    /* Footer della card: allinea "Language:" e il pulsante in fondo */
+    .repo-card .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
   <!-- Header: Branding e Menu -->
@@ -63,7 +108,6 @@
     <div class="text-center mb-4">
       <h1>Repositories</h1>
       <p class="lead">Browse the innovative repositories of Bocaletto Luca.</p>
-      <!-- Visualizzazione del totale dei repository -->
       <p id="repo-total" class="lead"></p>
       <p>
         For the complete list, visit my GitHub profile:
@@ -71,7 +115,7 @@
       </p>
     </div>
     
-    <!-- Container per le schede dei repository -->
+    <!-- Container per le repository cards -->
     <div class="row repo-cards-container">
       <div id="repo-loader" class="loader">Loading repositories...</div>
     </div>
@@ -79,15 +123,17 @@
   
   <!-- Footer -->
   <footer>
-    <div class="container"><p>© 2023 Bocaletto Luca. All rights reserved.</p></div>
+    <div class="container">
+      <p>© 2023 Bocaletto Luca. All rights reserved.</p>
+    </div>
   </footer>
   
-  <!-- Bootstrap Bundle JS -->
+  <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script per aggregare tutti i repository con paginazione globale -->
+  <!-- Script per aggregare tutti i repository e popolare le cards -->
   <script>
-    // Funzione asincrona per il fetch globale di tutte le repository
+    // Funzione asincrona per ottenere tutti i repository, anche se > 100 (gestisce la paginazione)
     async function fetchAllRepos() {
       let page = 1;
       let allRepos = [];
@@ -105,7 +151,7 @@
       const container = document.querySelector(".repo-cards-container");
       const loader = document.getElementById("repo-loader");
       const totalElem = document.getElementById("repo-total");
-      
+
       try {
         const repos = await fetchAllRepos();
         if (loader) loader.remove();
@@ -113,25 +159,29 @@
         // Visualizza il numero totale di repository
         totalElem.innerText = "Total Repository: " + repos.length;
         
-        // Ordina i repository per data di aggiornamento decrescente (opzionale)
+        // Ordinamento (facoltativo) per data di aggiornamento decrescente
         repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
         
         repos.forEach(repo => {
           const title = repo.name;
-          // Fallback: se descrizione è null o vuota
-          const description = (repo.description && repo.description.trim().length > 0) ? repo.description : "No description provided.";
+          const description = (repo.description && repo.description.trim().length > 0)
+                              ? repo.description
+                              : "No description provided.";
           const url = repo.html_url;
           const language = repo.language ? repo.language : "Unknown";
           
+          // Crea la colonna per la scheda del repository
           const col = document.createElement("div");
           col.className = "col-md-4 repo-card";
           col.innerHTML = `
             <div class="card bg-secondary text-light mb-3">
-              <div class="card-body">
-                <h5 class="card-title">${title}</h5>
-                <p class="card-text">${description}</p>
-                <p><small>Language: ${language}</small></p>
-                <a href="${url}" class="btn btn-primary" target="_blank">View on GitHub</a>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title" title="${title}">${title}</h5>
+                <p class="card-text flex-grow-1">${description}</p>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                  <small>Language: ${language}</small>
+                  <a href="${url}" class="btn btn-primary btn-sm" target="_blank">View on GitHub</a>
+                </div>
               </div>
             </div>
           `;

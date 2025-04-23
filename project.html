@@ -36,22 +36,8 @@
   </style>
 </head>
 <body>
-  <!-- Header con selettore lingua -->
-  <header style="position: relative;">
-    <div id="lang-selector">
-      <select id="languageSelect" onchange="changeLanguage(this.value)">
-        <option value="en">English</option>
-        <option value="it">Italiano</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-        <option value="de">Deutsch</option>
-        <option value="pt">Português</option>
-        <option value="ja">日本語</option>
-        <option value="zh">中文</option>
-        <option value="ru">Русский</option>
-      </select>
-    </div>
-    
+  <!-- Header e Navbar -->
+  <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-top: 40px;">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -68,11 +54,11 @@
   
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="project.html">Projects</a></li>
-            <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
+           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+           <li class="nav-item"><a class="nav-link active" aria-current="page" href="project.html">Projects</a></li>
+           <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
           </ul>
         </div>
       </div>
@@ -82,8 +68,8 @@
   <!-- Main Content -->
   <main class="container mt-5">
     <div class="text-center mb-4">
-      <h1 id="projects-title">My Projects</h1>
-      <p id="projects-lead" class="lead">
+      <h1>My Projects</h1>
+      <p class="lead">
         Explore a selection of innovative projects by Bocaletto Luca. These repositories showcase web applications, software tools, and creative experiments.
       </p>
       <p>
@@ -143,11 +129,5 @@
   
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Inizializzazione i18next -->
-  <script>
-    // Qui, se desideri tradurre ulteriori parti di questa pagina, aggiungi le relative chiavi
-    function changeLanguage(lang) { /* Implementa la traduzione se necessario */ }
-  </script>
 </body>
 </html>

@@ -32,9 +32,9 @@
   }
   </script>
   
-  <!-- Theme CSS -->
+  <!-- Theme CSS: Bootswatch Cyborg -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
-  <!-- Style CSS -->
+  <!-- CSS Locale -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -70,9 +70,19 @@
   
   <!-- Main Content -->
   <main class="container mt-5">
-    <h1 class="text-center">Repositories</h1>
-    <p class="lead text-center">Browse the innovative repositories of Bocaletto Luca.</p>
-    <!-- Inserisci qui l'elenco dei repository o schede progetto -->
+    <div class="text-center mb-4">
+      <h1>Repositories</h1>
+      <p class="lead text-center">Browse the innovative repositories of Bocaletto Luca.</p>
+      <p>
+        For the complete list, visit my GitHub profile:
+        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
+      </p>
+    </div>
+    
+    <!-- Container per le schede dei repository -->
+    <div class="row repo-cards-container">
+      <div id="repo-loader" class="loader" style="text-align:center; width:100%; color:#fff;">Loading repositories...</div>
+    </div>
   </main>
   
   <!-- Footer -->
@@ -84,5 +94,49 @@
   
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Script per popolare dinamicamente i repository -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      const container = document.querySelector(".repo-cards-container");
+      const loader = document.getElementById("repo-loader");
+      
+      fetch("https://api.github.com/users/bocaletto-luca/repos")
+        .then(response => response.json())
+        .then(repos => {
+          if(loader) loader.remove();
+          
+          // Ordina i repository per data di aggiornamento decrescente (opzionale)
+          repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+          
+          repos.forEach(repo => {
+            const title = repo.name;
+            const description = repo.description ? repo.description : "No description provided.";
+            const url = repo.html_url;
+            const language = repo.language ? repo.language : "Unknown";
+            
+            const col = document.createElement("div");
+            col.className = "col-md-4 repo-card";
+            col.innerHTML = `
+              <div class="card bg-secondary text-light mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">${title}</h5>
+                  <p class="card-text">${description}</p>
+                  <p><small>Language: ${language}</small></p>
+                  <a href="${url}" class="btn btn-primary" target="_blank">View on GitHub</a>
+                </div>
+              </div>
+            `;
+            container.appendChild(col);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching repositories:", error);
+          if (loader) {
+            loader.innerText = "Error loading repositories. Please try again later.";
+          }
+        });
+    });
+  </script>
 </body>
 </html>

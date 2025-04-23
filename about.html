@@ -37,22 +37,8 @@
   </style>
 </head>
 <body>
-  <!-- Header (con selettore lingua) -->
-  <header style="position: relative;">
-    <div id="lang-selector">
-      <select id="languageSelect" onchange="changeLanguage(this.value)">
-        <option value="en">English</option>
-        <option value="it">Italiano</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-        <option value="de">Deutsch</option>
-        <option value="pt">Português</option>
-        <option value="ja">日本語</option>
-        <option value="zh">中文</option>
-        <option value="ru">Русский</option>
-      </select>
-    </div>
-    
+  <!-- Header e Navbar -->
+  <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-top: 40px;">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -69,11 +55,11 @@
   
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-            <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
+           <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.html">About</a></li>
+           <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+           <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
           </ul>
         </div>
       </div>
@@ -82,15 +68,15 @@
   
   <!-- Main Content -->
   <main class="container mt-5">
-    <h1 id="about-title">About Me</h1>
-    <p id="about-text" class="lead">
+    <h1>About Me</h1>
+    <p class="lead">
       <strong>Bocaletto Luca:</strong> Computer Programmer, Artist, Musician, Freelance Writer. Projects published freely on GitHub in various programming languages, including Python, SQL, PHP, HTML, CSS, and more.
     </p>
-    <h2 id="something-title">Something of Me</h2>
-    <p id="something-text">
+    <h2>Something of Me</h2>
+    <p>
       I have been passionate about computing for over 30 years. I enjoy managing both Windows and GNU/Linux since my earliest experiences. My goal is to help you overcome everyday tech challenges and boost your productivity.
     </p>
-    <p id="interests-text">
+    <p>
       My hobbies and expertise include freelance writing, technology consulting, full stack web and software development, IT support, making, 3D printing and design, as well as experimenting with electronics, robotics, and home automation with Arduino. I began with the C64 and cassette copies – my very first hack – and later explored video game development. I’m also passionate about astronomy, radio, chess, and music.
     </p>
   </main>
@@ -104,11 +90,5 @@
   
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Inizializzazione i18next per questa pagina se necessario -->
-  <script>
-    // Se vuoi tradurre ulteriori parti, puoi aggiungere le relative chiavi qui
-    function changeLanguage(lang) { /* Implementa se vuoi tradurre ulteriori testi */ }
-  </script>
 </body>
 </html>

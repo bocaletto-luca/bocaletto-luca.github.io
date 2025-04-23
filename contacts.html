@@ -9,14 +9,14 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bocaletto-luca.github.io/contacts.html">
   <meta name="author" content="Bocaletto Luca">
-
+  
   <!-- Open Graph -->
   <meta property="og:title" content="Bocaletto Luca - Contacts">
   <meta property="og:description" content="Get in touch with Bocaletto Luca for more information, collaborations, or inquiries.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bocaletto-luca.github.io/contacts.html">
   <meta property="og:image" content="URL_of_logo_or_image">
-
+  
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -27,7 +27,7 @@
     "url": "https://bocaletto-luca.github.io/contacts.html"
   }
   </script>
-
+  
   <!-- Theme CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   
@@ -42,8 +42,13 @@
   </style>
 </head>
 <body>
-  <!-- Header: Menu Sempre Visibile -->
+  <!-- Header: Branding + Menu -->
   <header>
+    <div class="branding">
+      <img src="logo.png" alt="Bocaletto Luca Logo">
+      <h1>Bocaletto Luca</h1>
+      <p>Official GitHub Page</p>
+    </div>
     <div class="navbar-always" style="background-color: #212529; padding: 0.5rem 1rem;">
       <div class="container">
         <ul class="navbar-nav" style="display: flex; flex-direction: column; align-items: center; margin: 0; padding: 0; list-style: none;">
@@ -60,7 +65,7 @@
             <a class="nav-link" style="color: #fff; text-decoration: none;" href="project.html">Projects</a>
           </li>
           <li class="nav-item" style="margin: 0.5rem 1rem;">
-            <a class="nav-link" style="color: #fff; text-decoration: none;" href="contacts.html">Contacts</a>
+            <a class="nav-link active" style="color: #fff; text-decoration: none;" href="contacts.html">Contacts</a>
           </li>
         </ul>
       </div>
@@ -73,7 +78,7 @@
     <p class="lead">Get in touch with Bocaletto Luca for collaborations, questions, or a friendly chat!</p>
     
     <div class="row">
-      <!-- Informazioni di contatto e Social Media -->
+      <!-- Informazioni di Contatto e Social -->
       <div class="col-md-6">
         <h4>Email</h4>
         <p>
@@ -81,15 +86,20 @@
         </p>
         <h4>Social Media</h4>
         <div class="social-links">
-          <a href="https://twitter.com/your_username" target="_blank" title="Twitter"><i class="bi bi-twitter"></i> Twitter</a>
-          <a href="https://linkedin.com/in/your_username" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i> LinkedIn</a>
-          <a href="https://github.com/bocaletto-luca" target="_blank" title="GitHub"><i class="bi bi-github"></i> GitHub</a>
+          <a href="https://twitter.com/your_username" target="_blank" title="Twitter">
+            <i class="bi bi-twitter"></i> Twitter
+          </a>
+          <a href="https://linkedin.com/in/your_username" target="_blank" title="LinkedIn">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+          <a href="https://github.com/bocaletto-luca" target="_blank" title="GitHub">
+            <i class="bi bi-github"></i> GitHub
+          </a>
         </div>
       </div>
-      <!-- Modulo di Contatto -->
+      <!-- Modulo di Contatto (ad es. tramite Formspree) -->
       <div class="col-md-6">
         <h4>Send a Message</h4>
-        <!-- Sostituisci 'your_form_id' con l'endpoint del servizio di contatto scelto (es. Formspree) -->
         <form action="https://formspree.io/f/your_form_id" method="POST">
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
@@ -110,7 +120,7 @@
   </main>
   
   <!-- Footer -->
-  <footer class="bg-dark text-light text-center py-3 mt-5">
+  <footer class="bg-dark text-light text-center py-3">
     <div class="container">
       <p class="mb-0">© 2023 Bocaletto Luca. All rights reserved.</p>
     </div>

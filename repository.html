@@ -72,7 +72,9 @@
   <main class="container mt-5">
     <div class="text-center mb-4">
       <h1>Repositories</h1>
-      <p class="lead text-center">Browse the innovative repositories of Bocaletto Luca.</p>
+      <p class="lead">Browse the innovative repositories of Bocaletto Luca.</p>
+      <!-- Qui verrà visualizzato il totale dei repository -->
+      <p id="repo-total" class="lead"></p>
       <p>
         For the complete list, visit my GitHub profile:
         <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
@@ -100,11 +102,16 @@
     document.addEventListener("DOMContentLoaded", function(){
       const container = document.querySelector(".repo-cards-container");
       const loader = document.getElementById("repo-loader");
+      const totalElem = document.getElementById("repo-total");
       
-      fetch("https://api.github.com/users/bocaletto-luca/repos")
+      // Aggiungiamo "?per_page=100" per recuperare fino a 100 repository (modifica se necessario)
+      fetch("https://api.github.com/users/bocaletto-luca/repos?per_page=100")
         .then(response => response.json())
         .then(repos => {
           if(loader) loader.remove();
+          
+          // Mostra il totale dei repository
+          totalElem.innerText = "Total Repository: " + repos.length;
           
           // Ordina i repository per data di aggiornamento decrescente (opzionale)
           repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));

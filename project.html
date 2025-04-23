@@ -29,8 +29,18 @@
   
   <!-- Theme CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
-  <!-- Style CSS -->
+  <!-- CSS Locale -->
   <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* Loader style */
+    .loader {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
   <!-- Header: Branding e Menu -->
@@ -76,45 +86,9 @@
       </p>
     </div>
     
-    <div class="row">
-      <!-- Esempio di scheda progetto 1 -->
-      <div class="col-md-4 project-card">
-        <div class="card bg-secondary text-light">
-          <div class="card-body">
-            <h5 class="card-title">Project One</h5>
-            <p class="card-text">Brief description of Project One – a robust tool designed for everyday computing tasks.</p>
-            <a href="https://github.com/bocaletto-luca/project-one" class="btn btn-primary" target="_blank">View on GitHub</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Esempio di scheda progetto 2 -->
-      <div class="col-md-4 project-card">
-        <div class="card bg-secondary text-light">
-          <div class="card-body">
-            <h5 class="card-title">Project Two</h5>
-            <p class="card-text">Brief description of Project Two – a full-stack web application combining innovative design with functionality.</p>
-            <a href="https://github.com/bocaletto-luca/project-two" class="btn btn-primary" target="_blank">View on GitHub</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Esempio di scheda progetto 3 -->
-      <div class="col-md-4 project-card">
-        <div class="card bg-secondary text-light">
-          <div class="card-body">
-            <h5 class="card-title">Project Three</h5>
-            <p class="card-text">Brief description of Project Three – an experimental venture into automation and IoT applications.</p>
-            <a href="https://github.com/bocaletto-luca/project-three" class="btn btn-primary" target="_blank">View on GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="text-center mt-4">
-      <a href="https://github.com/bocaletto-luca" class="btn btn-outline-light btn-lg" target="_blank">
-        View All Projects on GitHub
-      </a>
+    <!-- Container dove verranno inserite dinamicamente le schede dei repository -->
+    <div class="row project-cards-container">
+      <div class="loader" id="loader">Loading projects...</div>
     </div>
   </main>
   
@@ -127,5 +101,47 @@
   
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Script per popolare dinamicamente i repository -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const container = document.querySelector(".project-cards-container");
+      const loader = document.getElementById("loader");
+      
+      fetch("https://api.github.com/users/bocaletto-luca/repos")
+        .then(response => response.json())
+        .then(repos => {
+          if (loader) loader.remove();
+          
+          // Ordina per data di aggiornamento decrescente (opzionale)
+          repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+          
+          repos.forEach(repo => {
+            const title = repo.name;
+            const description = repo.description ? repo.description : "No description provided.";
+            const url = repo.html_url;
+            
+            const col = document.createElement("div");
+            col.className = "col-md-4 project-card";
+            col.innerHTML = `
+              <div class="card bg-secondary text-light mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">${title}</h5>
+                  <p class="card-text">${description}</p>
+                  <a href="${url}" class="btn btn-primary" target="_blank">View on GitHub</a>
+                </div>
+              </div>
+            `;
+            container.appendChild(col);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching repositories: ", error);
+          if (loader) {
+            loader.innerText = "Error loading projects. Please try again later.";
+          }
+        });
+    });
+  </script>
 </body>
 </html>

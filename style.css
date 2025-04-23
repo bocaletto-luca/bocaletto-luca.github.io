@@ -1,149 +1,71 @@
-.gloweffect {
-	border: 5px solid lightcyan;
-	box-shadow: 0 0 20px cyan;
-	margin: 5em auto;
-	width: 80%;
-	padding: 3em;
-	background-color: rgba(0, 220, 255, 0.2);
-	border-radius: 0 100px 0 100px;
-	animation: glowEffect 3s infinite;
-}
-.welcome-msg h1,  .welcome-msg h2,.welcome-msg h3, .goodbye-msg h1, .goodbye-msg h2, .goodbye-msg h3 {
-	text-shadow: 0 0 10px cyan;
-	color: lightcyan;
-	text-align: center;
-	font-family: 'Orbitron', sans-serif;
-}
-
-.welcome-msg p, .welcome-msg button,.goodbye-msg p {
-	text-shadow: 0 0 10px cyan;
-	color: lightcyan;
-	text-align: justify;
-	font-family: 'Source Code Pro', monospace;
-	line-height: 40px;
-	
-}
-
-hr {
-	background: lightcyan;
-	box-shadow: 0 0 20px cyan;
-	height: 4px;
-}
-.buttons {
-	display: block;
-	position: relative;
-	width: 80%;
-	margin: auto;
-	padding: 2em;
-}
-
-.buttons .left {
-	position: absolute;
-	left: 0;
-	text-align: center;
-}
-
-.buttons .right {
-	right: 0;
-	position: absolute;
-	text-align: center;
-}
-
-.buttons button {
-	background: lightcyan;
-	box-shadow: 0 0 20px cyan;
-	border: 2px solid lightcyan;
-	background-color: rgba(0, 220, 255, 0.2);
-	text-shadow: 0 0 10px cyan;
-	color: lightcyan; 
-	padding: 5px 50px;
-	transition: all ease-out 200ms;
-}
-
-.buttons button:active {
-	background: lightcyan;
-	box-shadow: 0 0 10px cyan;
-	border: 3px solid white;
-	background-color: rgba(0, 220, 255, 0.5);
-	text-shadow: 0 0 5px cyan;
-	font-weight: bold;
-	transition: all ease-in 200ms;
-}
-.buttons button:focus {
-	background: lightcyan;
-	box-shadow: 0 0 10px cyan;
-	border: 3px solid white;
-	background-color: rgba(0, 220, 255, 0.5);
-	text-shadow: 0 0 5px cyan;
-	font-weight: bold;
-	transition: all ease-in 200ms;
-}
+/* Global Reset & Font (puoi personalizzare in base alle tue necessità) */
 body {
-	background: #212121;
-}
-/* Website */
-.webpage {
-	border: 2px solid lightcyan;
-	box-shadow: 0 0 20px cyan;
-	margin: 5em auto;
-	width: 80%;
-	padding: 2em;
-	background-color: rgba(0, 220, 255, 0.2);
-	border-radius: 50px 50px 50px 50px;
-	text-shadow: 0 0 10px cyan;
-	color: lightcyan;
-	text-align: justify;
-	font-family: 'Source Code Pro', monospace;
-	transition: all 300ms ease-in-out;
-}
-.webpage.show {
-	position: relative;
-	transform: scale(1);
-	transition: all 300ms ease-in-out;
-}
-.webpage.hidden, .welcome-msg.hidden , .goodbye-msg.hidden{
-	position: absolute;
-	transform: scale(0);
-	transition: all 300ms ease-in-out;
-}
-nav {
-	width: 100%;
-}
-nav .left {
-	float: left;
-}
-nav .right {
-	float: right;
-}
-header {
-	height: 500px;
-}
-.web-img {
-	max-width: 100%;
-	max-height: auto;
-	filter: saturate(2) grayscale(50%) opacity(30%) hue-rotate(180deg);
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-/* GRID SYSTEM */
-.container {
-	width: 100%;
-	display: inline-block;
+/* Branding: logo, titolo e motto */
+.branding {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #212529;
+  color: #fff;
 }
-.half-col {
-	width: 45.8%;
-	margin:10px;
-	float:left;
+.branding img {
+  width: 80px;
+  height: auto;
 }
-@keyframes glowEffect {
-  from {
-	box-shadow: 0 0 10px cyan;
-  }
-50% {
-	box-shadow: 0 0 20px cyan;
-  }
-	
+.branding h1 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 2rem;
+}
+.branding p {
+  margin: 0;
+  font-size: 1rem;
+  color: #ccc;
+}
 
-  to {
-	box-shadow: 0 0 10px cyan;
+/* Menu di navigazione sempre visibile */
+.navbar-always {
+  background-color: #343a40;
+  padding: 0.5rem 1rem;
+}
+.navbar-always .navbar-nav {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-direction: column;  /* per default: verticale */
+  align-items: center;
+}
+.navbar-always .nav-item {
+  margin: 0.5rem;
+}
+.navbar-always .nav-link {
+  color: #fff;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+.navbar-always .nav-link:hover {
+  text-decoration: underline;
+}
+/* Layout orizzontale per dispositivi larghi (min-width: 768px) */
+@media (min-width: 768px) {
+  .navbar-always .navbar-nav {
+    flex-direction: row;
+    justify-content: center;
   }
+}
+
+/* Spazio per il contenuto: aggiungiamo un margine per non farlo scontrare con il menu */
+main {
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: #212529;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
 }

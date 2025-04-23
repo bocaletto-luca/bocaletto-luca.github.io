@@ -48,21 +48,11 @@
     <div class="navbar-always">
       <div class="container">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="repository.html">Repository</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="project.html">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contacts.html">Contacts</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="repository.html">Repository</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
         </ul>
       </div>
     </div>
@@ -73,7 +63,7 @@
     <div class="text-center mb-4">
       <h1>Repositories</h1>
       <p class="lead">Browse the innovative repositories of Bocaletto Luca.</p>
-      <!-- Qui verrà visualizzato il totale dei repository -->
+      <!-- Visualizzazione del totale dei repository -->
       <p id="repo-total" class="lead"></p>
       <p>
         For the complete list, visit my GitHub profile:
@@ -89,61 +79,70 @@
   
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>© 2023 Bocaletto Luca. All rights reserved.</p>
-    </div>
+    <div class="container"><p>© 2023 Bocaletto Luca. All rights reserved.</p></div>
   </footer>
   
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script per popolare dinamicamente i repository -->
+  <!-- Script per aggregare tutti i repository con paginazione globale -->
   <script>
-    document.addEventListener("DOMContentLoaded", function(){
+    // Funzione asincrona per il fetch globale di tutte le repository
+    async function fetchAllRepos() {
+      let page = 1;
+      let allRepos = [];
+      while (true) {
+        const response = await fetch(`https://api.github.com/users/bocaletto-luca/repos?per_page=100&page=${page}`);
+        const repos = await response.json();
+        if (!Array.isArray(repos) || repos.length === 0) break;
+        allRepos = allRepos.concat(repos);
+        page++;
+      }
+      return allRepos;
+    }
+    
+    document.addEventListener("DOMContentLoaded", async function(){
       const container = document.querySelector(".repo-cards-container");
       const loader = document.getElementById("repo-loader");
       const totalElem = document.getElementById("repo-total");
       
-      // Aggiungiamo "?per_page=100" per recuperare fino a 100 repository (modifica se necessario)
-      fetch("https://api.github.com/users/bocaletto-luca/repos?per_page=100")
-        .then(response => response.json())
-        .then(repos => {
-          if(loader) loader.remove();
+      try {
+        const repos = await fetchAllRepos();
+        if (loader) loader.remove();
+        
+        // Visualizza il numero totale di repository
+        totalElem.innerText = "Total Repository: " + repos.length;
+        
+        // Ordina i repository per data di aggiornamento decrescente (opzionale)
+        repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+        
+        repos.forEach(repo => {
+          const title = repo.name;
+          // Fallback: se descrizione è null o vuota
+          const description = (repo.description && repo.description.trim().length > 0) ? repo.description : "No description provided.";
+          const url = repo.html_url;
+          const language = repo.language ? repo.language : "Unknown";
           
-          // Mostra il totale dei repository
-          totalElem.innerText = "Total Repository: " + repos.length;
-          
-          // Ordina i repository per data di aggiornamento decrescente (opzionale)
-          repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-          
-          repos.forEach(repo => {
-            const title = repo.name;
-            // Se la descrizione è null o una stringa vuota, usa il fallback
-            const description = (repo.description && repo.description.trim().length > 0) ? repo.description : "No description provided.";
-            const url = repo.html_url;
-            const language = repo.language ? repo.language : "Unknown";
-            
-            const col = document.createElement("div");
-            col.className = "col-md-4 repo-card";
-            col.innerHTML = `
-              <div class="card bg-secondary text-light mb-3">
-                <div class="card-body">
-                  <h5 class="card-title">${title}</h5>
-                  <p class="card-text">${description}</p>
-                  <p><small>Language: ${language}</small></p>
-                  <a href="${url}" class="btn btn-primary" target="_blank">View on GitHub</a>
-                </div>
+          const col = document.createElement("div");
+          col.className = "col-md-4 repo-card";
+          col.innerHTML = `
+            <div class="card bg-secondary text-light mb-3">
+              <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <p class="card-text">${description}</p>
+                <p><small>Language: ${language}</small></p>
+                <a href="${url}" class="btn btn-primary" target="_blank">View on GitHub</a>
               </div>
-            `;
-            container.appendChild(col);
-          });
-        })
-        .catch(error => {
-          console.error("Error fetching repositories:", error);
-          if (loader) {
-            loader.innerText = "Error loading repositories. Please try again later.";
-          }
+            </div>
+          `;
+          container.appendChild(col);
         });
+      } catch (error) {
+        console.error("Error fetching repositories:", error);
+        if (loader) {
+          loader.innerText = "Error loading repositories. Please try again later.";
+        }
+      }
     });
   </script>
 </body>

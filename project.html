@@ -40,19 +40,11 @@
       font-size: 1.5rem;
       color: #fff;
     }
-    /* Sezione per ogni gruppo di linguaggio */
+    /* Stile per le sezioni dei gruppi e per la paginazione */
     .language-section {
       padding-top: 1rem;
       margin-bottom: 2rem;
     }
-    .language-section h2 {
-      border-bottom: 2px solid #0dcaf0;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-      color: #0dcaf0;
-      text-align: center;
-    }
-    /* Controlli di paginazione per gruppo */
     .pagination-controls {
       text-align: center;
       margin-top: 10px;
@@ -84,29 +76,40 @@
   <main class="container mt-5">
     <div class="text-center mb-4">
       <h1>My Projects</h1>
-      <p class="lead">Explore a selection of innovative projects by Bocaletto Luca. These repositories showcase web applications, software tools, and creative experiments.</p>
+      <p class="lead">
+        Explore a selection of innovative projects by Bocaletto Luca. These repositories showcase web applications, software tools, and creative experiments.
+      </p>
       <p>
         For the complete list, visit my GitHub profile:
-        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
+        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">
+          https://github.com/bocaletto-luca
+        </a>
       </p>
     </div>
     
-    <!-- Container dove verranno inserite le sezioni raggruppate per linguaggio -->
-    <div class="project-cards-container">
-      <div id="project-loader" class="loader">Loading projects...</div>
-    </div>
+    <!-- Contenitore per il loader -->
+    <div id="project-loader" class="loader">Loading projects...</div>
+    
+    <!-- Menu a tab per le diverse categorie -->
+    <ul class="nav nav-tabs" id="languageTabs" role="tablist"></ul>
+    
+    <!-- Contenitore dei tab -->
+    <div class="tab-content" id="languageTabsContent"></div>
   </main>
   
   <!-- Footer -->
   <footer>
-    <div class="container"><p>© 2023 Bocaletto Luca. All rights reserved.</p></div>
+    <div class="container">
+      <p>© 2023 Bocaletto Luca. All rights reserved.</p>
+    </div>
   </footer>
   
-  <!-- Bootstrap Bundle JS -->
+  <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script per aggregare tutti i repository e raggrupparli con paginazione per gruppo -->
+  <!-- Script per aggregare tutti i repository e creare i tab -->
   <script>
+    // Funzione asincrona per recuperare tutti i repository andando a paginare
     async function fetchAllRepos() {
       let page = 1;
       let allRepos = [];
@@ -121,44 +124,72 @@
     }
     
     document.addEventListener("DOMContentLoaded", async function() {
-      const container = document.querySelector(".project-cards-container");
       const loader = document.getElementById("project-loader");
-      const PAGE_SIZE = 6; // Numero di repository per pagina per gruppo
+      const languageTabs = document.getElementById("languageTabs");
+      const languageTabsContent = document.getElementById("languageTabsContent");
+      const PAGE_SIZE = 6; // Numero di progetti da mostrare per pagina in ogni gruppo
       
       try {
+        // Recupera tutti i repository
         const repos = await fetchAllRepos();
         if (loader) loader.remove();
         
-        // Raggruppa per linguaggio (o "Other")
+        // Raggruppa i repository in base al linguaggio
         const groups = {};
         repos.forEach(repo => {
           const lang = repo.language ? repo.language : "Other";
-          if (!groups[lang]) {
-            groups[lang] = [];
-          }
+          if (!groups[lang]) groups[lang] = [];
           groups[lang].push(repo);
         });
         
-        // Ordina i gruppi per nome alfabetico
-        Object.keys(groups).sort().forEach(language => {
+        // Ordina i gruppi per nome alfabetico (chiave)
+        const sortedLanguages = Object.keys(groups).sort();
+        
+        // Per ciascun gruppo crea un tab e il contenuto associato
+        sortedLanguages.forEach((language, index) => {
           const reposGroup = groups[language];
           const totalCount = reposGroup.length;
-          
-          // Crea la sezione per il gruppo
-          const section = document.createElement("div");
-          section.className = "language-section";
           const safeLang = language.replace(/\s+/g, '-');
-          section.innerHTML = `
-            <h2>${language} (Total Repository: ${totalCount})</h2>
+          const tabId = 'tab-' + safeLang;
+          
+          // Crea l'elemento del tab (il bottone)
+          const navItem = document.createElement("li");
+          navItem.className = "nav-item";
+          navItem.role = "presentation";
+          
+          const tabButton = document.createElement("button");
+          tabButton.className = "nav-link";
+          tabButton.id = tabId + "-tab";
+          tabButton.setAttribute("data-bs-toggle", "tab");
+          tabButton.setAttribute("data-bs-target", "#" + tabId);
+          tabButton.type = "button";
+          tabButton.role = "tab";
+          tabButton.setAttribute("aria-controls", tabId);
+          tabButton.setAttribute("aria-selected", "false");
+          // Mostra anche il totale delle repository per il gruppo
+          tabButton.innerText = `${language} (${totalCount})`;
+          
+          navItem.appendChild(tabButton);
+          languageTabs.appendChild(navItem);
+          
+          // Crea il contenitore della tab content
+          const tabPane = document.createElement("div");
+          tabPane.className = "tab-pane fade";
+          tabPane.id = tabId;
+          tabPane.role = "tabpanel";
+          tabPane.setAttribute("aria-labelledby", tabId + "-tab");
+          // Inizialmente, inserisci un contenitore per le schede e uno per la paginazione
+          tabPane.innerHTML = `
             <div class="row" id="group-${safeLang}-row"></div>
             <div class="pagination-controls" id="group-${safeLang}-pagination"></div>
           `;
-          container.appendChild(section);
+          languageTabsContent.appendChild(tabPane);
           
+          // IMPOSTAZIONE DELLA PAGINAZIONE PER QUESTO GRUPPO:
           let currentPage = 1;
           const totalPages = Math.ceil(totalCount / PAGE_SIZE);
-          const rowContainer = section.querySelector(".row");
-          const paginationContainer = section.querySelector(".pagination-controls");
+          const rowContainer = tabPane.querySelector("div.row");
+          const paginationContainer = tabPane.querySelector(".pagination-controls");
           
           function renderPage(page) {
             rowContainer.innerHTML = "";
@@ -167,7 +198,8 @@
             for (let i = start; i < end; i++) {
               const repo = reposGroup[i];
               const title = repo.name;
-              const description = (repo.description && repo.description.trim().length > 0) ? repo.description : "No description provided.";
+              const description = (repo.description && repo.description.trim().length > 0)
+                                  ? repo.description : "No description provided.";
               const url = repo.html_url;
               const languageTag = repo.language ? repo.language : "Unknown";
               
@@ -190,32 +222,51 @@
           
           function updatePaginationControls(page) {
             paginationContainer.innerHTML = "";
-            if(totalPages > 1) {
+            if (totalPages > 1) {
+              // Bottone "Previous"
               const prevBtn = document.createElement("button");
               prevBtn.className = "btn btn-sm btn-secondary me-2";
               prevBtn.innerText = "Previous";
               prevBtn.disabled = (page === 1);
-              prevBtn.onclick = () => { currentPage--; renderPage(currentPage); };
+              prevBtn.onclick = () => {
+                currentPage--;
+                renderPage(currentPage);
+              };
               paginationContainer.appendChild(prevBtn);
-              
+    
+              // Informazioni sulla pagina corrente
               const pageInfo = document.createElement("span");
               pageInfo.innerText = `Page ${page} of ${totalPages}`;
               paginationContainer.appendChild(pageInfo);
-              
+    
+              // Bottone "Next"
               const nextBtn = document.createElement("button");
               nextBtn.className = "btn btn-sm btn-secondary ms-2";
               nextBtn.innerText = "Next";
               nextBtn.disabled = (page === totalPages);
-              nextBtn.onclick = () => { currentPage++; renderPage(currentPage); };
+              nextBtn.onclick = () => {
+                currentPage++;
+                renderPage(currentPage);
+              };
               paginationContainer.appendChild(nextBtn);
             }
           }
           
-          // Renderizza la prima pagina per questo gruppo
+          // Renderizza la prima pagina per il gruppo
           renderPage(currentPage);
         });
+        
+        // Attiva il primo tab se disponibile
+        const firstTabBtn = languageTabs.querySelector("button.nav-link");
+        if(firstTabBtn) {
+          firstTabBtn.classList.add("active");
+          const firstTabContentId = firstTabBtn.getAttribute("data-bs-target");
+          const firstTabContent = document.querySelector(firstTabContentId);
+          if(firstTabContent) firstTabContent.classList.add("show", "active");
+        }
+        
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        console.error("Error fetching or processing projects:", error);
         if (loader) {
           loader.innerText = "Error loading projects. Please try again later.";
         }

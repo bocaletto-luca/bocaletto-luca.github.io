@@ -62,25 +62,22 @@ main {
   margin-top: 20px;
 }
 
-/* Schede dei repository/ progetti con dimensioni fisse */
+/* --- Card comuni per repository e progetti --- */
+/* Impostiamo una dimensione fissa per ogni scheda */
 .repo-card .card,
 .project-card .card {
-  height: 300px;  /* Altezza fissa per le schede; modifica se necessario */
+  height: 320px;  /* Altezza fissa scelta per entrambe; modificabile se necessario */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow: hidden;
 }
 
-/* Forzo una dimensione fissa al contenitore della descrizione */
-.repo-card .card-text,
-.project-card .card-text {
-  height: 64px;  
-  /* Se vuoi il multilinea troncata in modo elegante, puoi usare:
-     display: -webkit-box;
-     -webkit-line-clamp: 3;
-     -webkit-box-orient: vertical; */
-  overflow: hidden;
+/* Struttura interna delle card */
+.repo-card .card-body,
+.project-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 /* Titoli troncati (se troppo lunghi) */
@@ -89,14 +86,39 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
 }
 
-/* Footer */
-footer {
-  background-color: #212529;
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
+/* Contenitore della descrizione: espande e tronca in modo flessibile */
+.repo-card .card-text,
+.project-card .card-text {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Se preferisci limitare il numero di righe puoi aggiungere:
+     display: -webkit-box;
+     -webkit-line-clamp: 3;
+     -webkit-box-orient: vertical; */
+}
+
+/* Footer delle card: spinge il footer in fondo con margin-top: auto e allinea i contenuti */
+.repo-card .card-footer,
+.project-card .card-footer {
+  margin-top: auto; /* Assicura il footer sempre in fondo */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;  /* Padding verticale */
+  font-size: 0.9rem;
+}
+
+/* Footer interno: se serve allineare verticalmente i suoi elementi */
+.repo-card .card-footer small,
+.repo-card .card-footer a,
+.project-card .card-footer small,
+.project-card .card-footer a {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* Loader style */
@@ -107,40 +129,12 @@ footer {
   color: #fff;
 }
 
-/* Le schede dei progetti */
-.project-card .card {
-  height: 320px; /* Altezza fissa: regola in base alle tue esigenze */
-  display: flex;
-  flex-direction: column;
-}
-.project-card .card-body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* Titolo: una sola riga, troncato con ellissi se troppo lungo */
-.project-card .card-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 0.5rem;
-}
-
-/* La descrizione occupa l'area centrale; se troppo lunga verrà troncata */
-.project-card .card-text {
-  flex-grow: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Footer della scheda: allineamento a sinistra il linguaggio e a destra il pulsante */
-.project-card .card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+/* Footer del sito */
+footer {
+  background-color: #212529;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
 }
 
 /* (Opzionale) Margine per la sezione dei tab */

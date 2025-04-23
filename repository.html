@@ -32,8 +32,119 @@
   <!-- CSS Locale -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Nuovo CSS, identico a quello usato in project.html, per risolvere i problemi di allineamento dei contenitori -->
+  <!-- Nuovo CSS per un layout uniforme (uguale a project.html) -->
   <style>
+    /* Global reset e font */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Branding: logo, titolo e motto */
+    .branding {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #212529;
+      color: #fff;
+    }
+    .branding img {
+      width: 80px;
+      height: auto;
+    }
+    .branding h1 {
+      margin: 0.5rem 0 0.25rem;
+      font-size: 2rem;
+    }
+    .branding p {
+      margin: 0;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    /* Menu di navigazione sempre visibile */
+    .navbar-always {
+      background-color: #343a40;
+      padding: 0.5rem 1rem;
+    }
+    .navbar-always .navbar-nav {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      flex-direction: column;  /* default: verticale */
+      align-items: center;
+    }
+    .navbar-always .nav-item {
+      margin: 0.5rem;
+    }
+    .navbar-always .nav-link {
+      color: #fff;
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
+    .navbar-always .nav-link:hover {
+      text-decoration: underline;
+    }
+    @media (min-width: 768px) {
+      .navbar-always .navbar-nav {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    /* Spazio per il contenuto */
+    main {
+      margin-top: 20px;
+    }
+
+    /* Card comuni per repository e progetti */
+    .repo-card .card {
+      height: 320px;  /* Altezza fissa; modificabile se necessario */
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .repo-card .card-body {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    /* Titolo troncato con ellissi */
+    .repo-card .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 0.5rem;
+    }
+    /* Descrizione: occupa lo spazio centrale e viene troncata */
+    .repo-card .card-text {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Footer: spinto in fondo grazie a margin-top: auto */
+    .repo-card .card-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* Stile della miniatura: appaia pulita e scalata correttamente */
+    .repo-thumbnail {
+      max-width: 100%;
+      height: auto;
+      margin-top: 8px;
+      border-radius: 4px;
+    }
+
+    /* Placeholder per la miniatura */
+    .repo-thumbnail-placeholder {
+      margin-bottom: 0.5rem;
+    }
+
     /* Loader style */
     .loader {
       text-align: center;
@@ -41,40 +152,24 @@
       font-size: 1.5rem;
       color: #fff;
     }
-    /* Stile generale per le card dei repository */
-    .repo-card .card {
-      height: 320px; /* Altezza fissa; modificabile se necessario */
-      display: flex;
-      flex-direction: column;
+
+    /* Footer del sito */
+    footer {
+      background-color: #212529;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
     }
-    .repo-card .card-body {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+
+    /* (Opzionale) Margine per la sezione dei tab */
+    .language-section {
+      margin-top: 1rem;
     }
-    /* Titolo: una sola riga, troncato con ellissi se troppo lungo */
-    .repo-card .card-title {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 0.5rem;
-    }
-    /* Descrizione: occupa lo spazio centrale con flex-grow e troncamento se necessario */
-    .repo-card .card-text {
-      flex-grow: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-height: 100px; /* Regolabile in base al testo da mostrare */
-    }
-    /* Footer della card: usa margin-top: auto per forzare il posizionamento in fondo */
-    .repo-card .card-footer {
-      margin-top: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      font-size: 0.9rem;
+
+    /* Stile per il contenitore dei controlli di paginazione */
+    .pagination-controls {
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -98,7 +193,7 @@
       </div>
     </div>
   </header>
-  
+
   <!-- Main Content -->
   <main class="container mt-5">
     <div class="text-center mb-4">
@@ -110,30 +205,30 @@
         <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
       </p>
     </div>
-    
+
     <!-- Loader per i repository -->
     <div id="repo-loader" class="loader">Loading repositories...</div>
-    
-    <!-- Menu a tab per i gruppi per linguaggio -->
+
+    <!-- Menu a tab per il raggruppamento per linguaggio -->
     <ul class="nav nav-tabs" id="languageTabs" role="tablist"></ul>
-    
+
     <!-- Contenitore dei tab -->
     <div class="tab-content" id="languageTabsContent"></div>
   </main>
-  
-  <!-- Footer -->
+
+  <!-- Footer del sito -->
   <footer>
     <div class="container">
       <p>© 2023 Bocaletto Luca. All rights reserved.</p>
     </div>
   </footer>
-  
+
   <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Script per aggregare tutti i repository e creare dinamicamente i tab con le card -->
+
+  <!-- Script per aggregare tutti i repository, raggrupparli per linguaggio e creare le card con miniatura -->
   <script>
-    // Funzione asincrona per ottenere TUTTI i repository sfruttando il ciclo di paginazione
+    // Funzione per recuperare TUTTI i repository (anche oltre 100)
     async function fetchAllRepos() {
       let page = 1;
       let allRepos = [];
@@ -147,6 +242,35 @@
       return allRepos;
     }
 
+    // Funzione per estrarre la miniatura dal README.md di un repository
+    function fetchThumbnail(repoName) {
+      return fetch(`https://api.github.com/repos/bocaletto-luca/${repoName}/readme`)
+        .then(response => {
+          if (!response.ok) throw new Error("No readme");
+          return response.json();
+        })
+        .then(data => {
+          // Decodifica il contenuto base64
+          const content = atob(data.content);
+          // Cerca la prima immagine markdown: ![...](url)
+          const match = content.match(/!
+
+\[[^\]
+
+]*\]
+
+\((.*?)\)/);
+          if (match && match[1]) {
+            return match[1];
+          } else {
+            return null;
+          }
+        })
+        .catch(err => {
+          return null;
+        });
+    }
+
     document.addEventListener("DOMContentLoaded", async () => {
       const loader = document.getElementById("repo-loader");
       const languageTabs = document.getElementById("languageTabs");
@@ -155,14 +279,12 @@
       const PAGE_SIZE = 6; // Numero di repository da mostrare per pagina per ciascun gruppo
 
       try {
-        // Recupera tutti i repository
         const repos = await fetchAllRepos();
         if (loader) loader.remove();
         
-        // Visualizza il totale dei repository
         totalElem.innerText = "Total Repository: " + repos.length;
         
-        // Raggruppa i repository per linguaggio (o assegnali a "Other" se non indicato)
+        // Raggruppa i repository per linguaggio (default "Other" se null)
         const groups = {};
         repos.forEach(repo => {
           const lang = repo.language ? repo.language : "Other";
@@ -173,8 +295,8 @@
         // Ordina alfabeticamente i linguaggi
         const sortedLanguages = Object.keys(groups).sort();
         
-        // Per ogni gruppo, crea una tab e il relativo contenuto con paginazione
-        sortedLanguages.forEach((language, index) => {
+        // Per ogni gruppo, crea una tab e il contenuto con paginazione
+        sortedLanguages.forEach((language) => {
           const reposGroup = groups[language];
           const totalCount = reposGroup.length;
           const safeLang = language.replace(/\s+/g, '-');
@@ -214,6 +336,7 @@
           const rowContainer = tabPane.querySelector("div.row");
           const paginationContainer = tabPane.querySelector(".pagination-controls");
           
+          // Funzione per renderizzare una pagina del gruppo
           function renderPage(page) {
             rowContainer.innerHTML = "";
             const start = (page - 1) * PAGE_SIZE;
@@ -227,7 +350,7 @@
               const url = repo.html_url;
               const languageTag = repo.language ? repo.language : "Unknown";
               
-              // Crea la card per il repository con lo stesso layout di project.html
+              // Crea la card per il repository; inserisce un placeholder per la miniatura
               const col = document.createElement("div");
               col.className = "col-md-4 repo-card";
               col.innerHTML = `
@@ -235,6 +358,7 @@
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title" title="${title}">${title}</h5>
                     <p class="card-text flex-grow-1">${description}</p>
+                    <div class="repo-thumbnail-placeholder"></div>
                     <div class="card-footer d-flex justify-content-between align-items-center">
                       <small>Language: ${languageTag}</small>
                       <a href="${url}" class="btn btn-primary btn-sm" target="_blank">View on GitHub</a>
@@ -243,14 +367,30 @@
                 </div>
               `;
               rowContainer.appendChild(col);
+
+              // Estrae ed inserisce la miniatura dal README.md (se presente)
+              fetchThumbnail(repo.name).then(thumbnailUrl => {
+                if (thumbnailUrl) {
+                  const placeholder = col.querySelector(".repo-thumbnail-placeholder");
+                  if (placeholder) {
+                    // Crea l'elemento immagine per la miniatura
+                    const img = document.createElement("img");
+                    img.src = thumbnailUrl;
+                    img.alt = "Thumbnail for " + repo.name;
+                    img.classList.add("repo-thumbnail");
+                    placeholder.innerHTML = ""; // Pulisce eventuali contenuti precedenti
+                    placeholder.appendChild(img);
+                  }
+                }
+              });
             }
             updatePaginationControls(page);
           }
           
+          // Funzione per aggiornare i controlli di paginazione
           function updatePaginationControls(page) {
             paginationContainer.innerHTML = "";
             if (totalPages > 1) {
-              // Bottone "Previous"
               const prevBtn = document.createElement("button");
               prevBtn.className = "btn btn-sm btn-secondary me-2";
               prevBtn.innerText = "Previous";
@@ -258,12 +398,10 @@
               prevBtn.onclick = () => { currentPage--; renderPage(currentPage); };
               paginationContainer.appendChild(prevBtn);
               
-              // Informazioni sulla pagina corrente
               const pageInfo = document.createElement("span");
               pageInfo.innerText = `Page ${page} of ${totalPages}`;
               paginationContainer.appendChild(pageInfo);
               
-              // Bottone "Next"
               const nextBtn = document.createElement("button");
               nextBtn.className = "btn btn-sm btn-secondary ms-2";
               nextBtn.innerText = "Next";
@@ -273,11 +411,11 @@
             }
           }
           
-          // Renderizza la prima pagina per questo gruppo
+          // Renderizza la prima pagina del gruppo
           renderPage(currentPage);
         });
         
-        // Attiva automaticamente il primo tab, se esiste
+        // Attiva automaticamente il primo tab (se esiste)
         const firstTabBtn = languageTabs.querySelector("button.nav-link");
         if (firstTabBtn) {
           firstTabBtn.classList.add("active");

@@ -32,15 +32,13 @@
   <!-- CSS Locale -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Nuovo CSS per un layout uniforme (uguale a project.html) -->
+  <!-- CSS Unificato (layout uguale a project.html) -->
   <style>
-    /* Global reset e font */
+    /* Global reset, font e branding */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
     }
-
-    /* Branding: logo, titolo e motto */
     .branding {
       text-align: center;
       padding: 1rem 0;
@@ -60,8 +58,7 @@
       font-size: 1rem;
       color: #ccc;
     }
-
-    /* Menu di navigazione sempre visibile */
+    /* Menu principale */
     .navbar-always {
       background-color: #343a40;
       padding: 0.5rem 1rem;
@@ -71,7 +68,7 @@
       margin: 0;
       padding: 0;
       list-style: none;
-      flex-direction: column;  /* default: verticale */
+      flex-direction: column;
       align-items: center;
     }
     .navbar-always .nav-item {
@@ -91,15 +88,13 @@
         justify-content: center;
       }
     }
-
     /* Spazio per il contenuto */
     main {
       margin-top: 20px;
     }
-
     /* Card comuni per repository e progetti */
     .repo-card .card {
-      height: 320px;  /* Altezza fissa; modificabile se necessario */
+      height: 320px;  /* Altezza fissa; regola se necessario */
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -109,20 +104,18 @@
       flex-direction: column;
       flex-grow: 1;
     }
-    /* Titolo troncato con ellissi */
     .repo-card .card-title {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       margin-bottom: 0.5rem;
     }
-    /* Descrizione: occupa lo spazio centrale e viene troncata */
     .repo-card .card-text {
       flex-grow: 1;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    /* Footer: spinto in fondo grazie a margin-top: auto */
+    /* Il footer viene spinto in basso grazie a margin-top: auto */
     .repo-card .card-footer {
       margin-top: auto;
       display: flex;
@@ -131,28 +124,24 @@
       padding: 0.5rem;
       font-size: 0.9rem;
     }
-
-    /* Stile della miniatura: appaia pulita e scalata correttamente */
+    /* Stile per la miniatura estratta */
     .repo-thumbnail {
       max-width: 100%;
       height: auto;
       margin-top: 8px;
       border-radius: 4px;
     }
-
-    /* Placeholder per la miniatura */
     .repo-thumbnail-placeholder {
-      margin-bottom: 0.5rem;
+      margin-top: 8px;
+      /* Puoi anche impostare un'altezza fissa di placeholder se preferisci */
     }
-
-    /* Loader style */
+    /* Loader */
     .loader {
       text-align: center;
       padding: 2rem;
       font-size: 1.5rem;
       color: #fff;
     }
-
     /* Footer del sito */
     footer {
       background-color: #212529;
@@ -160,13 +149,11 @@
       text-align: center;
       padding: 1rem 0;
     }
-
     /* (Opzionale) Margine per la sezione dei tab */
     .language-section {
       margin-top: 1rem;
     }
-
-    /* Stile per il contenitore dei controlli di paginazione */
+    /* Contenitore per i controlli di paginazione */
     .pagination-controls {
       text-align: center;
       margin-top: 10px;
@@ -174,7 +161,7 @@
   </style>
 </head>
 <body>
-  <!-- Header: Branding e Menu -->
+  <!-- Header (Branding e Menu) -->
   <header>
     <div class="branding">
       <img src="logo.png" alt="Bocaletto Luca Logo">
@@ -206,7 +193,7 @@
       </p>
     </div>
 
-    <!-- Loader per i repository -->
+    <!-- Loader -->
     <div id="repo-loader" class="loader">Loading repositories...</div>
 
     <!-- Menu a tab per il raggruppamento per linguaggio -->
@@ -226,7 +213,7 @@
   <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Script per aggregare tutti i repository, raggrupparli per linguaggio e creare le card con miniatura -->
+  <!-- Script JS per aggregare e visualizzare i repository con miniatura -->
   <script>
     // Funzione per recuperare TUTTI i repository (anche oltre 100)
     async function fetchAllRepos() {
@@ -234,6 +221,10 @@
       let allRepos = [];
       while (true) {
         const response = await fetch(`https://api.github.com/users/bocaletto-luca/repos?per_page=100&page=${page}`);
+        if(response.status !== 200) {
+          console.error("Errore nella fetch dei repository, status:", response.status);
+          break;
+        }
         const repos = await response.json();
         if (!Array.isArray(repos) || repos.length === 0) break;
         allRepos = allRepos.concat(repos);
@@ -246,27 +237,26 @@
     function fetchThumbnail(repoName) {
       return fetch(`https://api.github.com/repos/bocaletto-luca/${repoName}/readme`)
         .then(response => {
-          if (!response.ok) throw new Error("No readme");
-          return response.json();
+          if (response.status === 200) return response.json();
+          else return null;
         })
         .then(data => {
-          // Decodifica il contenuto base64
-          const content = atob(data.content);
-          // Cerca la prima immagine markdown: ![...](url)
-          const match = content.match(/!
+          if (data && data.content) {
+            const content = atob(data.content);
+            // Cerca il primo match di immagine con URL http o https
+            const match = content.match(/!
 
 \[[^\]
 
 ]*\]
 
-\((.*?)\)/);
-          if (match && match[1]) {
-            return match[1];
-          } else {
-            return null;
+\((https?:\/\/[^\s)]+)\)/);
+            if (match && match[1]) return match[1];
           }
+          return null;
         })
         .catch(err => {
+          console.error("Errore in fetchThumbnail per " + repoName + ": " + err);
           return null;
         });
     }
@@ -276,32 +266,30 @@
       const languageTabs = document.getElementById("languageTabs");
       const languageTabsContent = document.getElementById("languageTabsContent");
       const totalElem = document.getElementById("repo-total");
-      const PAGE_SIZE = 6; // Numero di repository da mostrare per pagina per ciascun gruppo
+      const PAGE_SIZE = 6; // Numero di repository per pagina per gruppo
 
       try {
         const repos = await fetchAllRepos();
         if (loader) loader.remove();
-        
         totalElem.innerText = "Total Repository: " + repos.length;
-        
-        // Raggruppa i repository per linguaggio (default "Other" se null)
+
+        // Raggruppa i repository per linguaggio (usa "Other" se null)
         const groups = {};
         repos.forEach(repo => {
           const lang = repo.language ? repo.language : "Other";
           if (!groups[lang]) groups[lang] = [];
           groups[lang].push(repo);
         });
-        
-        // Ordina alfabeticamente i linguaggi
+
         const sortedLanguages = Object.keys(groups).sort();
-        
-        // Per ogni gruppo, crea una tab e il contenuto con paginazione
-        sortedLanguages.forEach((language) => {
+
+        // Per ogni gruppo di linguaggio crea i tab e il relativo contenuto con paginazione
+        sortedLanguages.forEach(language => {
           const reposGroup = groups[language];
           const totalCount = reposGroup.length;
           const safeLang = language.replace(/\s+/g, '-');
           const tabId = 'tab-' + safeLang;
-          
+
           // Crea il bottone del tab
           const navItem = document.createElement("li");
           navItem.className = "nav-item";
@@ -318,7 +306,7 @@
           tabButton.innerText = `${language} (${totalCount})`;
           navItem.appendChild(tabButton);
           languageTabs.appendChild(navItem);
-          
+
           // Crea il contenitore per il contenuto del tab
           const tabPane = document.createElement("div");
           tabPane.className = "tab-pane fade";
@@ -330,13 +318,13 @@
             <div class="pagination-controls" id="group-${safeLang}-pagination"></div>
           `;
           languageTabsContent.appendChild(tabPane);
-          
+
           let currentPage = 1;
           const totalPages = Math.ceil(totalCount / PAGE_SIZE);
           const rowContainer = tabPane.querySelector("div.row");
           const paginationContainer = tabPane.querySelector(".pagination-controls");
-          
-          // Funzione per renderizzare una pagina del gruppo
+
+          // Funzione per renderizzare una pagina del gruppo corrente
           function renderPage(page) {
             rowContainer.innerHTML = "";
             const start = (page - 1) * PAGE_SIZE;
@@ -349,8 +337,8 @@
                                     : "No description provided.";
               const url = repo.html_url;
               const languageTag = repo.language ? repo.language : "Unknown";
-              
-              // Crea la card per il repository; inserisce un placeholder per la miniatura
+
+              // Crea la card per il repository con layout simile a project.html
               const col = document.createElement("div");
               col.className = "col-md-4 repo-card";
               col.innerHTML = `
@@ -368,12 +356,11 @@
               `;
               rowContainer.appendChild(col);
 
-              // Estrae ed inserisce la miniatura dal README.md (se presente)
+              // Estrae ed inserisce la miniatura, se presente
               fetchThumbnail(repo.name).then(thumbnailUrl => {
                 if (thumbnailUrl) {
                   const placeholder = col.querySelector(".repo-thumbnail-placeholder");
                   if (placeholder) {
-                    // Crea l'elemento immagine per la miniatura
                     const img = document.createElement("img");
                     img.src = thumbnailUrl;
                     img.alt = "Thumbnail for " + repo.name;
@@ -386,8 +373,8 @@
             }
             updatePaginationControls(page);
           }
-          
-          // Funzione per aggiornare i controlli di paginazione
+
+          // Funzione per aggiornare i controlli di paginazione del gruppo
           function updatePaginationControls(page) {
             paginationContainer.innerHTML = "";
             if (totalPages > 1) {
@@ -397,11 +384,11 @@
               prevBtn.disabled = (page === 1);
               prevBtn.onclick = () => { currentPage--; renderPage(currentPage); };
               paginationContainer.appendChild(prevBtn);
-              
+
               const pageInfo = document.createElement("span");
               pageInfo.innerText = `Page ${page} of ${totalPages}`;
               paginationContainer.appendChild(pageInfo);
-              
+
               const nextBtn = document.createElement("button");
               nextBtn.className = "btn btn-sm btn-secondary ms-2";
               nextBtn.innerText = "Next";
@@ -410,11 +397,10 @@
               paginationContainer.appendChild(nextBtn);
             }
           }
-          
-          // Renderizza la prima pagina del gruppo
+
           renderPage(currentPage);
         });
-        
+
         // Attiva automaticamente il primo tab (se esiste)
         const firstTabBtn = languageTabs.querySelector("button.nav-link");
         if (firstTabBtn) {

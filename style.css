@@ -98,3 +98,58 @@ footer {
   text-align: center;
   padding: 1rem 0;
 }
+
+/* Loader style */
+.loader {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Le schede dei progetti */
+.project-card .card {
+  height: 320px; /* Altezza fissa: regola in base alle tue esigenze */
+  display: flex;
+  flex-direction: column;
+}
+.project-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Titolo: una sola riga, troncato con ellissi se troppo lungo */
+.project-card .card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+}
+
+/* La descrizione occupa l'area centrale; se troppo lunga verrà troncata */
+.project-card .card-text {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Footer della scheda: allineamento a sinistra il linguaggio e a destra il pulsante */
+.project-card .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* (Opzionale) Margine per la sezione dei tab */
+.language-section {
+  margin-top: 1rem;
+}
+
+/* Stile per il contenitore dei controlli di paginazione */
+.pagination-controls {
+  text-align: center;
+  margin-top: 10px;
+}

@@ -34,57 +34,93 @@
   <!-- Theme CSS: Bootswatch Cyborg -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Bootstrap Icons (per le icone del toggle) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
   <style>
-    body { padding-top: 70px; }
+    /* Spazio per il contenuto sotto il navbar */
+    body { margin-top: 70px; }
+    /* Opzionalmente, se vuoi che il main abbia un margine variabile in base all'altezza del navbar */
+    main { transition: margin-top 0.3s; }
   </style>
 </head>
 <body>
   <!-- Header e Navbar -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-top: 40px;">
+    <!-- Il navbar è sempre collassato (non usiamo navbar-expand-*) -->
+    <nav class="navbar navbar-dark bg-dark fixed-top" style="margin-top: 40px;">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <!-- Sostituisci logo.png con il percorso reale del tuo logo -->
+          <!-- Sostituisci logo.png con il tuo logo reale -->
           <img src="logo.png" alt="Bocaletto Luca Logo" width="40" height="40" class="me-2">
           <div>
             <div class="fw-bold">Bocaletto Luca</div>
             <small class="text-muted">Official GitHub Page</small>
           </div>
         </a>
+        <!-- Toggle button, visibile sempre -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <!-- Icona iniziale: hamburger -->
           <span class="navbar-toggler-icon"></span>
         </button>
-  
+        <!-- Contenuto del menu -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-           <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
-           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
-           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-           <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-           <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
-  
+
   <!-- Main Content -->
-  <main class="container mt-5">
+  <main class="container">
     <div class="text-center">
       <h1>Welcome to Bocaletto Luca</h1>
       <p class="lead">Discover innovative web projects and open source contributions.</p>
     </div>
   </main>
-  
+
   <!-- Footer -->
   <footer class="bg-dark text-light text-center py-3 mt-5">
     <div class="container">
       <p class="mb-0">© 2023 Bocaletto Luca. All rights reserved.</p>
     </div>
   </footer>
-  
+
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript per gestire il margine del main ed il cambio di icona del toggle -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var navbarCollapse = document.getElementById("navbarNav");
+      var nav = document.querySelector("nav");
+      var main = document.querySelector("main");
+      var toggler = document.querySelector(".navbar-toggler");
+
+      // Quando il menu viene espanso: aumenta il margine top del main
+      navbarCollapse.addEventListener('shown.bs.collapse', function () {
+        // Calcola l'altezza totale del navbar (incluso il menu espanso)
+        var navHeight = nav.offsetHeight;
+        main.style.marginTop = navHeight + "px";
+        // Cambia l'icona a minus (dash)
+        toggler.innerHTML = '<i class="bi bi-dash-lg"></i>';
+      });
+      
+      // Quando il menu viene chiuso: ripristina il margine top del main
+      navbarCollapse.addEventListener('hidden.bs.collapse', function () {
+        // Imposta il margine top di default (70px in questo esempio)
+        main.style.marginTop = "70px";
+        // Ripristina l'icona hamburger
+        toggler.innerHTML = '<span class="navbar-toggler-icon"></span>';
+      });
+    });
+  </script>
 </body>
 </html>

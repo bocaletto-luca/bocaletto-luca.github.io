@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
   <!-- CSS Locale -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Nuovo CSS per risolvere problemi di allineamento -->
+  <!-- Nuovo CSS per allineare i contenitori come in project.html -->
   <style>
     /* Loader style */
     .loader {
@@ -47,9 +47,9 @@
       color: #fff;
     }
 
-    /* Stili per le repository cards */
+    /* Le card dei repository con lo stesso layout dei progetti */
     .repo-card .card {
-      height: 320px; /* Altezza fissa: regola se necessario */
+      height: 320px; /* Altezza fissa, modificabile in base alle esigenze */
       display: flex;
       flex-direction: column;
     }
@@ -58,21 +58,21 @@
       flex-direction: column;
       height: 100%;
     }
-    /* Titolo: una sola riga + ellissi se troppo lungo */
+    /* Titolo: truncato con ellissi se troppo lungo */
     .repo-card .card-title {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       margin-bottom: 0.5rem;
     }
-    /* La descrizione: occupa lo spazio centrale e viene troncata se troppo lunga */
+    /* Descrizione: occupa l'area centrale e viene troncata se necessaria */
     .repo-card .card-text {
       flex-grow: 1;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-height: 100px; /* Puoi regolare */
+      max-height: 100px; /* Regolabile in base alla quantità di testo da mostrare */
     }
-    /* Footer della card: allinea "Language:" e il pulsante in fondo */
+    /* Footer della card: posiziona il linguaggio a sinistra e il pulsante a destra */
     .repo-card .card-footer {
       display: flex;
       justify-content: space-between;
@@ -130,10 +130,10 @@
   
   <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Script per aggregare tutti i repository e popolare le cards -->
+
+  <!-- Script per aggregare tutti i repository e creare le card -->
   <script>
-    // Funzione asincrona per ottenere tutti i repository, anche se > 100 (gestisce la paginazione)
+    // Funzione asincrona per ottenere tutti i repository superando il limite per_page=100
     async function fetchAllRepos() {
       let page = 1;
       let allRepos = [];
@@ -156,10 +156,10 @@
         const repos = await fetchAllRepos();
         if (loader) loader.remove();
         
-        // Visualizza il numero totale di repository
+        // Imposta il numero totale di repository
         totalElem.innerText = "Total Repository: " + repos.length;
         
-        // Ordinamento (facoltativo) per data di aggiornamento decrescente
+        // Ordina i repository (facoltativo) per data di aggiornamento decrescente
         repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
         
         repos.forEach(repo => {
@@ -170,7 +170,6 @@
           const url = repo.html_url;
           const language = repo.language ? repo.language : "Unknown";
           
-          // Crea la colonna per la scheda del repository
           const col = document.createElement("div");
           col.className = "col-md-4 repo-card";
           col.innerHTML = `

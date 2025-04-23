@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://bocaletto-luca.github.io/project.html">
   <meta property="og:image" content="URL_of_logo_or_image">
   
-  <!-- Structured Data -->
+  <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,6 +51,11 @@
       margin-bottom: 1rem;
       color: #0dcaf0;
       text-align: center;
+    }
+    /* Container per i controlli della paginazione */
+    .pagination-controls {
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -98,7 +103,7 @@
       </p>
     </div>
     
-    <!-- Container dove verranno inserite le sezioni raggruppate per linguaggio -->
+    <!-- Container dove verranno inserite dinamicamente le sezioni raggruppate per linguaggio -->
     <div class="project-cards-container">
       <div id="project-loader" class="loader">Loading projects...</div>
     </div>
@@ -114,56 +119,112 @@
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script per popolare dinamicamente i repository raggruppati per linguaggio -->
+  <!-- Script per popolare dinamicamente i repository raggruppati per linguaggio con paginazione -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const container = document.querySelector(".project-cards-container");
       const loader = document.getElementById("project-loader");
+      const PAGE_SIZE = 6; // Numero di repository da mostrare per pagina per ogni gruppo
 
-      fetch("https://api.github.com/users/bocaletto-luca/repos")
+      fetch("https://api.github.com/users/bocaletto-luca/repos?per_page=100")
         .then(response => response.json())
         .then(repos => {
           if(loader) loader.remove();
           
           // Raggruppa i repository per linguaggio
-          let groups = {};
+          const groups = {};
           repos.forEach(repo => {
-            let lang = repo.language ? repo.language : "Other";
+            const lang = repo.language ? repo.language : "Other";
             if (!groups[lang]) {
               groups[lang] = [];
             }
             groups[lang].push(repo);
           });
           
-          // Ordina le chiavi (i linguaggi) in ordine alfabetico
+          // Ordina le chiavi dei gruppi in ordine alfabetico
           Object.keys(groups).sort().forEach(language => {
-            // Crea una sezione per il linguaggio
+            const reposGroup = groups[language];
+            const totalCount = reposGroup.length;
+            
+            // Crea una sezione per questo gruppo di linguaggio
             const section = document.createElement("div");
             section.className = "language-section";
-            section.innerHTML = `<h2>${language}</h2><div class="row"></div>`;
-            const row = section.querySelector(".row");
-            
-            // Per ciascun repository in questo gruppo
-            groups[language].forEach(repo => {
-              const title = repo.name;
-              const description = (repo.description && repo.description.trim().length > 0) ? repo.description : "No description provided.";
-              const url = repo.html_url;
-              
-              const col = document.createElement("div");
-              col.className = "col-md-4 project-card";
-              col.innerHTML = `
-                <div class="card bg-secondary text-light mb-3">
-                  <div class="card-body">
-                    <h5 class="card-title">${title}</h5>
-                    <p class="card-text">${description}</p>
-                    <a href="${url}" class="btn btn-primary" target="_blank">View on GitHub</a>
-                  </div>
-                </div>
-              `;
-              row.appendChild(col);
-            });
-            
+            // Uso il replace per evitare spazi nel DOM id
+            const safeLang = language.replace(/\s+/g, '-');
+            section.innerHTML = `<h2>${language} (Total Repository: ${totalCount})</h2>
+                                  <div class="row" id="group-${safeLang}-row"></div>
+                                  <div class="pagination-controls" id="group-${safeLang}-pagination"></div>`;
             container.appendChild(section);
+            
+            let currentPage = 1;
+            const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+            const rowContainer = section.querySelector(".row");
+            const paginationContainer = section.querySelector(".pagination-controls");
+            
+            // Funzione per rendere (render) una pagina
+            function renderPage(page) {
+              rowContainer.innerHTML = "";
+              const start = (page - 1) * PAGE_SIZE;
+              const end = Math.min(start + PAGE_SIZE, totalCount);
+              for (let i = start; i < end; i++) {
+                const repo = reposGroup[i];
+                const title = repo.name;
+                const description = (repo.description && repo.description.trim().length > 0) ? repo.description : "No description provided.";
+                const url = repo.html_url;
+                const languageTag = repo.language ? repo.language : "Unknown";
+                
+                const col = document.createElement("div");
+                col.className = "col-md-4 project-card";
+                col.innerHTML = `
+                  <div class="card bg-secondary text-light mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title">${title}</h5>
+                      <p class="card-text">${description}</p>
+                      <p><small>Language: ${languageTag}</small></p>
+                      <a href="${url}" class="btn btn-primary" target="_blank">View on GitHub</a>
+                    </div>
+                  </div>
+                `;
+                rowContainer.appendChild(col);
+              }
+              updatePaginationControls(page);
+            }
+            
+            // Funzione per aggiornare i controlli di paginazione
+            function updatePaginationControls(page) {
+              paginationContainer.innerHTML = "";
+              if (totalPages > 1) {
+                // Bottone "Previous"
+                const prevBtn = document.createElement("button");
+                prevBtn.className = "btn btn-sm btn-secondary me-2";
+                prevBtn.innerText = "Previous";
+                prevBtn.disabled = (page === 1);
+                prevBtn.onclick = function() {
+                  currentPage--;
+                  renderPage(currentPage);
+                };
+                paginationContainer.appendChild(prevBtn);
+    
+                // Informazioni sulla pagina corrente
+                const pageInfo = document.createElement("span");
+                pageInfo.innerText = `Page ${page} of ${totalPages}`;
+                paginationContainer.appendChild(pageInfo);
+    
+                // Bottone "Next"
+                const nextBtn = document.createElement("button");
+                nextBtn.className = "btn btn-sm btn-secondary ms-2";
+                nextBtn.innerText = "Next";
+                nextBtn.disabled = (page === totalPages);
+                nextBtn.onclick = function() {
+                  currentPage++;
+                  renderPage(currentPage);
+                };
+                paginationContainer.appendChild(nextBtn);
+              }
+            }
+            
+            // Renderizza la prima pagina del gruppo
+            renderPage(currentPage);
           });
         })
         .catch(error => {

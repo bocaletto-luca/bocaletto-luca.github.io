@@ -146,5 +146,22 @@
   
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Effect Skill -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let progressBars = document.querySelectorAll(".progress");
+
+    progressBars.forEach(function(bar) {
+      let width = bar.style.width; // Recupera il valore (es. "90%")
+      bar.style.width = "0%"; // Resetta l'animazione iniziale
+
+      setTimeout(function() {
+        bar.style.transition = "width 1.5s ease-in-out";
+        bar.style.width = width; // Applica il valore corretto
+      }, 500);
+    });
+  });
+</script>
+
 </body>
 </html>

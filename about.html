@@ -33,6 +33,37 @@
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   <!-- Style CSS -->
   <link rel="stylesheet" href="style.css">
+  <style>
+
+  #skills {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.skill {
+    margin: 20px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(to right, #4CAF50, #2E7D32);
+    text-align: right;
+    padding-right: 10px;
+    color: white;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+  </style>
 </head>
 <body>
   <!-- Header: Branding e Menu -->
@@ -78,6 +109,32 @@
     <p>
       My hobbies and expertise include freelance writing, technology consulting, full stack web and software development, IT support, making, 3D printing and design, as well as experimenting with electronics, robotics, and home automation with Arduino. I began with the C64 and cassette copies – my very first hack – and later explored video game development. I’m also passionate about astronomy, radio, chess, and music.
     </p>
+    <section id="skills">
+    <h2>Le mie Competenze</h2>
+    
+    <div class="skill">
+        <p>Linguaggi di Programmazione</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 90%;"></div> <!-- 90% -->
+        </div>
+    </div>
+
+    <div class="skill">
+        <p>Web Development</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 80%;"></div> <!-- 80% -->
+        </div>
+    </div>
+
+    <div class="skill">
+        <p>Database Management</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 70%;"></div> <!-- 70% -->
+        </div>
+    </div>
+
+</section>
+
   </main>
   
   <!-- Footer -->

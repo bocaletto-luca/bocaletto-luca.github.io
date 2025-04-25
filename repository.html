@@ -27,163 +27,258 @@
   }
   </script>
   
-  <!-- Bootstrap CSS (Bootswatch Cyborg) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
-  <!-- CSS Locale -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Includiamo Orbitron, FontAwesome e Animate.css -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   
-  <!-- CSS Unificato -->
   <style>
-    /* Global Reset e Font */
+    :root {
+      --primary-color: #FF7F00;
+      --dark-bg: #111;
+      --light-text: #EEE;
+      --font-title: 'Orbitron', sans-serif;
+    }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      font-family: var(--font-title);
+      line-height: 1.6;
     }
-    /* Branding */
-    .branding {
-      text-align: center;
-      padding: 1rem 0;
-      background-color: #212529;
-      color: #fff;
+  
+    a { text-decoration: none; color: var(--primary-color); }
+  
+    /* Header / Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      border-bottom: 2px solid var(--primary-color);
+      z-index: 1000;
     }
-    .branding img {
-      width: 80px;
-      height: auto;
-    }
-    .branding h1 {
-      margin: 0.5rem 0 0.25rem;
-      font-size: 2rem;
-    }
-    .branding p {
-      margin: 0;
-      font-size: 1rem;
-      color: #ccc;
-    }
-    /* Menu Principale */
-    .navbar-always {
-      background-color: #343a40;
-      padding: 0.5rem 1rem;
-    }
-    .navbar-always .navbar-nav {
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      flex-direction: column;
+      flex-wrap: wrap;
       align-items: center;
+      justify-content: space-between;
     }
-    .navbar-always .nav-item {
-      margin: 0.5rem;
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
-    .navbar-always .nav-link {
-      color: #fff;
-      font-size: 1.1rem;
-      text-decoration: none;
+    .nav-left img {
+      height: 50px;
     }
-    .navbar-always .nav-link:hover {
-      text-decoration: underline;
+    .nav-left .logo-text {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--primary-color);
     }
-    @media (min-width: 768px) {
-      .navbar-always .navbar-nav {
-        flex-direction: row;
-        justify-content: center;
-      }
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
     }
-    /* Spazio per il Contenuto */
+    @media (max-width: 768px) {
+      .nav-right ul { flex-direction: column; margin-top: 1rem; width: 100%; }
+      .nav-right ul li { text-align: center; }
+    }
+    .nav-right a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--light-text);
+      transition: color 0.3s;
+    }
+    .nav-right a:hover { color: var(--primary-color); }
+  
+    /* Main Content */
     main {
-      margin-top: 20px;
+      margin-top: 100px;
+      padding: 0 1rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    /* Card Comuni per Repository */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+    }
+    .page-header p {
+      font-size: 1.2rem;
+      color: var(--light-text);
+    }
+  
+    /* Loader */
+    .loader {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.5rem;
+    }
+  
+    /* Tabs Menu */
+    .tabs-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      border-bottom: 2px solid var(--primary-color);
+      margin-bottom: 2rem;
+    }
+    .tab-button {
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--light-text);
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+    .tab-button.active {
+      color: var(--primary-color);
+      border-bottom: 3px solid var(--primary-color);
+    }
+    .tab-content {
+      display: none;
+      animation: fadeIn 1s;
+    }
+    .tab-content.active { display: block; }
+  
+    /* Repository Cards */
+    .repo-card { margin-bottom: 1.5rem; }
     .repo-card .card {
-      height: 320px; /* Altezza fissa; puoi modificarla se necessario */
+      height: 320px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      border: 1px solid var(--primary-color);
+      background: #1a1a1a;
+      color: var(--light-text);
     }
     .repo-card .card-body {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+      padding: 1rem;
     }
     .repo-card .card-title {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       margin-bottom: 0.5rem;
+      font-size: 1.25rem;
     }
     .repo-card .card-text {
       flex-grow: 1;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-size: 0.95rem;
     }
-    /* Footer: posizionato in fondo grazie a margin-top: auto */
     .repo-card .card-footer {
       margin-top: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem;
-      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      background: #222;
     }
-    /* Loader */
-    .loader {
-      text-align: center;
-      padding: 2rem;
-      font-size: 1.5rem;
-      color: #fff;
+    .repo-card .btn {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--primary-color);
+      border: none;
+      color: #111;
+      cursor: pointer;
+      transition: background 0.3s;
     }
-    /* Footer del Sito */
-    footer {
-      background-color: #212529;
-      color: #fff;
-      text-align: center;
-      padding: 1rem 0;
-    }
-    /* Contenitore per i Controlli di Paginazione */
+    .repo-card .btn:hover { background: #e67e22; }
+  
+    /* Pagination Controls */
     .pagination-controls {
       text-align: center;
       margin-top: 10px;
     }
+    .pagination-controls button {
+      margin: 0 5px;
+      padding: 0.5rem 1rem;
+      background: var(--primary-color);
+      color: #111;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .pagination-controls button:disabled {
+      background: #444;
+      cursor: not-allowed;
+    }
+  
+    /* Footer */
+    footer {
+      background-color: var(--dark-bg);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      border-top: 2px solid var(--primary-color);
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
   </style>
+  
+  <!-- Se includiamo Leaflet per eventuali mappe o altri usi (se necessario) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" 
+        integrity="sha256-sA+e2MjFz6n/ezhUNW1jBPEs173pHV95+mLr9t+U7r0=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" 
+          integrity="sha256-DvZ2x4SfC9wT3e0qERFZH0TrhQOewRlhQmi6Gasz0+M=" crossorigin=""></script>
 </head>
 <body>
-  <!-- Header: Branding e Menu -->
+  <!-- Header / Navbar -->
   <header>
-    <div class="branding">
-      <img src="logo.png" alt="Bocaletto Luca Logo">
-      <h1>Bocaletto Luca</h1>
-      <p>Official GitHub Page</p>
-    </div>
-    <div class="navbar-always">
-      <div class="container">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="repository.html">Repositories</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="logo.png" alt="Logo Bocaletto Luca">
+        <span class="logo-text">Bocaletto Luca</span>
+      </div>
+      <div class="nav-right">
+        <ul>
+          <li><a href="https://bocaletto-luca.github.io/" target="_blank">Home</a></li>
+          <li><a href="repository.html" class="active" target="_blank">Repositories</a></li>
+          <li><a href="about.html" target="_blank">About</a></li>
+          <li><a href="project.html" target="_blank">Projects</a></li>
+          <li><a href="contacts.html" target="_blank">Contacts</a></li>
         </ul>
       </div>
     </div>
   </header>
   
   <!-- Main Content -->
-  <main class="container mt-5">
-    <div class="text-center mb-4">
-      <h1>Repositories</h1>
-      <p class="lead">Browse the innovative repositories of Bocaletto Luca.</p>
-      <p id="repo-total" class="lead"></p>
+  <main>
+    <div class="page-header">
+      <h1 class="animate__animated animate__fadeInDown">Repositories</h1>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">Browse the innovative repositories of Bocaletto Luca.</p>
+      <p id="repo-total"></p>
       <p>
         For the complete list, visit my GitHub profile:
-        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
+        <a href="https://github.com/bocaletto-luca" target="_blank">https://github.com/bocaletto-luca</a>
       </p>
     </div>
     
     <!-- Loader -->
     <div id="repo-loader" class="loader">Loading repositories...</div>
     
-    <!-- Menu a Tab per Linguaggio -->
-    <ul class="nav nav-tabs" id="languageTabs" role="tablist"></ul>
+    <!-- Tabs Menu per Linguaggio -->
+    <div class="tabs-menu" id="languageTabs" role="tablist"></div>
     
     <!-- Contenitore dei Tab -->
     <div class="tab-content" id="languageTabsContent"></div>
@@ -191,17 +286,11 @@
   
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>© 2023 Bocaletto Luca. All rights reserved.</p>
-    </div>
+    <p>© 2023 Bocaletto Luca. All rights reserved.</p>
   </footer>
   
-  <!-- Bootstrap Bundle JS (include Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Script JS per il Fetch e la Visualizzazione dei Repository -->
+  <!-- Script per Fetch e Visualizzazione dei Repository -->
   <script>
-    // Recupera tutti i repository (anche oltre 100)
     async function fetchAllRepos() {
       let page = 1;
       let allRepos = [];
@@ -224,7 +313,7 @@
       const languageTabs = document.getElementById("languageTabs");
       const languageTabsContent = document.getElementById("languageTabsContent");
       const totalElem = document.getElementById("repo-total");
-      const PAGE_SIZE = 6; // Repository per pagina per gruppo
+      const PAGE_SIZE = 6;
       
       try {
         const repos = await fetchAllRepos();
@@ -237,7 +326,7 @@
         
         totalElem.innerText = "Total Repository: " + repos.length;
         
-        // Raggruppa i repository per linguaggio (usa "Other" se il campo è null)
+        // Raggruppa i repository per linguaggio (usa "Other" se null)
         const groups = {};
         repos.forEach(repo => {
           const lang = repo.language ? repo.language : "Other";
@@ -254,28 +343,16 @@
           const tabId = 'tab-' + safeLang;
           
           // Crea il Tab Button
-          const navItem = document.createElement("li");
-          navItem.className = "nav-item";
-          navItem.role = "presentation";
-          const tabButton = document.createElement("button");
-          tabButton.className = "nav-link";
-          tabButton.id = tabId + "-tab";
-          tabButton.setAttribute("data-bs-toggle", "tab");
-          tabButton.setAttribute("data-bs-target", "#" + tabId);
-          tabButton.type = "button";
-          tabButton.role = "tab";
-          tabButton.setAttribute("aria-controls", tabId);
-          tabButton.setAttribute("aria-selected", "false");
+          const tabButton = document.createElement("div");
+          tabButton.className = "tab-button";
+          tabButton.setAttribute("data-tab", tabId);
           tabButton.innerText = `${language} (${totalCount})`;
-          navItem.appendChild(tabButton);
-          languageTabs.appendChild(navItem);
+          languageTabs.appendChild(tabButton);
           
-          // Crea il contenitore per il contenuto del Tab
+          // Crea il contenitore per il Tab Content
           const tabPane = document.createElement("div");
-          tabPane.className = "tab-pane fade";
+          tabPane.className = "tab-content";
           tabPane.id = tabId;
-          tabPane.role = "tabpanel";
-          tabPane.setAttribute("aria-labelledby", tabId + "-tab");
           tabPane.innerHTML = `
             <div class="row" id="group-${safeLang}-row"></div>
             <div class="pagination-controls" id="group-${safeLang}-pagination"></div>
@@ -287,7 +364,6 @@
           const rowContainer = tabPane.querySelector("div.row");
           const paginationContainer = tabPane.querySelector(".pagination-controls");
           
-          // Renderizza una pagina del gruppo corrente
           function renderPage(page) {
             rowContainer.innerHTML = "";
             const start = (page - 1) * PAGE_SIZE;
@@ -301,18 +377,16 @@
               const url = repo.html_url;
               const languageTag = repo.language ? repo.language : "Unknown";
               
-              // Crea la Card del repository
               const col = document.createElement("div");
               col.className = "col-md-4 repo-card";
               col.innerHTML = `
-                <div class="card bg-secondary text-light mb-3">
+                <div class="card">
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title" title="${title}">${title}</h5>
                     <p class="card-text flex-grow-1">${description}</p>
-                    <!-- Nota: Le miniature sono temporaneamente disabilitate -->
                     <div class="card-footer d-flex justify-content-between align-items-center">
                       <small>Language: ${languageTag}</small>
-                      <a href="${url}" class="btn btn-primary btn-sm" target="_blank">View on GitHub</a>
+                      <a href="${url}" class="btn" target="_blank">View on GitHub</a>
                     </div>
                   </div>
                 </div>
@@ -322,12 +396,10 @@
             updatePaginationControls(page);
           }
           
-          // Aggiorna i controlli di paginazione del gruppo
           function updatePaginationControls(page) {
             paginationContainer.innerHTML = "";
             if (totalPages > 1) {
               const prevBtn = document.createElement("button");
-              prevBtn.className = "btn btn-sm btn-secondary me-2";
               prevBtn.innerText = "Previous";
               prevBtn.disabled = (page === 1);
               prevBtn.onclick = () => { currentPage--; renderPage(currentPage); };
@@ -338,7 +410,6 @@
               paginationContainer.appendChild(pageInfo);
               
               const nextBtn = document.createElement("button");
-              nextBtn.className = "btn btn-sm btn-secondary ms-2";
               nextBtn.innerText = "Next";
               nextBtn.disabled = (page === totalPages);
               nextBtn.onclick = () => { currentPage++; renderPage(currentPage); };
@@ -349,14 +420,30 @@
           renderPage(currentPage);
         });
         
-        // Attiva automaticamente il primo tab, se esiste
-        const firstTabBtn = languageTabs.querySelector("button.nav-link");
-        if (firstTabBtn) {
-          firstTabBtn.classList.add("active");
-          const firstTabContentId = firstTabBtn.getAttribute("data-bs-target");
-          const firstTabContent = document.querySelector(firstTabContentId);
-          if (firstTabContent) firstTabContent.classList.add("show", "active");
+        // Aggiungi la logica dei Tab: cliccando su un tab-button si attivano i corrispondenti contenuti
+        const tabButtons = document.querySelectorAll(".tab-button");
+        tabButtons.forEach(button => {
+          button.addEventListener("click", () => {
+            // Rimuove "active" da tutti i tab-button e tab-content
+            tabButtons.forEach(btn => btn.classList.remove("active"));
+            const allTabContents = document.querySelectorAll(".tab-content");
+            allTabContents.forEach(content => content.classList.remove("active"));
+            // Aggiunge "active" al bottone cliccato e al contenuto associato
+            button.classList.add("active");
+            const targetId = button.getAttribute("data-tab");
+            const targetContent = document.getElementById(targetId);
+            if(targetContent) targetContent.classList.add("active");
+          });
+        });
+        
+        // Attiva automaticamente il primo tab (se esiste)
+        if (tabButtons.length > 0) {
+          tabButtons[0].classList.add("active");
+          const firstTarget = tabButtons[0].getAttribute("data-tab");
+          const firstContent = document.getElementById(firstTarget);
+          if (firstContent) firstContent.classList.add("active");
         }
+        
       } catch (error) {
         console.error("Error fetching or processing repositories:", error);
         if (loader) {

@@ -7,27 +7,27 @@
   <meta name="description" content="Browse the repositories of Bocaletto Luca featuring innovative web projects and open source contributions.">
   <meta name="keywords" content="Bocaletto Luca, GitHub, repository, open source, web development">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://bocaletto-luca.github.io/test.html">
+  <link rel="canonical" href="https://bocaletto-luca.github.io/index.html">
   <meta name="author" content="Bocaletto Luca">
   
-  <!-- Open Graph (personalizza l'URL dell'immagine se serve) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Bocaletto Luca - Repositories">
   <meta property="og:description" content="Discover repositories showcasing web projects and open source innovations by Bocaletto Luca.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://bocaletto-luca.github.io/test.html">
+  <meta property="og:url" content="https://bocaletto-luca.github.io/index.html">
   <meta property="og:image" content="URL_of_logo_or_image">
   
   <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Bocaletto Luca",
-    "url": "https://bocaletto-luca.github.io/"
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Bocaletto Luca",
+      "url": "https://bocaletto-luca.github.io/"
+    }
   </script>
   
-  <!-- Carichiamo il tema Bootswatch Cyborg -->
+  <!-- Carichiamo il tema Bootswatch Cyborg per la base (è completamente statico) -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   
   <!-- Font, Animate.css e FontAwesome -->
@@ -35,9 +35,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   
-  <!-- Stili personalizzati per lo stile futuristico -->
+  <!-- Stili personalizzati (look futuristico) -->
   <style>
-    /* Variabili */
     :root {
       --primary-color: #FF7F00;  /* Neon arancione */
       --dark-bg: #111;           /* Sfondo scuro */
@@ -54,7 +53,7 @@
     }
     a { text-decoration: none; color: var(--primary-color); }
     
-    /* Header e Navbar */
+    /* Header / Navbar */
     header {
       position: fixed;
       top: 0;
@@ -130,11 +129,10 @@
       font-size: 1.5rem;
     }
     
-    /* Tabs Menu – usiamo il markup standard di Bootstrap, li riadattiamo in stile futuristico */
+    /* Stile dei Tab – utilizziamo il markup di Bootstrap per le tab */
     .nav-tabs {
       margin-bottom: 2rem;
     }
-    /* Il tab content viene gestito da Bootstrap, evitiamo regole invasive */
     
     /* Layout per le Repository Cards */
     .row {
@@ -147,8 +145,7 @@
       min-width: 250px;
     }
     .repo-card .card {
-      /* Inizialmente era 320px, puoi aumentare qui se il contenuto viene troncato */
-      height: 400px; 
+      height: 400px;  /* Altezza aumentata per mostrare più contenuto */
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -253,7 +250,7 @@
       <p id="repo-total" class="lead"></p>
     </div>
     
-    <!-- Loader: appare finché i dati non sono caricati -->
+    <!-- Loader: appare fino al caricamento dei dati -->
     <div id="repo-loader" class="loader">Loading repositories...</div>
     
     <!-- MENU A TABS per i Linguaggi -->
@@ -273,9 +270,9 @@
   <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script JavaScript per caricare repos.json e generare dinamicamente i tab e le pagine -->
+  <!-- Script per caricare repos.json e generare dinamicamente i tab e la paginazione -->
   <script>
-    // Funzione che carica il file statico repos.json dalla root
+    // Carica il file statico repos.json dalla root del sito
     async function loadRepos() {
       try {
         const response = await fetch('repos.json');
@@ -296,37 +293,38 @@
       const languageTabsContent = document.getElementById("languageTabsContent");
       const totalElem = document.getElementById("repo-total");
       const PAGE_SIZE = 6; // Numero di repository per pagina per ogni tab
-
+      
+      // Carica i repository dal file statico
       const repos = await loadRepos();
       if (loader) loader.remove();
-
+      
       if (!repos || repos.length === 0) {
         totalElem.innerText = "No repositories found.";
         return;
       }
-
+      
       totalElem.innerText = "Total Repository: " + repos.length;
-
-      // Raggruppa i repository per linguaggio (usa "Other" se il campo è nullo)
+      
+      // Raggruppa i repository per linguaggio (usa "Other" se vuoto)
       const groups = {};
       repos.forEach(repo => {
         const lang = repo.language ? repo.language : "Other";
         if (!groups[lang]) groups[lang] = [];
         groups[lang].push(repo);
       });
-
-      // Ordina alfabeticamente le chiavi (linguaggi)
+      
+      // Ordina alfabeticamente i linguaggi
       const sortedLanguages = Object.keys(groups).sort();
       console.log("Linguaggi trovati:", sortedLanguages);
-
-      // Per ogni linguaggio, crea il tab e il contenuto relativo
+      
+      // Per ogni linguaggio, crea il tab e il contenuto con paginazione
       sortedLanguages.forEach(language => {
         const reposGroup = groups[language];
         const totalCount = reposGroup.length;
         const safeLang = language.replace(/\s+/g, '-');
         const tabId = 'tab-' + safeLang;
-
-        // Creazione del bottone del tab come <li> con <button>
+      
+        // Crea il bottone del tab come <li> con <button>
         const navItem = document.createElement("li");
         navItem.className = "nav-item";
         navItem.role = "presentation";
@@ -342,8 +340,8 @@
         tabButton.innerText = `${language} (${totalCount})`;
         navItem.appendChild(tabButton);
         languageTabs.appendChild(navItem);
-
-        // Creazione del contenitore per il tab content
+      
+        // Crea il contenitore per il contenuto del tab
         const tabPane = document.createElement("div");
         tabPane.className = "tab-pane fade";
         tabPane.id = tabId;
@@ -354,13 +352,13 @@
           <div class="pagination-controls" id="group-${safeLang}-pagination"></div>
         `;
         languageTabsContent.appendChild(tabPane);
-
+      
         let currentPage = 1;
         const totalPages = Math.ceil(totalCount / PAGE_SIZE);
         const rowContainer = tabPane.querySelector("div.row");
         const paginationContainer = tabPane.querySelector(".pagination-controls");
-
-        // Funzione per mostrare la pagina corrente per il gruppo
+      
+        // Funzione per mostrare una pagina di repository per il gruppo
         function renderPage(page) {
           rowContainer.innerHTML = "";
           const start = (page - 1) * PAGE_SIZE;
@@ -368,7 +366,7 @@
           for (let i = start; i < end; i++) {
             const repo = reposGroup[i];
             const title = repo.name;
-            const description = (repo.description && repo.description.trim().length > 0)
+            const description = repo.description && repo.description.trim().length > 0
                                   ? repo.description
                                   : "No description provided.";
             const url = repo.html_url;
@@ -391,7 +389,7 @@
           }
           updatePaginationControls(page);
         }
-
+      
         // Funzione per aggiornare i controlli di paginazione
         function updatePaginationControls(page) {
           paginationContainer.innerHTML = "";
@@ -415,14 +413,14 @@
             paginationContainer.appendChild(nextBtn);
           }
         }
-
-        // Renderizza la prima pagina del gruppo
+      
+        // Renderizza la prima pagina per il gruppo del linguaggio corrente
         renderPage(currentPage);
-      }); // Fine ciclo per ogni linguaggio
-
-      // Attivazione automatica del primo tab (usa il plugin Bootstrat per gestire le classi)
+      });
+      
+      // Attiva automaticamente il primo tab
       const firstTabBtn = languageTabs.querySelector("button.nav-link");
-      if (firstTabBtn) {
+      if(firstTabBtn) {
         firstTabBtn.click();
       }
     });

@@ -3,9 +3,8 @@ name: Update Repositories JSON
 on:
   push:
     branches: [ main ]
-  # Esempio di schedule: ogni giorno alle 00:00 UTC
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *'  # Esecuzione giornaliera alle 00:00 UTC
 
 jobs:
   update-repos:
@@ -25,7 +24,6 @@ jobs:
       - name: Fetch GitHub Repositories and create repos.json
         env:
           GITHUB_USER: bocaletto-luca
-          # Il token predefinito per GitHub Actions è sicuro, non verrà esposto
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           node -e "
@@ -41,7 +39,7 @@ jobs:
                 headers: { 'Authorization': \`token \${token}\` }
               });
               if(response.status !== 200) {
-                console.error('Errore durante il fetch dei repository. Status:', response.status);
+                console.error('Errore durante il fetch dei repository, status:', response.status);
                 break;
               }
               const repos = await response.json();
@@ -56,18 +54,21 @@ jobs:
               page++;
             }
             fs.writeFileSync('repos.json', JSON.stringify(allRepos, null, 2));
-            console.log('repos.json generated with', allRepos.length, 'repositories.');
+            console.log('repos.json generato con', allRepos.length, 'repository.');
           }
           fetchRepos();
           "
 
-      - name: Commit and push repos.json
+      - name: Debug - Mostra contenuto di repos.json
+        run: cat repos.json
+
+      - name: Commit and Push repos.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add repos.json
           if git diff-index --quiet HEAD; then
-            echo "No changes to commit";
+            echo "Nessuna modifica in repos.json";
           else
             git commit -m "Update repos.json";
             git push;

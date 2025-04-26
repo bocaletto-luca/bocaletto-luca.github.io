@@ -19,16 +19,16 @@
   
   <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Bocaletto Luca",
-      "url": "https://bocaletto-luca.github.io/",
-      "sameAs": [
-        "https://github.com/bocaletto-luca"
-      ],
-      "jobTitle": "Computer Programmer, Artist, Musician, Freelance Writer"
-    }
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bocaletto Luca",
+    "url": "https://bocaletto-luca.github.io/",
+    "sameAs": [
+      "https://github.com/bocaletto-luca"
+    ],
+    "jobTitle": "Computer Programmer, Artist, Musician, Freelance Writer"
+  }
   </script>
   
   <!-- Bootstrap CSS base -->
@@ -37,10 +37,8 @@
   <!-- Importazione del font Orbitron -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
   
-  <!-- FontAwesome per le icone -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-papq4ssbZqOWmcHcCoSENMiqC2K5gPGzElFbQ1OYkEsmQBbRYz4OOWCjeUk2edWQYhyxdZJpU3YO7YQ3kN3NDA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- FontAwesome (link semplificato) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   
   <!-- Stile personalizzato Neon Arancione e layout responsive -->
   <style>
@@ -52,7 +50,7 @@
       --font-main: 'Orbitron', sans-serif;
     }
     
-    /* Reset e stile generale */
+    /* Reset & Stile Generale */
     * {
       margin: 0;
       padding: 0;
@@ -71,7 +69,6 @@
       text-decoration: none;
       transition: color 0.3s;
     }
-    
     a:hover {
       color: #ffa726;
     }
@@ -86,34 +83,29 @@
       width: 100%;
       z-index: 1000;
     }
-    
     header .branding {
       text-align: center;
       margin-bottom: 0.5rem;
     }
-    
     header .branding img {
       height: 60px;
       filter: drop-shadow(0 0 5px var(--neon-orange));
     }
-    
     header .branding h1 {
       font-size: 2.2rem;
       color: var(--neon-orange);
       text-shadow: 0 0 10px var(--neon-orange);
       margin: 0.5rem 0 0.2rem;
     }
-    
     header .branding p {
       font-size: 1.1rem;
       color: var(--light-text);
     }
     
-    /* Navbar: orizzontale sui desktop, verticale su mobile */
+    /* Navbar: Orizzontale su desktop, Verticale su mobile */
     .navbar-always {
       background: rgba(0, 0, 0, 0.9);
     }
-    
     .navbar-always .navbar-nav {
       display: flex;
       flex-direction: row;
@@ -122,7 +114,6 @@
       padding: 0.5rem 0;
       list-style: none;
     }
-    
     .navbar-always .nav-item .nav-link {
       font-size: 1.1rem;
       color: var(--light-text);
@@ -130,13 +121,11 @@
       border-radius: 4px;
       transition: background 0.3s, color 0.3s;
     }
-    
     .navbar-always .nav-item .nav-link:hover,
     .navbar-always .nav-item .nav-link:focus {
       background: var(--neon-orange);
       color: var(--dark-bg);
     }
-    
     @media (max-width: 768px) {
       .navbar-always .navbar-nav {
         flex-direction: column;
@@ -144,7 +133,7 @@
       }
     }
     
-    /* Language Selector: posizionato sotto la navbar */
+    /* Language Selector (sotto il menu) */
     .language-selector {
       margin-top: 10px;
       text-align: center;
@@ -155,9 +144,6 @@
       gap: 10px;
       padding: 0;
       margin: 0;
-    }
-    .language-selector li {
-      display: inline;
     }
     .language-selector img {
       width: 20px;
@@ -171,7 +157,7 @@
       transform: scale(1.2);
     }
     
-    /* MAIN: Il padding-top verrà aggiornato dinamicamente in base all'altezza del header */
+    /* MAIN: Il padding-top verrà impostato via JS */
     main.container {
       padding-bottom: 2rem;
     }
@@ -183,24 +169,20 @@
       color: var(--neon-orange);
       text-shadow: 0 0 8px var(--neon-orange);
     }
-    
     main .lead {
       font-size: clamp(1rem, 2.5vw, 1.3rem);
       margin-bottom: 1.5rem;
     }
-    
     section {
       margin-bottom: 2rem;
       text-align: center;
     }
-    
     section h2 {
       font-size: clamp(1.5rem, 3vw, 2rem);
       color: var(--neon-orange);
       text-shadow: 0 0 8px var(--neon-orange);
       margin-bottom: 1rem;
     }
-    
     section p {
       font-size: clamp(1rem, 2.2vw, 1.1rem);
       margin-bottom: 1rem;
@@ -209,14 +191,13 @@
       margin: 0 auto;
     }
     
-    /* Sezione Competencies: griglia dinamica in base alla larghezza dello schermo */
+    /* Sezione Competencies: Griglia dinamica */
     section.competencies .competencies-grid {
       display: grid;
       gap: 1rem;
       padding: 0 1rem;
-      grid-template-columns: 1fr; /* Default: 1 colonna */
+      grid-template-columns: 1fr; /* default: 1 colonna */
     }
-    
     @media (min-width: 1024px) {
       section.competencies .competencies-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -248,26 +229,31 @@
       transition: transform 0.3s;
       overflow: hidden;
     }
-    
     .competency-card:hover {
       transform: scale(1.05);
     }
     
-    .competency-title {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
+    /* Competency Details: contiene titolo e tech icons */
+    .competency-details {
+      text-align: center;
     }
-    
-    .competency-title h3 {
+    .competency-details h3 {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--neon-orange);
+      text-shadow: 0 0 5px var(--neon-orange);
       margin: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
+    }
+    /* Tech Icons: visualizzazioni delle icone sotto il titolo */
+    .tech-icons {
+      margin-top: 0.5rem;
+      display: inline-flex;
+      gap: 0.5rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--neon-orange);
-      text-shadow: 0 0 5px var(--neon-orange);
+      justify-content: center;
     }
     
     .competency-card p {
@@ -275,7 +261,7 @@
       padding: 0 0.5rem;
     }
     
-    /* FOOTER: include icone social (GitHub, LinkedIn, Twitter, YouTube, Facebook) */
+    /* FOOTER: Icone social per GitHub, LinkedIn, Twitter, YouTube, Facebook */
     footer {
       border-top: 2px solid var(--neon-orange);
       padding: 1.5rem 2rem;
@@ -284,26 +270,23 @@
       background: var(--dark-bg);
       color: var(--light-text);
     }
-    
     footer p {
       margin-bottom: 0.5rem;
       font-size: 0.9rem;
     }
-    
     footer .social-icons a {
       margin: 0 0.5rem;
       font-size: 1.5rem;
       color: var(--neon-orange);
       transition: color 0.3s;
     }
-    
     footer .social-icons a:hover {
       color: #ffa726;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER: Branding, Navbar and Language Selector -->
+  <!-- HEADER: Branding, Navbar & Language Selector -->
   <header>
     <div class="branding">
       <img src="logo.png" alt="Bocaletto Luca Logo">
@@ -321,7 +304,7 @@
         </ul>
       </div>
     </div>
-    <!-- Language Selector: sotto il menu nav -->
+    <!-- Language Selector -->
     <div class="language-selector">
       <ul>
         <li><a href="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
@@ -341,53 +324,70 @@
       <p class="lead">Discover innovative web projects and open source contributions.</p>
     </div>
     
-    <!-- Sezione About Me -->
+    <!-- About Me Section -->
     <section id="about-me">
       <h2>About Me</h2>
       <p>I am a computer programmer, artist, musician, and freelance writer. I create digital experiences that fuse technology with creative artistry. My projects reflect my passion for innovative web development and experimental design.</p>
       <p>Through my diverse work, I aim to push the boundaries of technology and art while delivering engaging user experiences.</p>
     </section>
     
-    <!-- Sezione Competencies -->
+    <!-- Competencies Section -->
     <section class="competencies">
       <h2>My Competencies</h2>
       <div class="competencies-grid">
-        <!-- Frontend -->
+        <!-- Frontend Card -->
         <div class="competency-card">
-          <div class="competency-title">
-            <i class="fa-solid fa-code"></i>
+          <div class="competency-details">
             <h3>Frontend</h3>
+            <div class="tech-icons">
+              <i class="fab fa-html5" title="HTML5"></i>
+              <i class="fab fa-css3-alt" title="CSS3"></i>
+              <i class="fab fa-js-square" title="JavaScript"></i>
+            </div>
           </div>
           <p>Proficient in HTML, CSS, and modern JS frameworks for responsive, interactive UIs.</p>
         </div>
-        <!-- Backend -->
+        <!-- Backend Card -->
         <div class="competency-card">
-          <div class="competency-title">
-            <i class="fa-solid fa-database"></i>
+          <div class="competency-details">
             <h3>Backend</h3>
+            <div class="tech-icons">
+              <i class="fas fa-database" title="SQL"></i>
+              <i class="fab fa-php" title="PHP"></i>
+              <i class="fab fa-python" title="Python"></i>
+            </div>
           </div>
           <p>Experienced in Node.js and Python for scalable server-side development.</p>
         </div>
-        <!-- System Admin -->
+        <!-- System Admin Card -->
         <div class="competency-card">
-          <div class="competency-title">
-            <i class="fa-solid fa-network-wired"></i>
+          <div class="competency-details">
             <h3>System Admin</h3>
+            <div class="tech-icons">
+              <i class="fab fa-windows" title="Windows"></i>
+              <i class="fab fa-linux" title="Linux"></i>
+              <i class="fab fa-android" title="Android"></i>
+            </div>
           </div>
           <p>Expert in configuring and maintaining secure network infrastructures.</p>
         </div>
-        <!-- Technician -->
+        <!-- Technician Card -->
         <div class="competency-card">
-          <div class="competency-title">
-            <i class="fa-solid fa-mobile-screen-button"></i>
+          <div class="competency-details">
             <h3>Technician</h3>
+            <div class="tech-icons">
+              <i class="fas fa-mobile-alt" title="Smartphone"></i>
+              <i class="fas fa-tablet-alt" title="Tablet"></i>
+              <i class="fas fa-desktop" title="Desktop"></i>
+              <i class="fas fa-laptop" title="Laptop"></i>
+            </div>
           </div>
           <p>Skilled in repairing and troubleshooting smartphones, tablets, laptops, and PCs.</p>
         </div>
       </div>
     </section>
     
-    <!-- Sezione My Projects -->
+    <!-- My Projects Section -->
     <section id="my-projects">
       <h2>My Projects</h2>
       <p>I have developed numerous innovative projects ranging from responsive websites and interactive applications to data science tools and multimedia installations. Visit my repository page for a full list of my open source contributions and digital projects.</p>
@@ -398,15 +398,15 @@
   <footer>
     <p>© 2023 Bocaletto Luca. All rights reserved.</p>
     <div class="social-icons">
-      <a href="https://github.com/bocaletto-luca" target="_blank"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/bocalettoluca" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://twitter.com/bocalettoluca" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-      <a href="https://youtube.com/yourchannel" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://facebook.com/yourpage" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://github.com/bocaletto-luca" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/bocalettoluca" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://twitter.com/bocalettoluca" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
   </footer>
   
-  <!-- Script per impostare dinamicamente il padding-top del main in base all'altezza del header -->
+  <!-- Script: Regola dinamicamente il padding-top di <main> in base all'altezza del <header> -->
   <script>
     function adjustMainPadding() {
       const header = document.querySelector('header');

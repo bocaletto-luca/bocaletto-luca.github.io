@@ -3,43 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bocaletto Luca | About</title>
-  <meta name="description" content="Scopri di più su Bocaletto Luca – programmatore, artista, musicista e scrittore freelance. Il mio percorso, le mie passioni e il mio skillset." />
-  <meta name="keywords" content="Bocaletto Luca, chi sono, biografia, competenze, programmazione, arte, musica, scrittura" />
+  <title>Bocaletto Luca | Home</title>
+  <meta name="description" content="Benvenuto sul sito ufficiale di Bocaletto Luca – programmatore, artista, musicista e scrittore freelance. Scopri i miei progetti e le mie competenze." />
+  <meta name="keywords" content="Bocaletto Luca, home, progetti, competenze, GitHub, portfolio" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://bocaletto-luca.github.io/ita/about.html" />
+  <link rel="canonical" href="https://bocaletto-luca.github.io/ita/index.html" />
   <meta name="author" content="Bocaletto Luca" />
-  
+
   <!-- Open Graph -->
-  <meta property="og:title" content="Bocaletto Luca - About" />
-  <meta property="og:description" content="Scopri il percorso e le competenze di Bocaletto Luca in programmazione, arte, musica e scrittura freelance." />
+  <meta property="og:title" content="Bocaletto Luca - Home" />
+  <meta property="og:description" content="Benvenuto sul sito ufficiale di Bocaletto Luca. Scopri i miei progetti, le mie competenze e tanto altro." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bocaletto-luca.github.io/ita/about.html" />
+  <meta property="og:url" content="https://bocaletto-luca.github.io/ita/index.html" />
   <meta property="og:image" content="URL_of_logo_or_image" />
-  
+
   <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
+    "@type": "WebSite",
     "name": "Bocaletto Luca",
-    "url": "https://bocaletto-luca.github.io/ita/about.html",
-    "sameAs": [
-      "https://github.com/bocaletto-luca"
-    ],
-    "jobTitle": "Programmatore, Artista, Musicista, Scrittore Freelance"
+    "url": "https://bocaletto-luca.github.io/ita/index.html"
   }
   </script>
-  
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  
+
   <!-- Google Fonts: Orbitron -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" />
-  
-  <!-- FontAwesome (link semplificato) -->
+
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-  
+
   <!-- Stili Personalizzati -->
   <style>
     :root {
@@ -48,7 +44,7 @@
       --light-text: #EEE;
       --font-title: 'Orbitron', sans-serif;
     }
-    /* Reset e stili di base */
+    /* Reset e stili base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background-color: var(--dark-bg);
@@ -64,7 +60,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0, 0, 0, 0.9);
       padding: 1rem 2rem;
       border-bottom: 2px solid var(--primary-color);
       z-index: 1000;
@@ -107,7 +103,7 @@
       width: 100%;
       text-align: center;
       padding: 0.5rem 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0, 0, 0, 0.9);
       border-top: 1px solid var(--primary-color);
     }
     .language-selector ul {
@@ -128,95 +124,37 @@
     .language-selector img:hover { transform: scale(1.2); }
     
     /* MAIN CONTENT */
-    /* Il padding-top verrà regolato dinamicamente via JS per evitare che il contenuto sia nascosto dal header */
+    /* Il padding-top verrà regolato via JS per evitare che il contenuto sia nascosto dal fixed header */
     main {
       padding: 1rem;
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
     }
-    .page-header {
+    .hero {
       text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.5rem;
       margin-bottom: 2rem;
     }
-    .page-header h1 {
-      font-size: 2.5rem;
-      color: var(--primary-color);
-    }
-    .page-header p { font-size: 1.2rem; }
-    
-    /* Sezione "Chi sono" */
-    #about-me {
-      margin-bottom: 3rem;
-    }
-    #about-me h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-      text-shadow: 0 0 8px var(--primary-color);
-      text-align: center;
-    }
-    #about-me p {
-      font-size: clamp(1rem, 2.2vw, 1.1rem);
-      margin-bottom: 1rem;
-      line-height: 1.7;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: justify;
-    }
-    
-    /* Sezione "Le mie competenze" */
-    #my-skills {
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-    #my-skills h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-      text-shadow: 0 0 8px var(--primary-color);
-    }
-    .skill-category {
-      margin-bottom: 2rem;
-      text-align: left;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .skill-category h3 {
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      margin-bottom: 0.75rem;
-      color: var(--primary-color);
-      border-bottom: 1px solid var(--primary-color);
-      padding-bottom: 0.25rem;
-    }
-    .skill {
-      margin-bottom: 1rem;
-    }
-    .skill-name {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      margin-bottom: 0.25rem;
-      display: inline-block;
-      min-width: 120px;
-    }
-    .progress {
-      background-color: #222;
-      border-radius: 10px;
-      overflow: hidden;
-      width: 100%;
-      max-width: 400px;
-      margin-bottom: 0.25rem;
-    }
-    .progress-bar {
-      background-color: var(--primary-color);
-      width: 0%; /* Stato iniziale, verrà animato via JS */
-      height: 20px;
-      border-radius: 10px;
-      text-align: center;
-      line-height: 20px;
+    .hero a.btn {
+      background: var(--primary-color);
+      border: none;
       color: var(--dark-bg);
-      transition: width 2s ease-out;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      transition: background 0.3s;
+    }
+    .hero a.btn:hover {
+      background: #ffa726;
+      color: var(--dark-bg);
     }
     
     /* FOOTER */
@@ -243,29 +181,29 @@
   <header>
     <div class="nav-container">
       <div class="nav-left">
-        <!-- Il logo è puntato nella directory superiore se il file si trova in ita/ -->
+        <!-- Il logo in ../logo.png perché siamo nella directory ita/ -->
         <img src="../logo.png" alt="Logo Bocaletto Luca">
         <span class="logo-text">Bocaletto Luca</span>
       </div>
       <div class="nav-right">
         <ul class="nav">
-          <!-- Poiché siamo in ita/, i link puntano ai file nella directory corrente -->
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="repository.html">Repositories</a></li>
-          <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+          <!-- I link in italiano puntano ai file nella stessa directory -->
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Contatti</a></li>
         </ul>
       </div>
     </div>
     <!-- Language Selector -->
     <div class="language-selector">
       <ul>
-        <!-- Per la versione in inglese (nella root) -->
+        <!-- Il link per la versione inglese punta alla root -->
         <li><a href="../index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
-        <!-- Per l'italiano (directory corrente) -->
+        <!-- Italiano (directory corrente) -->
         <li><a href="index.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
-        <!-- Altre lingue, ipotizzando directory a 3 lettere -->
+        <!-- Altre lingue -->
         <li><a href="../fra/index.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
         <li><a href="../esp/index.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
         <li><a href="../deu/index.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
@@ -276,124 +214,10 @@
   
   <!-- MAIN CONTENT -->
   <main class="container">
-    <div class="page-header mb-4">
-      <h1 class="animate__animated animate__fadeInDown">About Me</h1>
-    </div>
-    <!-- Sezione Biografica -->
-    <section id="about-me">
-      <h2>Chi sono</h2>
-      <p>Ciao, sono Bocaletto Luca – un appassionato programmatore, artista, musicista e scrittore freelance. Il mio percorso è iniziato fin da giovane, fondendo logica e creatività, e mi ha condotto a sviluppare esperienze digitali innovative e di grande impatto estetico.</p>
-      <p>Mi specializzo nella creazione di siti web interattivi, architetture back-end scalabili e nella gestione di sistemi di rete sofisticati. Parallelamente, le mie iniziative creative nel campo della musica e dell’arte digitale mi consentono di esprimere idee complesse in modi unici ed originali.</p>
-      <p>Partecipo attivamente a progetti open source e collaboro con altri appassionati per superare i confini della tecnologia, sempre alla ricerca di nuove conoscenze e ispirazioni.</p>
-    </section>
-    
-    <!-- Sezione Skills (Barre di Avanzamento Animate) -->
-    <section id="my-skills">
-      <h2>Le Mie Competenze</h2>
-      
-      <!-- Sviluppo Frontend -->
-      <div class="skill-category">
-        <h3>Sviluppo Frontend</h3>
-        <div class="skill">
-          <span class="skill-name">HTML</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="98%">98%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">CSS</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="95%">95%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">JavaScript</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="90%">90%</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Sviluppo Backend -->
-      <div class="skill-category">
-        <h3>Sviluppo Backend</h3>
-        <div class="skill">
-          <span class="skill-name">Node.js</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="90%">90%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">PHP</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="80%">80%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">SQL</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="85%">85%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">Python</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="92%">92%</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Amministrazione di Sistema -->
-      <div class="skill-category">
-        <h3>Amministrazione di Sistema</h3>
-        <div class="skill">
-          <span class="skill-name">Windows</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="80%">80%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">Linux</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="88%">88%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">Android</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="75%">75%</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Riparazioni Tecniche -->
-      <div class="skill-category">
-        <h3>Riparazioni Tecniche</h3>
-        <div class="skill">
-          <span class="skill-name">Riparazione Smartphone</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="90%">90%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">Riparazione Tablet</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="85%">85%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">Riparazione Desktop</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="80%">80%</div>
-          </div>
-        </div>
-        <div class="skill">
-          <span class="skill-name">Riparazione Laptop</span>
-          <div class="progress">
-            <div class="progress-bar" data-percent="88%">88%</div>
-          </div>
-        </div>
-      </div>
+    <section class="hero">
+      <h1>Benvenuto su Bocaletto Luca</h1>
+      <p>Scopri i miei progetti, le mie competenze e tutto ciò che posso offrire.</p>
+      <a href="about.html" class="btn">Scopri di più</a>
     </section>
   </main>
   
@@ -416,25 +240,13 @@
     function adjustMainPadding() {
       const header = document.querySelector('header');
       const main = document.querySelector('main');
-      const extraSpace = 20; // Spaziatura aggiuntiva in pixel
+      const extraSpace = 20; // Spazio aggiuntivo in pixel
       if (header && main) {
         main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
       }
     }
     window.addEventListener('load', adjustMainPadding);
     window.addEventListener('resize', adjustMainPadding);
-  </script>
-  
-  <!-- Script per animare le barre di progresso -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.progress-bar').forEach(function(bar) {
-        const percent = bar.getAttribute('data-percent');
-        setTimeout(() => {
-          bar.style.width = percent;
-        }, 200);
-      });
-    });
   </script>
   
   <!-- Bootstrap Bundle JS (include Popper) -->

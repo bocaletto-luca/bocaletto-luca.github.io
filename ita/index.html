@@ -9,14 +9,14 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://bocaletto-luca.github.io/ita/index.html" />
   <meta name="author" content="Bocaletto Luca" />
-
+  
   <!-- Open Graph -->
   <meta property="og:title" content="Bocaletto Luca - Home" />
-  <meta property="og:description" content="Benvenuto sul sito ufficiale di Bocaletto Luca. Scopri i miei progetti, le mie competenze e tanto altro." />
+  <meta property="og:description" content="Benvenuto sul sito ufficiale di Bocaletto Luca. Scopri i miei progetti, le mie competenze e molto altro." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bocaletto-luca.github.io/ita/index.html" />
   <meta property="og:image" content="URL_of_logo_or_image" />
-
+  
   <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
   {
@@ -26,16 +26,16 @@
     "url": "https://bocaletto-luca.github.io/ita/index.html"
   }
   </script>
-
+  
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-
+  
   <!-- Google Fonts: Orbitron -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" />
-
+  
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-
+  
   <!-- Stili Personalizzati -->
   <style>
     :root {
@@ -44,7 +44,7 @@
       --light-text: #EEE;
       --font-title: 'Orbitron', sans-serif;
     }
-    /* Reset e stili base */
+    /* Reset e stili di base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background-color: var(--dark-bg);
@@ -124,7 +124,7 @@
     .language-selector img:hover { transform: scale(1.2); }
     
     /* MAIN CONTENT */
-    /* Il padding-top verrà regolato via JS per evitare che il contenuto sia nascosto dal fixed header */
+    /* Il padding-top di <main> verrà regolato via JS per evitare che il contenuto sia nascosto dall'header fisso */
     main {
       padding: 1rem;
       max-width: 1200px;
@@ -157,6 +157,45 @@
       color: var(--dark-bg);
     }
     
+    /* Sezione Competenze */
+    #my-skills {
+      margin: 4rem 0;
+    }
+    #my-skills h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+    }
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .skill-card {
+      flex: 1 1 calc(33.33% - 1rem);
+      max-width: 350px;
+      background: #1a1a1a;
+      border: 1px solid var(--primary-color);
+      border-radius: 8px;
+      padding: 1rem;
+      color: var(--light-text);
+      transition: transform 0.3s;
+    }
+    .skill-card:hover {
+      transform: translateY(-5px);
+    }
+    .skill-card h3 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    .skill-card p {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    
     /* FOOTER */
     footer {
       background-color: var(--dark-bg);
@@ -181,14 +220,14 @@
   <header>
     <div class="nav-container">
       <div class="nav-left">
-        <!-- Il logo in ../logo.png perché siamo nella directory ita/ -->
+        <!-- Il logo è preso dalla directory superiore -->
         <img src="../logo.png" alt="Logo Bocaletto Luca">
         <span class="logo-text">Bocaletto Luca</span>
       </div>
       <div class="nav-right">
         <ul class="nav">
-          <!-- I link in italiano puntano ai file nella stessa directory -->
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <!-- I link in italiano puntano ai file nella directory corrente -->
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
@@ -199,11 +238,11 @@
     <!-- Language Selector -->
     <div class="language-selector">
       <ul>
-        <!-- Il link per la versione inglese punta alla root -->
+        <!-- Il link per la versione in inglese punta alla root -->
         <li><a href="../index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
         <!-- Italiano (directory corrente) -->
         <li><a href="index.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
-        <!-- Altre lingue -->
+        <!-- Altre lingue (ipotizzando directory a 3 lettere) -->
         <li><a href="../fra/index.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
         <li><a href="../esp/index.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
         <li><a href="../deu/index.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
@@ -214,11 +253,47 @@
   
   <!-- MAIN CONTENT -->
   <main class="container">
+    <!-- Sezione Hero -->
     <section class="hero">
       <h1>Benvenuto su Bocaletto Luca</h1>
-      <p>Scopri i miei progetti, le mie competenze e tutto ciò che posso offrire.</p>
+      <p>Scopri i miei progetti, le competenze e tutto ciò che posso offrire.</p>
       <a href="about.html" class="btn">Scopri di più</a>
     </section>
+    
+    <!-- Sezione Le Mie Competenze -->
+    <section id="my-skills">
+      <h2>Le Mie Competenze</h2>
+      <div class="skills-row">
+        <!-- Card Frontend -->
+        <div class="skill-card">
+          <h3>Frontend</h3>
+          <p>Utilizzo di HTML, CSS e JavaScript per creare interfacce utente moderne e responsive.</p>
+        </div>
+        <!-- Card Backend -->
+        <div class="skill-card">
+          <h3>Backend</h3>
+          <p>Sviluppo di server efficienti e scalabili con Node.js, PHP e database relazionali.</p>
+        </div>
+        <!-- Card WebApp -->
+        <div class="skill-card">
+          <h3>WebApp</h3>
+          <p>Realizzazione di applicazioni web interattive e dinamiche, integrate con soluzioni avanzate.</p>
+        </div>
+        <!-- Card Python -->
+        <div class="skill-card">
+          <h3>Python</h3>
+          <p>Automatizzazione, analisi dati e sviluppo di applicazioni con Python per soluzioni scientifiche e web.</p>
+        </div>
+        <!-- Card Admin System -->
+        <div class="skill-card">
+          <h3>Admin System</h3>
+          <p>Gestione di sistemi operativi, configurazione di reti e ottimizzazione di infrastrutture IT.</p>
+        </div>
+        <!-- Puoi aggiungere altre card se necessario -->
+      </div>
+    </section>
+    
+    <!-- Eventuali altre sezioni opzionali possono essere aggiunte qui -->
   </main>
   
   <!-- FOOTER -->

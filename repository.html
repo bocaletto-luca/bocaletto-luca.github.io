@@ -9,14 +9,14 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bocaletto-luca.github.io/repository.html">
   <meta name="author" content="Bocaletto Luca">
-
+  
   <!-- Open Graph -->
   <meta property="og:title" content="Bocaletto Luca - Repository" />
   <meta property="og:description" content="Discover the innovative repositories of Bocaletto Luca featuring modern web projects and open source contributions." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bocaletto-luca.github.io/repository.html" />
   <meta property="og:image" content="URL_of_logo_or_image" />
-
+  
   <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
   {
@@ -26,19 +26,19 @@
     "url": "https://bocaletto-luca.github.io/"
   }
   </script>
-
+  
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   
   <!-- Google Fonts: Orbitron -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
-
+  
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-
+  
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
+  
   <!-- Custom Styles -->
   <style>
     :root {
@@ -47,7 +47,6 @@
       --light-text: #eee;
       --font-main: 'Orbitron', sans-serif;
     }
-    
     /* Base Reset & Styles */
     * {
       margin: 0;
@@ -69,10 +68,99 @@
       color: #ffa726;
     }
     
-    /* HEADER & NAVBAR styles (these will be output by include/header.html) */
-    /* Our standard header style (as defined in your original index) is contained in the include file. */
+    /* HEADER / NAVBAR */
+    /* La header è fissa e funziona come nella homepage originale.
+       Per allineare al centro il logo, il titolo e il menu,
+       la struttura della header è stata modificata per usare una colonna. */
+    header {
+      background-color: var(--dark-bg);
+      border-bottom: 2px solid var(--neon-orange);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      text-align: center;
+    }
+    .nav-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .nav-left img {
+      height: 60px; /* Modifica l'altezza se necessario */
+      filter: drop-shadow(0 0 5px var(--neon-orange));
+    }
+    .nav-left .logo-text {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--neon-orange);
+      text-shadow: 0 0 10px var(--neon-orange);
+    }
+    .nav-right {
+      width: 100%;
+    }
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-right a {
+      font-size: 1.1rem;
+      color: var(--light-text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .nav-right a:hover,
+    .nav-right a:focus {
+      background-color: var(--neon-orange);
+      color: var(--dark-bg);
+    }
+    /* Mobile vertical menu */
+    @media (max-width: 768px) {
+      .nav-right ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
     
-    /* MAIN */
+    /* Language Selector */
+    .language-selector {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .language-selector ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+    }
+    .language-selector img {
+      width: 20px;
+      height: auto;
+      border: 1px solid var(--light-text);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .language-selector img:hover {
+      transform: scale(1.2);
+    }
+
+    /* MAIN CONTENT */
     main {
       max-width: 1200px;
       margin: 0 auto;
@@ -83,13 +171,13 @@
       padding: 4rem 1rem;
     }
     .hero h1 {
-      font-size: 3rem;
-      color: var(--neon-orange);
+      font-size: clamp(2rem, 4vw, 3rem);
       margin-bottom: 1rem;
+      color: var(--neon-orange);
       text-shadow: 0 0 8px var(--neon-orange);
     }
     .hero p {
-      font-size: 1.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
       margin-bottom: 2rem;
     }
     .hero a.btn {
@@ -105,17 +193,19 @@
       color: var(--dark-bg);
     }
     
-    /* Repository Section */
+    /* Repository Section Header */
     .page-header {
       text-align: center;
       margin-bottom: 2rem;
     }
     .page-header h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 4vw, 2.5rem);
       color: var(--neon-orange);
       text-shadow: 0 0 8px var(--neon-orange);
     }
-    .page-header p { font-size: 1.2rem; }
+    .page-header p {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+    }
     
     /* Repository Cards */
     .repo-card {
@@ -167,7 +257,9 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    .repo-card .btn:hover { background: #ffa726; }
+    .repo-card .btn:hover {
+      background: #ffa726;
+    }
     
     /* Pagination Controls */
     .pagination-controls {
@@ -187,11 +279,43 @@
       background: #444;
       cursor: not-allowed;
     }
+    
+    /* Footer is set to center all content (it inherits text-align: center) */
+    footer .container {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <!-- Include Header from /include/header.html -->
-  <div id="header-placeholder"></div>
+  <!-- HEADER (Hard-coded as specified) -->
+  <header>
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="logo.png" alt="Logo Bocaletto Luca">
+        <span class="logo-text">Bocaletto Luca</span>
+      </div>
+      <div class="nav-right">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="repository.html">Repositories</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Language Selector -->
+    <div class="language-selector">
+      <ul>
+        <li><a href="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
+        <li><a href="index_ita.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
+        <li><a href="index_fr.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
+        <li><a href="index_es.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
+        <li><a href="index_de.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
+        <li><a href="index_pt.html"><img src="https://flagcdn.com/w20/pt.png" alt="Português" title="Português"></a></li>
+      </ul>
+    </div>
+  </header>
   
   <!-- MAIN CONTENT -->
   <main class="container">
@@ -223,34 +347,26 @@
     <div class="tab-content" id="languageTabsContent"></div>
   </main>
   
-  <!-- Include Footer from /include/footer.html -->
-  <div id="footer-placeholder"></div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2023 Bocaletto Luca. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://github.com/bocaletto-luca" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/bocalettoluca" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/bocalettoluca" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+  </footer>
   
-  <!-- Script to load header and footer -->
-  <script>
-    // Load header from /include/header.html
-    fetch('include/header.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('header-placeholder').innerHTML = html;
-      })
-      .catch(err => console.error('Error loading header:', err));
-    
-    // Load footer from /include/footer.html
-    fetch('include/footer.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('footer-placeholder').innerHTML = html;
-      })
-      .catch(err => console.error('Error loading footer:', err));
-  </script>
-  
-  <!-- Script to adjust main padding based on header height -->
+  <!-- Script: Adjust main padding based on header height -->
   <script>
     function adjustMainPadding() {
       const header = document.querySelector('header');
       const main = document.querySelector('main');
-      const extraSpace = 20; // Additional spacing
+      const extraSpace = 20; // Additional spacing in pixels
       if (header && main) {
         main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
       }
@@ -259,10 +375,10 @@
     window.addEventListener('resize', adjustMainPadding);
   </script>
   
-  <!-- Bootstrap Bundle JS (with Popper) -->
+  <!-- Bootstrap Bundle JS (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script for fetching and dynamically displaying repositories -->
+  <!-- Script for fetching and displaying GitHub repositories -->
   <script>
     async function fetchAllRepos() {
       let page = 1;
@@ -285,24 +401,24 @@
       console.log("Total repositories fetched:", allRepos.length);
       return allRepos;
     }
-
+    
     document.addEventListener("DOMContentLoaded", async () => {
       const loader = document.getElementById("repo-loader");
       const languageTabs = document.getElementById("languageTabs");
       const languageTabsContent = document.getElementById("languageTabsContent");
       const totalElem = document.getElementById("repo-total");
       const PAGE_SIZE = 6; // Number of repositories per page per tab
-
+      
       try {
         const repos = await fetchAllRepos();
         if (loader) loader.remove();
-
+        
         if (!repos || repos.length === 0) {
           totalElem.innerText = "No repositories found or API rate limit exceeded.";
           return;
         }
         totalElem.innerText = "Total repositories: " + repos.length;
-
+        
         // Group repositories by language (use "Other" if null)
         const groups = {};
         repos.forEach(repo => {
@@ -310,17 +426,17 @@
           if (!groups[lang]) groups[lang] = [];
           groups[lang].push(repo);
         });
-
+        
         // Sort languages in descending order by repository count
         const sortedLanguages = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
         console.log("Languages sorted by repository count:", sortedLanguages);
-
+        
         sortedLanguages.forEach(language => {
           const reposGroup = groups[language];
           const totalCount = reposGroup.length;
           const safeLang = language.replace(/\s+/g, '-');
           const tabId = 'tab-' + safeLang;
-
+          
           // Create tab button
           const navItem = document.createElement("li");
           navItem.className = "nav-item";
@@ -337,7 +453,7 @@
           tabButton.innerText = `${language} (${totalCount})`;
           navItem.appendChild(tabButton);
           languageTabs.appendChild(navItem);
-
+          
           // Create tab content container
           const tabPane = document.createElement("div");
           tabPane.className = "tab-pane fade";
@@ -349,12 +465,12 @@
             <div class="pagination-controls" id="group-${safeLang}-pagination"></div>
           `;
           languageTabsContent.appendChild(tabPane);
-
+          
           let currentPage = 1;
           const totalPages = Math.ceil(totalCount / PAGE_SIZE);
           const rowContainer = tabPane.querySelector("div.row");
           const paginationContainer = tabPane.querySelector(".pagination-controls");
-
+          
           function renderPage(page) {
             rowContainer.innerHTML = "";
             const start = (page - 1) * PAGE_SIZE;
@@ -367,7 +483,7 @@
                                     : "No description provided.";
               const url = repo.html_url;
               const languageTag = repo.language ? repo.language : "Unknown";
-
+              
               const col = document.createElement("div");
               col.className = "col-md-4 repo-card";
               col.innerHTML = `
@@ -386,7 +502,7 @@
             }
             updatePaginationControls(page);
           }
-
+          
           function updatePaginationControls(page) {
             paginationContainer.innerHTML = "";
             if (totalPages > 1) {
@@ -396,11 +512,11 @@
               prevBtn.disabled = (page === 1);
               prevBtn.onclick = () => { currentPage--; renderPage(currentPage); };
               paginationContainer.appendChild(prevBtn);
-
+              
               const pageInfo = document.createElement("span");
               pageInfo.innerText = `Page ${page} of ${totalPages}`;
               paginationContainer.appendChild(pageInfo);
-
+              
               const nextBtn = document.createElement("button");
               nextBtn.className = "btn btn-sm btn-secondary ms-2";
               nextBtn.innerText = "Next";
@@ -409,10 +525,11 @@
               paginationContainer.appendChild(nextBtn);
             }
           }
+          
           renderPage(currentPage);
         });
         
-        // Activate the first tab automatically
+        // Automatically activate the first tab
         const firstTabBtn = languageTabs.querySelector("button.nav-link");
         if (firstTabBtn) { firstTabBtn.click(); }
       } catch (error) {

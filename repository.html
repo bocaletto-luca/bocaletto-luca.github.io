@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bocaletto Luca | Repositories</title>
+  <title>Bocaletto Luca | Repository</title>
   <meta name="description" content="Browse the repositories of Bocaletto Luca featuring innovative web projects and open source contributions.">
   <meta name="keywords" content="Bocaletto Luca, GitHub, repository, open source, web development">
   <meta name="robots" content="index, follow">
@@ -11,8 +11,8 @@
   <meta name="author" content="Bocaletto Luca">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Bocaletto Luca - Repositories">
-  <meta property="og:description" content="Discover repositories showcasing web projects and open source innovations by Bocaletto Luca.">
+  <meta property="og:title" content="Bocaletto Luca - Repository">
+  <meta property="og:description" content="Discover the innovative repositories of Bocaletto Luca featuring modern web projects and open source contributions.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bocaletto-luca.github.io/repository.html">
   <meta property="og:image" content="URL_of_logo_or_image">
@@ -20,31 +20,34 @@
   <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Bocaletto Luca",
-    "url": "https://bocaletto-luca.github.io/"
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Bocaletto Luca",
+      "url": "https://bocaletto-luca.github.io/"
   }
   </script>
   
-  <!-- Carica il tema Bootswatch Cyborg (puoi sostituirlo o sovrascriverlo con il nuovo stile) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   
-  <!-- Carica Font (Orbitron), Animate.css e FontAwesome -->
+  <!-- Google Fonts: Orbitron -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+  
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  
+  <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
-  <!-- Stili personalizzati -->
+  
+  <!-- Custom Styles -->
   <style>
     :root {
-      --primary-color: #FF7F00;    /* Neon arancione */
-      --dark-bg: #111;             /* Sfondo scuro */
+      --primary-color: #FF7F00; /* Neon orange */
+      --dark-bg: #111;          /* Dark background */
       --light-text: #EEE;
       --font-title: 'Orbitron', sans-serif;
     }
-    
-    /* Reset e stili generali */
+    /* Reset and base styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background-color: var(--dark-bg);
@@ -53,15 +56,16 @@
       line-height: 1.6;
     }
     a { text-decoration: none; color: var(--primary-color); }
+    a:hover { color: #ffa726; }
     
     /* HEADER / NAVBAR */
     header {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      border-bottom: 2px solid var(--primary-color);
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(0,0,0,0.9);
-      padding: 1rem 2rem;
-      border-bottom: 2px solid var(--primary-color);
       z-index: 1000;
     }
     .nav-container {
@@ -93,16 +97,31 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--light-text);
-      transition: color 0.3s;
+      transition: background-color 0.3s, color 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
     }
-    .nav-right a:hover { color: var(--primary-color); }
+    .nav-right a:hover {
+      background-color: var(--primary-color);
+      color: var(--dark-bg);
+    }
+    /* Mobile view: menu verticale */
+    @media (max-width: 768px) {
+      .nav-right ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      .nav-right li {
+        text-align: center;
+      }
+    }
     
-    /* Language Selector (sotto la navbar) */
+    /* Language Selector */
     .language-selector {
-      width: 100%;
-      text-align: center;
+      background: rgba(0, 0, 0, 0.9);
       padding: 0.5rem 0;
-      background: rgba(0,0,0,0.9);
+      text-align: center;
       border-top: 1px solid var(--primary-color);
     }
     .language-selector ul {
@@ -120,34 +139,60 @@
       cursor: pointer;
       transition: transform 0.3s;
     }
-    .language-selector img:hover {
-      transform: scale(1.2);
-    }
-    
-    /* MAIN CONTENT */
-    /* Il padding-top verrà regolato via JavaScript per non far nascere il contenuto sotto l'header fisso */
+    .language-selector img:hover { transform: scale(1.2); }
+
+    /* MAIN */
+    /* The padding-top is set dynamically (JS) to avoid content being hidden by the fixed header */
     main {
-      padding: 1rem;
       max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
+      padding: 1rem;
     }
-    .page-header {
+    .hero {
       text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.5rem;
       margin-bottom: 2rem;
     }
-    .page-header h1 {
-      font-size: 2.5rem;
-      color: var(--primary-color);
+    .hero a.btn {
+      background: var(--primary-color);
+      border: none;
+      color: var(--dark-bg);
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      transition: background 0.3s;
     }
-    .page-header p { font-size: 1.2rem; }
+    .hero a.btn:hover {
+      background: #ffa726;
+      color: var(--dark-bg);
+    }
     
-    /* Layout per le Repository Cards */
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+    /* FOOTER */
+    footer {
+      background-color: var(--dark-bg);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      border-top: 2px solid var(--primary-color);
+      margin-top: 3rem;
+      font-size: 0.9rem;
     }
+    footer p { margin-bottom: 0.5rem; }
+    footer .social-icons a {
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      transition: color 0.3s;
+    }
+    footer .social-icons a:hover { color: #ffa726; }
+    
+    /* Repository Cards */
     .repo-card {
       flex: 1 1 calc(33.33% - 1rem);
       min-width: 250px;
@@ -167,16 +212,20 @@
       flex-grow: 1;
       padding: 1rem;
     }
+    /* Limite a tre righe per la descrizione per uniformità */
+    .repo-card .card-text {
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .repo-card .card-title {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       margin-bottom: 0.5rem;
-    }
-    .repo-card .card-text {
-      flex-grow: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     .repo-card .card-footer {
       display: flex;
@@ -214,44 +263,90 @@
       background: #444;
       cursor: not-allowed;
     }
-    
-    /* FOOTER */
-    footer {
-      background-color: var(--dark-bg);
-      padding: 1.5rem 2rem;
-      text-align: center;
-      border-top: 2px solid var(--primary-color);
-      margin-top: 3rem;
-      font-size: 0.9rem;
-    }
-    footer p { margin-bottom: 0.5rem; }
-    footer .social-icons a {
-      margin: 0 0.5rem;
-      font-size: 1.5rem;
-      color: var(--primary-color);
-      transition: color 0.3s;
-    }
-    footer .social-icons a:hover { color: #ffa726; }
   </style>
 </head>
 <body>
-<div id="header-placeholder"></div>
-<script>
-  fetch('include/header.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('header-placeholder').innerHTML = html;
-    })
-    .catch(err => console.error('Errore nel caricamento del footer:', err));
-</script>
+  <!-- Include Header -->
+  <div id="header-placeholder"></div>
   
   <!-- MAIN CONTENT -->
   <main class="container">
-    <div class="text-center mb-4">
+    <section class="hero">
+      <h1>Welcome to Bocaletto Luca</h1>
+      <p>Discover my projects, skills, and everything I have to offer.</p>
+      <a href="about.html" class="btn">Learn More</a>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="my-skills">
+      <h2>My Skills & Expertise</h2>
+      <div class="skills-row">
+        <!-- Frontend Card -->
+        <div class="skill-card">
+          <h3>Frontend</h3>
+          <div class="tech-icons">
+            <i class="fab fa-html5" title="HTML5"></i>
+            <i class="fab fa-css3-alt" title="CSS3"></i>
+            <i class="fab fa-js-square" title="JavaScript"></i>
+          </div>
+          <p>Using HTML, CSS, and JavaScript to build modern, responsive user interfaces.</p>
+        </div>
+        <!-- Backend Card -->
+        <div class="skill-card">
+          <h3>Backend</h3>
+          <div class="tech-icons">
+            <i class="fab fa-php" title="PHP"></i>
+            <i class="fas fa-database" title="SQL"></i>
+            <i class="fab fa-python" title="Python"></i>
+          </div>
+          <p>Developing scalable and secure server architectures with modern technologies.</p>
+        </div>
+        <!-- WebApp Card -->
+        <div class="skill-card">
+          <h3>WebApp</h3>
+          <div class="tech-icons">
+            <i class="fas fa-laptop-code" title="Web App"></i>
+          </div>
+          <p>Creating dynamic and interactive web applications integrated with advanced solutions.</p>
+        </div>
+        <!-- Python Card -->
+        <div class="skill-card">
+          <h3>Python</h3>
+          <div class="tech-icons">
+            <i class="fab fa-python" title="Python"></i>
+          </div>
+          <p>Automating tasks and analyzing data with Python for scientific and web solutions.</p>
+        </div>
+        <!-- Admin System Card -->
+        <div class="skill-card">
+          <h3>Admin System</h3>
+          <div class="tech-icons">
+            <i class="fab fa-windows" title="Windows"></i>
+            <i class="fab fa-linux" title="Linux"></i>
+            <i class="fab fa-android" title="Android"></i>
+          </div>
+          <p>Managing operating systems, networks, and IT infrastructures in business environments.</p>
+        </div>
+        <!-- Repairs Card -->
+        <div class="skill-card">
+          <h3>Repairs</h3>
+          <div class="tech-icons">
+            <i class="fas fa-desktop" title="Desktop PC"></i>
+            <i class="fas fa-laptop" title="Laptop"></i>
+            <i class="fas fa-tablet-alt" title="Tablet"></i>
+            <i class="fas fa-mobile-alt" title="Smartphone"></i>
+          </div>
+          <p>Experience in repairing devices from desktop PCs to mobile devices.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Repository Section Header -->
+    <div class="page-header mb-4">
       <h1 class="animate__animated animate__fadeInDown">Repositories</h1>
       <p class="animate__animated animate__fadeInUp animate__delay-1s">
         Browse the innovative repositories of Bocaletto Luca.
-        For the complete list, visit my GitHub profile:
+        For the full list, visit my GitHub profile:
         <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">
           https://github.com/bocaletto-luca</a>
       </p>
@@ -261,30 +356,41 @@
     <!-- Loader -->
     <div id="repo-loader" class="loader">Loading repositories...</div>
     
-    <!-- Tabs Menu for Languages -->
+    <!-- Tabs for Languages -->
     <ul class="nav nav-tabs" id="languageTabs" role="tablist"></ul>
     
     <!-- Container for Tab Content -->
     <div class="tab-content" id="languageTabsContent"></div>
   </main>
   
-  <!-- FOOTER -->
-<div id="footer-placeholder"></div>
-<script>
-  fetch('include/footer.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('footer-placeholder').innerHTML = html;
-    })
-    .catch(err => console.error('Errore nel caricamento del footer:', err));
-</script>
+  <!-- Include Footer -->
+  <div id="footer-placeholder"></div>
   
-  <!-- Script per regolare dinamicamente il padding-top di <main> in base all'altezza del <header> -->
+  <!-- Script to load header and footer from external HTML files -->
+  <script>
+    // Load header
+    fetch('include/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading header:', err));
+    
+    // Load footer
+    fetch('include/footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+  
+  <!-- Script to adjust main padding based on header height -->
   <script>
     function adjustMainPadding() {
       const header = document.querySelector('header');
-      const main = document.querySelector('main.container');
-      const extraSpace = 20; // Spazio aggiuntivo in pixel
+      const main = document.querySelector('main');
+      const extraSpace = 20; // Additional space in pixels
       if (header && main) {
         main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
       }
@@ -296,7 +402,7 @@
   <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script per il fetch e la generazione dinamica dei repository e delle tab -->
+  <!-- Script for fetching repositories and generating dynamic tabs -->
   <script>
     async function fetchAllRepos() {
       let page = 1;
@@ -305,18 +411,18 @@
         console.log("Fetching page", page);
         const response = await fetch(`https://api.github.com/users/bocaletto-luca/repos?per_page=100&page=${page}`);
         if (response.status !== 200) {
-          console.error("Errore durante il fetch dei repository, status:", response.status);
+          console.error("Error fetching repositories, status:", response.status);
           break;
         }
         const repos = await response.json();
         if (!Array.isArray(repos) || repos.length === 0) {
-          console.log("Fine fetch, pagina", page, "vuota");
+          console.log("End of fetch, page", page, "empty");
           break;
         }
         allRepos = allRepos.concat(repos);
         page++;
       }
-      console.log("Totale repository raccolti:", allRepos.length);
+      console.log("Total repositories fetched:", allRepos.length);
       return allRepos;
     }
 
@@ -325,7 +431,7 @@
       const languageTabs = document.getElementById("languageTabs");
       const languageTabsContent = document.getElementById("languageTabsContent");
       const totalElem = document.getElementById("repo-total");
-      const PAGE_SIZE = 6; // Numero di repository per pagina in ciascun tab
+      const PAGE_SIZE = 6; // Number of repositories per page in each tab
 
       try {
         const repos = await fetchAllRepos();
@@ -335,9 +441,9 @@
           totalElem.innerText = "No repositories found or API rate limit exceeded.";
           return;
         }
-        totalElem.innerText = "Total Repository: " + repos.length;
+        totalElem.innerText = "Total repositories: " + repos.length;
 
-        // Raggruppa i repository per linguaggio (usa "Other" se il campo è nullo)
+        // Group repositories by language (use "Other" if null)
         const groups = {};
         repos.forEach(repo => {
           const lang = repo.language ? repo.language : "Other";
@@ -345,9 +451,9 @@
           groups[lang].push(repo);
         });
 
-        // Ordina i linguaggi in ordine decrescente in base al numero di repository
+        // Sort languages in descending order by number of repositories
         const sortedLanguages = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
-        console.log("Linguaggi ordinati per numero di repo:", sortedLanguages);
+        console.log("Languages sorted by repository count:", sortedLanguages);
 
         sortedLanguages.forEach(language => {
           const reposGroup = groups[language];
@@ -355,7 +461,7 @@
           const safeLang = language.replace(/\s+/g, '-');
           const tabId = 'tab-' + safeLang;
 
-          // Crea il bottone del tab come <li> con <button>
+          // Create tab button
           const navItem = document.createElement("li");
           navItem.className = "nav-item";
           navItem.role = "presentation";
@@ -372,7 +478,7 @@
           navItem.appendChild(tabButton);
           languageTabs.appendChild(navItem);
 
-          // Crea il contenitore per il contenuto della tab
+          // Create tab content container
           const tabPane = document.createElement("div");
           tabPane.className = "tab-pane fade";
           tabPane.id = tabId;
@@ -419,6 +525,8 @@
               rowContainer.appendChild(col);
             }
             updatePaginationControls(page);
+            // Translate repository titles and descriptions to English (if needed)
+            translateAllRepoElements();
           }
 
           function updatePaginationControls(page) {
@@ -447,7 +555,7 @@
           renderPage(currentPage);
         });
 
-        // Attiva automaticamente il primo tab
+        // Activate the first tab automatically
         const firstTabBtn = languageTabs.querySelector("button.nav-link");
         if (firstTabBtn) {
           firstTabBtn.click();
@@ -461,5 +569,8 @@
       }
     });
   </script>
+  
+  <!-- Script for Bootstrap Bundle (with Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

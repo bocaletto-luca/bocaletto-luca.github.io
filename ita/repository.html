@@ -27,7 +27,7 @@
   }
   </script>
   
-  <!-- Tema Bootswatch Cyborg (è possibile sostituire o sovrascrivere con il nuovo stile) -->
+  <!-- Carica il tema Bootswatch Cyborg (puoi sostituirlo o sovrascriverlo con il nuovo stile) -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   
   <!-- Google Fonts: Orbitron -->
@@ -128,7 +128,7 @@
     .language-selector img:hover { transform: scale(1.2); }
     
     /* MAIN CONTENT */
-    /* Il padding-top di <main> viene regolato via JS, per evitare che il contenuto sia nascosto dal fixed header */
+    /* Il padding-top verrà regolato via JS per non far nascondere il contenuto dall'header fisso */
     main {
       padding: 1rem;
       max-width: 1200px;
@@ -189,6 +189,78 @@
       transition: color 0.3s;
     }
     footer .social-icons a:hover { color: #ffa726; }
+    
+    /* CARD dei Repository */
+    .repo-card {
+      flex: 1 1 calc(33.33% - 1rem);
+      min-width: 250px;
+    }
+    .repo-card .card {
+      height: 540px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--primary-color);
+      background: #1a1a1a;
+      color: var(--light-text);
+    }
+    .repo-card .card-body {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      padding: 1rem;
+    }
+    /* Forzo la descrizione a mostrare al massimo 3 righe, così da mantenere uniformità */
+    .repo-card .card-text {
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .repo-card .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 0.5rem;
+    }
+    .repo-card .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .repo-card .btn {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--primary-color);
+      border: none;
+      color: #111;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .repo-card .btn:hover { background: #e67e22; }
+    
+    /* Pagination Controls */
+    .pagination-controls {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .pagination-controls button {
+      margin: 0 5px;
+      padding: 0.5rem 1rem;
+      background: var(--primary-color);
+      color: #111;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .pagination-controls button:disabled {
+      background: #444;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
@@ -196,13 +268,13 @@
   <header>
     <div class="nav-container">
       <div class="nav-left">
-        <!-- Il logo (usato ../logo.png perché siamo in ita/) -->
+        <!-- Il logo in ../logo.png poiché siamo nella directory ita/ -->
         <img src="../logo.png" alt="Logo Bocaletto Luca">
         <span class="logo-text">Bocaletto Luca</span>
       </div>
       <div class="nav-right">
         <ul class="nav">
-          <!-- I link in lingua italiana puntano ai file nella stessa directory -->
+          <!-- I link per la versione italiana puntano ai file della directory corrente -->
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
@@ -211,7 +283,7 @@
         </ul>
       </div>
     </div>
-    <!-- Language Selector -->
+    <!-- LANGUAGE SELECTOR -->
     <div class="language-selector">
       <ul>
         <!-- La versione inglese risiede nella root -->
@@ -232,17 +304,17 @@
     <!-- Sezione Hero -->
     <section class="hero">
       <h1>Benvenuto su Bocaletto Luca</h1>
-      <p>Scopri i progetti, le competenze e tutto ciò che posso offrire.</p>
+      <p>Scopri i miei progetti, le competenze e tutto ciò che posso offrire.</p>
       <a href="about.html" class="btn">Scopri di più</a>
     </section>
     
-    <!-- Page Header per i Repository -->
     <div class="page-header mb-4">
       <h1 class="animate__animated animate__fadeInDown">Repository</h1>
       <p class="animate__animated animate__fadeInUp animate__delay-1s">
         Sfoglia i repository innovativi di Bocaletto Luca.
         Per l'elenco completo, visita il mio profilo GitHub:
-        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
+        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">
+          https://github.com/bocaletto-luca</a>
       </p>
       <p id="repo-total" class="lead"></p>
     </div>
@@ -285,10 +357,40 @@
     window.addEventListener('resize', adjustMainPadding);
   </script>
   
-  <!-- Bootstrap Bundle JS (include Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script per tradurre le descrizioni dei repository -->
+  <script>
+    async function translateRepoDesc(element) {
+      const text = element.innerText;
+      if (!text || text.trim() === "" || text === "Nessuna descrizione fornita.") return;
+      try {
+        const res = await fetch('https://libretranslate.de/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            q: text,
+            source: "en",
+            target: "it",
+            format: "text"
+          })
+        });
+        const data = await res.json();
+        if (data.translatedText) {
+          element.innerText = data.translatedText;
+        }
+      } catch (error) {
+        console.error("Errore nella traduzione:", error);
+      }
+    }
+
+    function translateAllRepoDescriptions() {
+      const descriptions = document.querySelectorAll(".card-text.flex-grow-1");
+      descriptions.forEach(elem => {
+        translateRepoDesc(elem);
+      });
+    }
+  </script>
   
-  <!-- Script per il fetch e la generazione dinamica dei repository e delle tab, con traduzione automatica delle descrizioni -->
+  <!-- Script per il fetch e la generazione dinamica dei repository e delle tab -->
   <script>
     async function fetchAllRepos() {
       let page = 1;
@@ -312,41 +414,12 @@
       return allRepos;
     }
 
-    // Funzione per tradurre una descrizione usando l'API di LibreTranslate
-    async function translateRepoDesc(element) {
-      const text = element.innerText;
-      if (!text || text === "Nessuna descrizione fornita.") return;
-      try {
-        const res = await fetch('https://libretranslate.de/translate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            q: text,
-            source: "en",
-            target: "it",
-            format: "text"
-          })
-        });
-        const data = await res.json();
-        if (data.translatedText) {
-          element.innerText = data.translatedText;
-        }
-      } catch (error) {
-        console.error("Errore nella traduzione:", error);
-      }
-    }
-
-    function translateAllRepoDescriptions() {
-      const descriptions = document.querySelectorAll(".card-text.flex-grow-1");
-      descriptions.forEach(elem => translateRepoDesc(elem));
-    }
-
     document.addEventListener("DOMContentLoaded", async () => {
       const loader = document.getElementById("repo-loader");
       const languageTabs = document.getElementById("languageTabs");
       const languageTabsContent = document.getElementById("languageTabsContent");
       const totalElem = document.getElementById("repo-total");
-      const PAGE_SIZE = 6; // Numero di repository per pagina
+      const PAGE_SIZE = 6; // Numero di repository per pagina in ciascun tab
 
       try {
         const repos = await fetchAllRepos();
@@ -368,7 +441,7 @@
 
         // Ordina i linguaggi in ordine decrescente in base al numero di repository
         const sortedLanguages = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
-        console.log("Linguaggi ordinati: ", sortedLanguages);
+        console.log("Linguaggi ordinati per numero di repository:", sortedLanguages);
 
         sortedLanguages.forEach(language => {
           const reposGroup = groups[language];
@@ -440,7 +513,7 @@
               rowContainer.appendChild(col);
             }
             updatePaginationControls(page);
-            // Dopo il rendering della pagina aggiorno la traduzione delle descrizioni
+            // Dopo aver creato le card aggiorno le descrizioni traducendole
             translateAllRepoDescriptions();
           }
 
@@ -484,5 +557,8 @@
       }
     });
   </script>
+  
+  <!-- Script per Bootstrap Bundle JS (include Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

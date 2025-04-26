@@ -27,7 +27,7 @@
   }
   </script>
   
-  <!-- Carica il tema Bootswatch Cyborg -->
+  <!-- Carica il tema Bootswatch Cyborg (puoi sostituirlo o sovrascriverlo) -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   
   <!-- Google Fonts: Orbitron -->
@@ -128,7 +128,7 @@
     .language-selector img:hover { transform: scale(1.2); }
     
     /* MAIN CONTENT */
-    /* Il padding-top di <main> verrà regolato dinamicamente via JS per evitare che il contenuto venga nascosto dall'header */
+    /* Il padding-top di <main> verrà regolato via JS per evitare che il contenuto venga nascosto dall'header */
     main {
       padding: 1rem;
       max-width: 1200px;
@@ -210,7 +210,7 @@
       flex-grow: 1;
       padding: 1rem;
     }
-    /* Forzo la descrizione a mostrare al massimo 3 righe per uniformare le card */
+    /* Forzo la descrizione a mostrare al massimo 3 righe per uniformità */
     .repo-card .card-text {
       flex-grow: 1;
       display: -webkit-box;
@@ -268,13 +268,13 @@
   <header>
     <div class="nav-container">
       <div class="nav-left">
-        <!-- Il logo in ../logo.png perché siamo in ita/ -->
+        <!-- Il logo usato dalla directory superiore -->
         <img src="../logo.png" alt="Logo Bocaletto Luca">
         <span class="logo-text">Bocaletto Luca</span>
       </div>
       <div class="nav-right">
         <ul class="nav">
-          <!-- I link nella directory ita/ puntano ai file locali -->
+          <!-- I link in italiano puntano ai file della directory corrente -->
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
@@ -342,7 +342,7 @@
     </div>
   </footer>
   
-  <!-- Script: Regola dinamicamente il padding-top di <main> in base all'altezza dell'header -->
+  <!-- Script per regolare dinamicamente il padding-top di <main> in base all'altezza dell'header -->
   <script>
     function adjustMainPadding() {
       const header = document.querySelector('header');
@@ -356,11 +356,12 @@
     window.addEventListener('resize', adjustMainPadding);
   </script>
   
-  <!-- Script per tradurre le descrizioni dei repository -->
+  <!-- Script per tradurre titolo e descrizione dei repository -->
   <script>
-    // Utilizziamo l'istanza di Astian Translate che non richiede registrazione
-    async function translateRepoDesc(element) {
+    // Funzione generica per tradurre il testo di un elemento
+    async function translateText(element) {
       const text = element.innerText;
+      // Non tentiamo la traduzione se il testo è vuoto o già "Nessuna descrizione fornita."
       if (!text || text.trim() === "" || text === "Nessuna descrizione fornita.") return;
       try {
         const res = await fetch('https://translate.astian.org/translate', {
@@ -381,11 +382,12 @@
         console.error("Errore nella traduzione:", error);
       }
     }
-
-    function translateAllRepoDescriptions() {
-      const descriptions = document.querySelectorAll(".card-text.flex-grow-1");
-      descriptions.forEach(elem => {
-        translateRepoDesc(elem);
+    
+    // Funzione per tradurre tutti gli elementi contenenti testo (titoli e descrizioni)
+    function translateAllRepoElements() {
+      const elements = document.querySelectorAll(".card-text.flex-grow-1, .card-title");
+      elements.forEach(elem => {
+        translateText(elem);
       });
     }
   </script>
@@ -513,8 +515,8 @@
               rowContainer.appendChild(col);
             }
             updatePaginationControls(page);
-            // Traduce tutte le descrizioni visualizzate
-            translateAllRepoDescriptions();
+            // Dopo aver renderizzato le card, traduci i titoli e le descrizioni
+            translateAllRepoElements();
           }
 
           function updatePaginationControls(page) {
@@ -558,7 +560,7 @@
     });
   </script>
   
-  <!-- Script per Bootstrap Bundle (include Popper) -->
+  <!-- Script per Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

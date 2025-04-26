@@ -27,10 +27,10 @@
   }
   </script>
   
-  <!-- Carica il tema Bootswatch Cyborg -->
+  <!-- Carica il tema Bootswatch Cyborg (puoi sostituirlo o sovrascriverlo con il nuovo stile) -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   
-  <!-- Carica Font, Animate.css e FontAwesome -->
+  <!-- Carica Font (Orbitron), Animate.css e FontAwesome -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -38,12 +38,13 @@
   <!-- Stili personalizzati -->
   <style>
     :root {
-      --primary-color: #FF7F00;   /* Neon arancione */
-      --dark-bg: #111;            /* Sfondo scuro */
+      --primary-color: #FF7F00;    /* Neon arancione */
+      --dark-bg: #111;             /* Sfondo scuro */
       --light-text: #EEE;
       --font-title: 'Orbitron', sans-serif;
     }
-    /* Reset e stili di base */
+    
+    /* Reset e stili generali */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background-color: var(--dark-bg);
@@ -53,7 +54,7 @@
     }
     a { text-decoration: none; color: var(--primary-color); }
     
-    /* Header / Navbar */
+    /* HEADER / NAVBAR */
     header {
       position: fixed;
       top: 0;
@@ -87,19 +88,6 @@
       display: flex;
       gap: 1.5rem;
     }
-    
-    
-    @media (max-width: 768px) {
-      .nav-right ul {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 1rem;
-          header {
-    position: relative; /* In mobile il header scorre insieme alla pagina */
-  }
-      }
-      .nav-right ul li { text-align: center; }
-    }
     .nav-right a {
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -109,10 +97,37 @@
     }
     .nav-right a:hover { color: var(--primary-color); }
     
-    /* Main Content */
+    /* Language Selector (sotto la navbar) */
+    .language-selector {
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem 0;
+      background: rgba(0,0,0,0.9);
+      border-top: 1px solid var(--primary-color);
+    }
+    .language-selector ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+    .language-selector img {
+      width: 20px;
+      height: auto;
+      border: 1px solid var(--light-text);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .language-selector img:hover {
+      transform: scale(1.2);
+    }
+    
+    /* MAIN CONTENT */
+    /* Il padding-top verrà regolato via JavaScript per non far nascere il contenuto sotto l'header fisso */
     main {
-      margin-top: 100px; /* per lasciare spazio all'header fisso */
-      padding: 0 1rem;
+      padding: 1rem;
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
@@ -127,18 +142,6 @@
     }
     .page-header p { font-size: 1.2rem; }
     
-    /* Loader */
-    .loader {
-      text-align: center;
-      padding: 2rem;
-      font-size: 1.5rem;
-    }
-    
-    /* Stile dei Tab – usiamo il markup standard di Bootstrap */
-    .nav-tabs {
-      margin-bottom: 2rem;
-    }
-    
     /* Layout per le Repository Cards */
     .row {
       display: flex;
@@ -149,16 +152,15 @@
       flex: 1 1 calc(33.33% - 1rem);
       min-width: 250px;
     }
-.repo-card .card {
-  height: 540px; /* Altezza aumentata da 320px a 400px */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--primary-color);
-  background: #1a1a1a;
-  color: var(--light-text);
-}
-
+    .repo-card .card {
+      height: 540px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--primary-color);
+      background: #1a1a1a;
+      color: var(--light-text);
+    }
     .repo-card .card-body {
       display: flex;
       flex-direction: column;
@@ -213,7 +215,7 @@
       cursor: not-allowed;
     }
     
-    /* Footer */
+    /* FOOTER */
     footer {
       background-color: var(--dark-bg);
       padding: 1.5rem 2rem;
@@ -222,10 +224,18 @@
       margin-top: 3rem;
       font-size: 0.9rem;
     }
+    footer p { margin-bottom: 0.5rem; }
+    footer .social-icons a {
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      transition: color 0.3s;
+    }
+    footer .social-icons a:hover { color: #ffa726; }
   </style>
 </head>
 <body>
-  <!-- Header / Navbar -->
+  <!-- HEADER / NAVBAR -->
   <header>
     <div class="nav-container">
       <div class="nav-left">
@@ -235,23 +245,35 @@
       <div class="nav-right">
         <ul class="nav">
           <li class="nav-item"><a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="repository.html">Repositories</a></li>
+          <li class="nav-item"><a class="nav-link active" href="repository.html">Repositories</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
         </ul>
       </div>
     </div>
+    <!-- Language Selector -->
+    <div class="language-selector">
+      <ul>
+        <li><a href="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
+        <li><a href="index_ita.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
+        <li><a href="index_fr.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
+        <li><a href="index_es.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
+        <li><a href="index_de.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
+        <li><a href="index_pt.html"><img src="https://flagcdn.com/w20/pt.png" alt="Português" title="Português"></a></li>
+      </ul>
+    </div>
   </header>
   
-  <!-- Main Content -->
-  <main class="container mt-5">
+  <!-- MAIN CONTENT -->
+  <main class="container">
     <div class="text-center mb-4">
       <h1 class="animate__animated animate__fadeInDown">Repositories</h1>
       <p class="animate__animated animate__fadeInUp animate__delay-1s">
         Browse the innovative repositories of Bocaletto Luca.
         For the complete list, visit my GitHub profile:
-        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
+        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">
+          https://github.com/bocaletto-luca</a>
       </p>
       <p id="repo-total" class="lead"></p>
     </div>
@@ -259,19 +281,40 @@
     <!-- Loader -->
     <div id="repo-loader" class="loader">Loading repositories...</div>
     
-    <!-- Tabs Menu per i Linguaggi -->
+    <!-- Tabs Menu for Languages -->
     <ul class="nav nav-tabs" id="languageTabs" role="tablist"></ul>
     
-    <!-- Contenitore per il Contenuto dei Tab -->
+    <!-- Container for Tab Content -->
     <div class="tab-content" id="languageTabsContent"></div>
   </main>
   
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <p>© 2023 Bocaletto Luca. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://github.com/bocaletto-luca" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/bocalettoluca" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/bocalettoluca" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
+      </div>
     </div>
   </footer>
+  
+  <!-- Script per regolare dinamicamente il padding-top di <main> in base all'altezza del <header> -->
+  <script>
+    function adjustMainPadding() {
+      const header = document.querySelector('header');
+      const main = document.querySelector('main.container');
+      const extraSpace = 20; // Spazio aggiuntivo in pixel
+      if (header && main) {
+        main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
+      }
+    }
+    window.addEventListener('load', adjustMainPadding);
+    window.addEventListener('resize', adjustMainPadding);
+  </script>
   
   <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -325,9 +368,9 @@
           groups[lang].push(repo);
         });
 
-        // Ordina alfabeticamente i linguaggi
-        const sortedLanguages = Object.keys(groups).sort();
-        console.log("Linguaggi trovati:", sortedLanguages);
+        // Ordina i linguaggi in ordine decrescente in base al numero di repository
+        const sortedLanguages = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
+        console.log("Linguaggi ordinati per numero di repo:", sortedLanguages);
 
         sortedLanguages.forEach(language => {
           const reposGroup = groups[language];
@@ -427,10 +470,9 @@
           renderPage(currentPage);
         });
 
-        // Attiva automaticamente il primo tab (usando il tab plugin di Bootstrap)
+        // Attiva automaticamente il primo tab
         const firstTabBtn = languageTabs.querySelector("button.nav-link");
         if (firstTabBtn) {
-          // Simula il click per attivarlo
           firstTabBtn.click();
         }
       } catch (error) {

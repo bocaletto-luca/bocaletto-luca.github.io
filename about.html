@@ -4,69 +4,294 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bocaletto Luca | About</title>
-  <meta name="description" content="Learn more about Bocaletto Luca – a computer programmer, artist, musician, and freelance writer with over 30 years of experience in computing.">
-  <meta name="keywords" content="Bocaletto Luca, about, biography, programmer, open source, web development">
+  <meta name="description" content="Learn about Bocaletto Luca – computer programmer, artist, musician, and freelance writer. Discover my journey, passion, and skillset.">
+  <meta name="keywords" content="Bocaletto Luca, about me, biography, skills, programmer, artist, musician, freelance writer">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://bocaletto-luca.github.io/about.html">
   <meta name="author" content="Bocaletto Luca">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Bocaletto Luca - About">
-  <meta property="og:description" content="Discover the journey of Bocaletto Luca: a dedicated computer programmer, artist, musician, and freelance writer.">
+  <meta property="og:description" content="Discover the journey and skills of Bocaletto Luca in programming, art, music and freelance writing.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bocaletto-luca.github.io/about.html">
   <meta property="og:image" content="URL_of_logo_or_image">
   
-  <!-- Structured Data -->
+  <!-- Structured Data JSON‑LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Bocaletto Luca",
     "url": "https://bocaletto-luca.github.io/about.html",
-    "sameAs": ["https://github.com/bocaletto-luca"],
+    "sameAs": [
+      "https://github.com/bocaletto-luca"
+    ],
     "jobTitle": "Computer Programmer, Artist, Musician, Freelance Writer"
   }
   </script>
   
-  <!-- Theme CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
-  <!-- Style CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap CSS base -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  
+  <!-- Importazione del font Orbitron -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+  
+  <!-- FontAwesome (link semplificato) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Stile personalizzato Neon Arancione e layout responsive -->
   <style>
-
-  #skills {
-    max-width: 600px;
-    margin: auto;
-    text-align: left;
-}
-
-.skill {
-    margin: 20px 0;
-}
-
-.progress-bar {
-    width: 100%;
-    background-color: #ddd;
-    height: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    background: linear-gradient(to right, #4CAF50, #2E7D32);
-    text-align: right;
-    padding-right: 10px;
-    color: white;
-    font-weight: bold;
-    line-height: 20px;
-}
-
+    /* Variabili di base */
+    :root {
+      --neon-orange: #ff7f00;
+      --dark-bg: #000;
+      --light-text: #eee;
+      --font-main: 'Orbitron', sans-serif;
+    }
+    
+    /* Reset & stile generale */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      font-family: var(--font-main);
+      line-height: 1.6;
+    }
+    
+    a {
+      color: var(--neon-orange);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    a:hover {
+      color: #ffa726;
+    }
+    
+    /* HEADER, NAVBAR & Branding */
+    header {
+      background-color: var(--dark-bg);
+      border-bottom: 2px solid var(--neon-orange);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    header .branding {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    header .branding img {
+      height: 60px;
+      filter: drop-shadow(0 0 5px var(--neon-orange));
+    }
+    header .branding h1 {
+      font-size: 2.2rem;
+      color: var(--neon-orange);
+      text-shadow: 0 0 10px var(--neon-orange);
+      margin: 0.5rem 0 0.2rem;
+    }
+    header .branding p {
+      font-size: 1.1rem;
+      color: var(--light-text);
+    }
+    
+    /* Navbar: orizzontale su desktop, verticale su mobile */
+    .navbar-always {
+      background: rgba(0, 0, 0, 0.9);
+    }
+    .navbar-always .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      list-style: none;
+    }
+    .navbar-always .nav-item .nav-link {
+      font-size: 1.1rem;
+      color: var(--light-text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .navbar-always .nav-item .nav-link:hover,
+    .navbar-always .nav-item .nav-link:focus {
+      background: var(--neon-orange);
+      color: var(--dark-bg);
+    }
+    @media (max-width: 768px) {
+      .navbar-always .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    
+    /* Language Selector */
+    .language-selector {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .language-selector ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+    }
+    .language-selector img {
+      width: 20px;
+      height: auto;
+      border: 1px solid var(--light-text);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .language-selector img:hover {
+      transform: scale(1.2);
+    }
+    
+    /* MAIN: il padding-top viene settato via JavaScript per evitare il fixed header */
+    main.container {
+      padding-bottom: 2rem;
+    }
+    
+    /* Titoli e testi Responsive */
+    main .text-center h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      color: var(--neon-orange);
+      text-shadow: 0 0 8px var(--neon-orange);
+    }
+    main .lead {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* ABOUT ME Section */
+    section#about-me {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    section#about-me h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+      color: var(--neon-orange);
+      text-shadow: 0 0 8px var(--neon-orange);
+    }
+    section#about-me p {
+      font-size: clamp(1rem, 2.2vw, 1.1rem);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: justify;
+    }
+    
+    /* My Skills Section */
+    section#my-skills {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    section#my-skills h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+      color: var(--neon-orange);
+      text-shadow: 0 0 8px var(--neon-orange);
+    }
+    /* Griglia dinamica per le Skill Cards */
+    .skills-grid {
+      display: grid;
+      gap: 1rem;
+      padding: 0 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 1024px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1400px) {
+      .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 1920px) {
+      .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    .skill-card {
+      height: 250px;
+      background: rgba(255, 127, 0, 0.1);
+      border: 1px solid var(--neon-orange);
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s;
+      overflow: hidden;
+    }
+    .skill-card:hover {
+      transform: scale(1.05);
+    }
+    .skill-title {
+      margin-bottom: 0.5rem;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--neon-orange);
+      text-shadow: 0 0 5px var(--neon-orange);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tech-icons {
+      margin-top: 0.5rem;
+      display: inline-flex;
+      gap: 0.5rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--neon-orange);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    /* FOOTER: Icone social */
+    footer {
+      border-top: 2px solid var(--neon-orange);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      margin-top: 2rem;
+      background: var(--dark-bg);
+      color: var(--light-text);
+    }
+    footer p {
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    footer .social-icons a {
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      color: var(--neon-orange);
+      transition: color 0.3s;
+    }
+    footer .social-icons a:hover {
+      color: #ffa726;
+    }
   </style>
 </head>
 <body>
-  <!-- Header: Branding e Menu -->
+  <!-- HEADER: Branding, Navbar & Language Selector -->
   <header>
     <div class="branding">
       <img src="logo.png" alt="Bocaletto Luca Logo">
@@ -76,95 +301,116 @@
     <div class="navbar-always">
       <div class="container">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="repository.html">Repository</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="project.html">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contacts.html">Contacts</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
         </ul>
       </div>
     </div>
+    <!-- Language Selector -->
+    <div class="language-selector">
+      <ul>
+        <li><a href="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
+        <li><a href="index_ita.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
+        <li><a href="index_fr.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
+        <li><a href="index_es.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
+        <li><a href="index_de.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
+        <li><a href="index_pt.html"><img src="https://flagcdn.com/w20/pt.png" alt="Português" title="Português"></a></li>
+      </ul>
+    </div>
   </header>
   
-  <!-- Main Content -->
-  <main class="container mt-5">
-    <h1>About Me</h1>
-    <p class="lead">
-      <strong>Bocaletto Luca:</strong> Computer Programmer, Artist, Musician, Freelance Writer. Projects published freely on GitHub in various programming languages, including Python, SQL, PHP, HTML, CSS, and more.
-    </p>
-
-        <section id="skills">
-    <h2>Le mie Competenze</h2>
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <!-- About Me Section -->
+    <section id="about-me">
+      <h2>About Me</h2>
+      <p>Hello, I'm Bocaletto Luca – a passionate computer programmer, artist, musician, and freelance writer. My journey in technology and creativity began at an early age and has led me through a dynamic career where code meets art, and logic fuses with melody.</p>
+      <p>I specialize in crafting digital experiences that are as aesthetically pleasing as they are technically robust. Whether I'm designing an interactive website, composing a musical score, or penning articles that explore the intersections of technology and culture, I always pursue excellence and innovation.</p>
+      <p>My work spans various fields: from developing responsive front-end interfaces and scalable back-end systems to managing networks and repairing hardware devices. In parallel, my creative endeavors in digital art and music have allowed me to express complex ideas in unique and compelling ways.</p>
+      <p>I believe in continuous learning and actively contribute to open source projects and online communities, sharing my expertise and collaborating with fellow enthusiasts to push the boundaries of modern digital expression.</p>
+    </section>
     
-    <div class="skill">
-        <p>Linguaggi di Programmazione</p>
-        <div class="progress-bar">
-            <div class="progress" style="width: 90%;"></div> <!-- 90% -->
+    <!-- My Skills Section -->
+    <section id="my-skills">
+      <h2>My Skills & Expertise</h2>
+      <div class="skills-grid">
+        <!-- Frontend Development Card -->
+        <div class="skill-card">
+          <div class="skill-title">Frontend Development</div>
+          <div class="tech-icons">
+            <i class="fab fa-html5" title="HTML5"></i>
+            <i class="fab fa-css3-alt" title="CSS3"></i>
+            <i class="fab fa-js-square" title="JavaScript"></i>
+          </div>
+          <p>Crafting sleek and responsive user interfaces using cutting-edge web technologies.</p>
         </div>
-    </div>
-
-    <div class="skill">
-        <p>Web Development</p>
-        <div class="progress-bar">
-            <div class="progress" style="width: 80%;"></div> <!-- 80% -->
+        <!-- Backend Development Card -->
+        <div class="skill-card">
+          <div class="skill-title">Backend Development</div>
+          <div class="tech-icons">
+            <i class="fas fa-database" title="SQL"></i>
+            <i class="fab fa-php" title="PHP"></i>
+            <i class="fab fa-python" title="Python"></i>
+          </div>
+          <p>Designing robust server architectures and scalable applications.</p>
         </div>
-    </div>
-
-    <div class="skill">
-        <p>Database Management</p>
-        <div class="progress-bar">
-            <div class="progress" style="width: 70%;"></div> <!-- 70% -->
+        <!-- System Administration Card -->
+        <div class="skill-card">
+          <div class="skill-title">System Administration</div>
+          <div class="tech-icons">
+            <i class="fab fa-windows" title="Windows"></i>
+            <i class="fab fa-linux" title="Linux"></i>
+            <i class="fab fa-android" title="Android"></i>
+          </div>
+          <p>Managing secure network infrastructures and optimizing system performance.</p>
         </div>
-    </div>
-
-</section>
-    
-    <h2>Something of Me</h2>
-    <p>
-      I have been passionate about computing for over 30 years. I enjoy managing both Windows and GNU/Linux since my earliest experiences. My goal is to help you overcome everyday tech challenges and boost your productivity.
-    </p>
-    <p>
-      My hobbies and expertise include freelance writing, technology consulting, full stack web and software development, IT support, making, 3D printing and design, as well as experimenting with electronics, robotics, and home automation with Arduino. I began with the C64 and cassette copies – my very first hack – and later explored video game development. I’m also passionate about astronomy, radio, chess, and music.
-    </p>
-
-
+        <!-- Technical Repairs Card -->
+        <div class="skill-card">
+          <div class="skill-title">Technical Repairs</div>
+          <div class="tech-icons">
+            <i class="fas fa-mobile-alt" title="Smartphone"></i>
+            <i class="fas fa-tablet-alt" title="Tablet"></i>
+            <i class="fas fa-desktop" title="Desktop"></i>
+            <i class="fas fa-laptop" title="Laptop"></i>
+          </div>
+          <p>Expertise in troubleshooting and repairing a range of digital devices.</p>
+        </div>
+      </div>
+    </section>
   </main>
   
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <p>© 2023 Bocaletto Luca. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://github.com/bocaletto-luca" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/bocalettoluca" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/bocalettoluca" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
+      </div>
     </div>
   </footer>
   
+  <!-- Script: Regola dinamicamente il padding-top di <main> in base all'altezza del <header> -->
+  <script>
+    function adjustMainPadding() {
+      const header = document.querySelector('header');
+      const main = document.querySelector('main.container');
+      const extraSpace = 20; // Spazio aggiuntivo in pixel
+      if (header && main) {
+        main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
+      }
+    }
+    window.addEventListener('load', adjustMainPadding);
+    window.addEventListener('resize', adjustMainPadding);
+  </script>
+  
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Effect Skill -->
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let progressBars = document.querySelectorAll(".progress");
-
-    progressBars.forEach(function(bar) {
-      let width = bar.style.width; // Recupera il valore (es. "90%")
-      bar.style.width = "0%"; // Resetta l'animazione iniziale
-
-      setTimeout(function() {
-        bar.style.transition = "width 1.5s ease-in-out";
-        bar.style.width = width; // Applica il valore corretto
-      }, 500);
-    });
-  });
-</script>
-
 </body>
 </html>

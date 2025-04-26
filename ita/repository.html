@@ -27,12 +27,16 @@
   }
   </script>
   
-  <!-- Carica il tema Bootswatch Cyborg (puoi sostituirlo o sovrascriverlo) -->
+  <!-- Tema Bootswatch Cyborg (è possibile sostituire o sovrascrivere con il nuovo stile) -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
   
-  <!-- Carica Font (Orbitron), Animate.css e FontAwesome -->
+  <!-- Google Fonts: Orbitron -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+  
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  
+  <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   
   <!-- Stili Personalizzati -->
@@ -124,7 +128,7 @@
     .language-selector img:hover { transform: scale(1.2); }
     
     /* MAIN CONTENT */
-    /* Il padding-top verrà regolato dinamicamente via JS per evitare che il contenuto venga nascosto dall'header fisso */
+    /* Il padding-top di <main> viene regolato via JS, per evitare che il contenuto sia nascosto dal fixed header */
     main {
       padding: 1rem;
       max-width: 1200px;
@@ -192,13 +196,13 @@
   <header>
     <div class="nav-container">
       <div class="nav-left">
-        <!-- Il logo: in una directory italiana, il percorso è relativo alla directory superiore -->
+        <!-- Il logo (usato ../logo.png perché siamo in ita/) -->
         <img src="../logo.png" alt="Logo Bocaletto Luca">
         <span class="logo-text">Bocaletto Luca</span>
       </div>
       <div class="nav-right">
         <ul class="nav">
-          <!-- I link, essendo nella directory ita/, puntano ai file nella directory corrente -->
+          <!-- I link in lingua italiana puntano ai file nella stessa directory -->
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
@@ -210,11 +214,11 @@
     <!-- Language Selector -->
     <div class="language-selector">
       <ul>
-        <!-- Per la versione in inglese (nella root) -->
+        <!-- La versione inglese risiede nella root -->
         <li><a href="../index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
-        <!-- Per l'italiano (directory corrente) -->
+        <!-- Italiano (directory corrente) -->
         <li><a href="index.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
-        <!-- Altre lingue -->
+        <!-- Altre lingue, ipotizzando directory a 3 lettere -->
         <li><a href="../fra/index.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
         <li><a href="../esp/index.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
         <li><a href="../deu/index.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
@@ -225,16 +229,19 @@
   
   <!-- MAIN CONTENT -->
   <main class="container">
+    <!-- Sezione Hero -->
     <section class="hero">
       <h1>Benvenuto su Bocaletto Luca</h1>
-      <p>Scopri i miei progetti, le mie competenze e tutto ciò che posso offrire.</p>
+      <p>Scopri i progetti, le competenze e tutto ciò che posso offrire.</p>
       <a href="about.html" class="btn">Scopri di più</a>
     </section>
     
+    <!-- Page Header per i Repository -->
     <div class="page-header mb-4">
       <h1 class="animate__animated animate__fadeInDown">Repository</h1>
       <p class="animate__animated animate__fadeInUp animate__delay-1s">
-        Sfoglia i repository innovativi di Bocaletto Luca. Per l'elenco completo, visita il mio profilo GitHub:
+        Sfoglia i repository innovativi di Bocaletto Luca.
+        Per l'elenco completo, visita il mio profilo GitHub:
         <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
       </p>
       <p id="repo-total" class="lead"></p>
@@ -243,7 +250,7 @@
     <!-- Loader -->
     <div id="repo-loader" class="loader">Caricamento dei repository...</div>
     
-    <!-- Tabs Menu per i Linguaggi -->
+    <!-- Tabs per i Linguaggi -->
     <ul class="nav nav-tabs" id="languageTabs" role="tablist"></ul>
     
     <!-- Contenitore per il contenuto dei Tab -->
@@ -281,7 +288,7 @@
   <!-- Bootstrap Bundle JS (include Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Script per il fetch e la generazione dinamica dei repository e delle tab -->
+  <!-- Script per il fetch e la generazione dinamica dei repository e delle tab, con traduzione automatica delle descrizioni -->
   <script>
     async function fetchAllRepos() {
       let page = 1;
@@ -305,24 +312,53 @@
       return allRepos;
     }
 
+    // Funzione per tradurre una descrizione usando l'API di LibreTranslate
+    async function translateRepoDesc(element) {
+      const text = element.innerText;
+      if (!text || text === "Nessuna descrizione fornita.") return;
+      try {
+        const res = await fetch('https://libretranslate.de/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            q: text,
+            source: "en",
+            target: "it",
+            format: "text"
+          })
+        });
+        const data = await res.json();
+        if (data.translatedText) {
+          element.innerText = data.translatedText;
+        }
+      } catch (error) {
+        console.error("Errore nella traduzione:", error);
+      }
+    }
+
+    function translateAllRepoDescriptions() {
+      const descriptions = document.querySelectorAll(".card-text.flex-grow-1");
+      descriptions.forEach(elem => translateRepoDesc(elem));
+    }
+
     document.addEventListener("DOMContentLoaded", async () => {
       const loader = document.getElementById("repo-loader");
       const languageTabs = document.getElementById("languageTabs");
       const languageTabsContent = document.getElementById("languageTabsContent");
       const totalElem = document.getElementById("repo-total");
-      const PAGE_SIZE = 6; // Numero di repository per pagina in ciascun tab
+      const PAGE_SIZE = 6; // Numero di repository per pagina
 
       try {
         const repos = await fetchAllRepos();
         if (loader) loader.remove();
 
         if (!repos || repos.length === 0) {
-          totalElem.innerText = "Nessun repository trovato o superato il limite delle API.";
+          totalElem.innerText = "Nessun repository trovato o limite API superato.";
           return;
         }
         totalElem.innerText = "Totale repository: " + repos.length;
 
-        // Raggruppa i repository per linguaggio (usa "Other" se il campo è nullo)
+        // Raggruppa i repository per linguaggio (usa "Other" se nullo)
         const groups = {};
         repos.forEach(repo => {
           const lang = repo.language ? repo.language : "Other";
@@ -332,7 +368,7 @@
 
         // Ordina i linguaggi in ordine decrescente in base al numero di repository
         const sortedLanguages = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
-        console.log("Linguaggi ordinati per numero di repository:", sortedLanguages);
+        console.log("Linguaggi ordinati: ", sortedLanguages);
 
         sortedLanguages.forEach(language => {
           const reposGroup = groups[language];
@@ -340,7 +376,7 @@
           const safeLang = language.replace(/\s+/g, '-');
           const tabId = 'tab-' + safeLang;
 
-          // Crea il bottone del tab come <li> con <button>
+          // Crea il bottone del tab
           const navItem = document.createElement("li");
           navItem.className = "nav-item";
           navItem.role = "presentation";
@@ -385,7 +421,7 @@
                                     ? repo.description
                                     : "Nessuna descrizione fornita.";
               const url = repo.html_url;
-              const languageTag = repo.language ? repo.language : "Unknown";
+              const languageTag = repo.language ? repo.language : "Sconosciuta";
 
               const col = document.createElement("div");
               col.className = "col-md-4 repo-card";
@@ -404,6 +440,8 @@
               rowContainer.appendChild(col);
             }
             updatePaginationControls(page);
+            // Dopo il rendering della pagina aggiorno la traduzione delle descrizioni
+            translateAllRepoDescriptions();
           }
 
           function updatePaginationControls(page) {

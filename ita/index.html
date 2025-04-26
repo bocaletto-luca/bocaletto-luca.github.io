@@ -12,7 +12,7 @@
   
   <!-- Open Graph -->
   <meta property="og:title" content="Bocaletto Luca - Home" />
-  <meta property="og:description" content="Benvenuto sul sito ufficiale di Bocaletto Luca. Scopri i miei progetti, le mie competenze e molto altro." />
+  <meta property="og:description" content="Benvenuto sul sito ufficiale di Bocaletto Luca. Scopri i miei progetti, le mie competenze e tanto altro." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bocaletto-luca.github.io/ita/index.html" />
   <meta property="og:image" content="URL_of_logo_or_image" />
@@ -157,7 +157,7 @@
       color: var(--dark-bg);
     }
     
-    /* Sezione Competenze */
+    /* Sezione Le Mie Competenze */
     #my-skills {
       margin: 4rem 0;
     }
@@ -182,6 +182,7 @@
       padding: 1rem;
       color: var(--light-text);
       transition: transform 0.3s;
+      text-align: center;
     }
     .skill-card:hover {
       transform: translateY(-5px);
@@ -194,6 +195,19 @@
     .skill-card p {
       font-size: 1rem;
       line-height: 1.4;
+    }
+    .tech-icons {
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 1.8rem;
+    }
+    .tech-icons i {
+      transition: transform 0.3s;
+    }
+    .tech-icons i:hover {
+      transform: scale(1.2);
     }
     
     /* FOOTER */
@@ -220,14 +234,14 @@
   <header>
     <div class="nav-container">
       <div class="nav-left">
-        <!-- Il logo è preso dalla directory superiore -->
+        <!-- Il logo in ../logo.png perché siamo nella directory ita/ -->
         <img src="../logo.png" alt="Logo Bocaletto Luca">
         <span class="logo-text">Bocaletto Luca</span>
       </div>
       <div class="nav-right">
         <ul class="nav">
-          <!-- I link in italiano puntano ai file nella directory corrente -->
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <!-- I link, in italiano, puntano ai file nella directory corrente -->
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
@@ -238,7 +252,7 @@
     <!-- Language Selector -->
     <div class="language-selector">
       <ul>
-        <!-- Il link per la versione in inglese punta alla root -->
+        <!-- Il link per la versione in inglese punta a ../index.html -->
         <li><a href="../index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
         <!-- Italiano (directory corrente) -->
         <li><a href="index.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
@@ -267,29 +281,60 @@
         <!-- Card Frontend -->
         <div class="skill-card">
           <h3>Frontend</h3>
-          <p>Utilizzo di HTML, CSS e JavaScript per creare interfacce utente moderne e responsive.</p>
+          <div class="tech-icons">
+            <i class="fab fa-html5" title="HTML5"></i>
+            <i class="fab fa-css3-alt" title="CSS3"></i>
+            <i class="fab fa-js-square" title="JavaScript"></i>
+          </div>
+          <p>Utilizzo di HTML, CSS e JavaScript per creare interfacce moderne e responsive.</p>
         </div>
         <!-- Card Backend -->
         <div class="skill-card">
           <h3>Backend</h3>
-          <p>Sviluppo di server efficienti e scalabili con Node.js, PHP e database relazionali.</p>
+          <div class="tech-icons">
+            <i class="fab fa-php" title="PHP"></i>
+            <i class="fas fa-database" title="SQL"></i>
+            <i class="fab fa-python" title="Python"></i>
+          </div>
+          <p>Sviluppo di server scalabili e sicuri con tecnologie moderne e database relazionali.</p>
         </div>
         <!-- Card WebApp -->
         <div class="skill-card">
           <h3>WebApp</h3>
-          <p>Realizzazione di applicazioni web interattive e dinamiche, integrate con soluzioni avanzate.</p>
+          <div class="tech-icons">
+            <i class="fas fa-laptop-code" title="Web Application"></i>
+          </div>
+          <p>Realizzazione di applicazioni web dinamiche e interattive, integrate con soluzioni avanzate.</p>
         </div>
         <!-- Card Python -->
         <div class="skill-card">
           <h3>Python</h3>
-          <p>Automatizzazione, analisi dati e sviluppo di applicazioni con Python per soluzioni scientifiche e web.</p>
+          <div class="tech-icons">
+            <i class="fab fa-python" title="Python"></i>
+          </div>
+          <p>Automatizzazione e analisi dati con Python per soluzioni scientifiche e web.</p>
         </div>
         <!-- Card Admin System -->
         <div class="skill-card">
           <h3>Admin System</h3>
-          <p>Gestione di sistemi operativi, configurazione di reti e ottimizzazione di infrastrutture IT.</p>
+          <div class="tech-icons">
+            <i class="fab fa-windows" title="Windows"></i>
+            <i class="fab fa-linux" title="Linux"></i>
+            <i class="fab fa-android" title="Android"></i>
+          </div>
+          <p>Gestione di sistemi operativi, reti e infrastrutture IT per ambienti aziendali.</p>
         </div>
-        <!-- Puoi aggiungere altre card se necessario -->
+        <!-- Card Riparazioni -->
+        <div class="skill-card">
+          <h3>Riparazioni</h3>
+          <div class="tech-icons">
+            <i class="fas fa-desktop" title="PC Desktop"></i>
+            <i class="fas fa-laptop" title="Laptop"></i>
+            <i class="fas fa-tablet-alt" title="Tablet"></i>
+            <i class="fas fa-mobile-alt" title="Smartphone"></i>
+          </div>
+          <p>Esperienza nella riparazione di dispositivi, dai computer ai dispositivi mobili.</p>
+        </div>
       </div>
     </section>
     

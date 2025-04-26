@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bocaletto Luca | Repository</title>
+  <meta name="description" content="Sfoglia i repository di Bocaletto Luca contenenti progetti web innovativi e contributi open source.">
+  <meta name="keywords" content="Bocaletto Luca, GitHub, repository, open source, sviluppo web">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bocaletto-luca.github.io/ita/repository.html">
+  <meta name="author" content="Bocaletto Luca">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bocaletto Luca - Repository">
+  <meta property="og:description" content="Scopri i repository innovativi di Bocaletto Luca, contenenti progetti web e contributi open source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bocaletto-luca.github.io/ita/repository.html">
+  <meta property="og:image" content="URL_of_logo_or_image">
+  
+  <!-- Structured Data JSON‑LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bocaletto Luca",
+    "url": "https://bocaletto-luca.github.io/"
+  }
+  </script>
+  
+  <!-- Carica il tema Bootswatch Cyborg (puoi sostituirlo o sovrascriverlo) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/cyborg/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Carica Font (Orbitron), Animate.css e FontAwesome -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <!-- Stili Personalizzati -->
+  <style>
+    :root {
+      --primary-color: #FF7F00;    /* Neon arancione */
+      --dark-bg: #111;             /* Sfondo scuro */
+      --light-text: #EEE;
+      --font-title: 'Orbitron', sans-serif;
+    }
+    
+    /* Reset e stili generali */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      font-family: var(--font-title);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: var(--primary-color); }
+    a:hover { color: #ffa726; }
+    
+    /* HEADER / NAVBAR */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      border-bottom: 2px solid var(--primary-color);
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-left img { height: 50px; }
+    .nav-left .logo-text {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-right a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--light-text);
+      transition: color 0.3s;
+    }
+    .nav-right a:hover { color: var(--primary-color); }
+    
+    /* Language Selector */
+    .language-selector {
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem 0;
+      background: rgba(0, 0, 0, 0.9);
+      border-top: 1px solid var(--primary-color);
+    }
+    .language-selector ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+    .language-selector img {
+      width: 20px;
+      height: auto;
+      border: 1px solid var(--light-text);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .language-selector img:hover { transform: scale(1.2); }
+    
+    /* MAIN CONTENT */
+    /* Il padding-top verrà regolato dinamicamente via JS per evitare che il contenuto venga nascosto dall'header fisso */
+    main {
+      padding: 1rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+    }
+    .page-header p { font-size: 1.2rem; }
+    
+    /* Sezione Hero (opzionale) */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .hero a.btn {
+      background: var(--primary-color);
+      border: none;
+      color: var(--dark-bg);
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      transition: background 0.3s;
+    }
+    .hero a.btn:hover {
+      background: #ffa726;
+      color: var(--dark-bg);
+    }
+    
+    /* FOOTER */
+    footer {
+      background-color: var(--dark-bg);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      border-top: 2px solid var(--primary-color);
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+    footer p { margin-bottom: 0.5rem; }
+    footer .social-icons a {
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      transition: color 0.3s;
+    }
+    footer .social-icons a:hover { color: #ffa726; }
+  </style>
+</head>
+<body>
+  <!-- HEADER / NAVBAR -->
+  <header>
+    <div class="nav-container">
+      <div class="nav-left">
+        <!-- Il logo: in una directory italiana, il percorso è relativo alla directory superiore -->
+        <img src="../logo.png" alt="Logo Bocaletto Luca">
+        <span class="logo-text">Bocaletto Luca</span>
+      </div>
+      <div class="nav-right">
+        <ul class="nav">
+          <!-- I link, essendo nella directory ita/, puntano ai file nella directory corrente -->
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Contatti</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Language Selector -->
+    <div class="language-selector">
+      <ul>
+        <!-- Per la versione in inglese (nella root) -->
+        <li><a href="../index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
+        <!-- Per l'italiano (directory corrente) -->
+        <li><a href="index.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
+        <!-- Altre lingue -->
+        <li><a href="../fra/index.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
+        <li><a href="../esp/index.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
+        <li><a href="../deu/index.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
+        <li><a href="../por/index.html"><img src="https://flagcdn.com/w20/pt.png" alt="Português" title="Português"></a></li>
+      </ul>
+    </div>
+  </header>
+  
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <section class="hero">
+      <h1>Benvenuto su Bocaletto Luca</h1>
+      <p>Scopri i miei progetti, le mie competenze e tutto ciò che posso offrire.</p>
+      <a href="about.html" class="btn">Scopri di più</a>
+    </section>
+    
+    <div class="page-header mb-4">
+      <h1 class="animate__animated animate__fadeInDown">Repository</h1>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">
+        Sfoglia i repository innovativi di Bocaletto Luca. Per l'elenco completo, visita il mio profilo GitHub:
+        <a href="https://github.com/bocaletto-luca" target="_blank" class="fw-bold">https://github.com/bocaletto-luca</a>
+      </p>
+      <p id="repo-total" class="lead"></p>
+    </div>
+    
+    <!-- Loader -->
+    <div id="repo-loader" class="loader">Caricamento dei repository...</div>
+    
+    <!-- Tabs Menu per i Linguaggi -->
+    <ul class="nav nav-tabs" id="languageTabs" role="tablist"></ul>
+    
+    <!-- Contenitore per il contenuto dei Tab -->
+    <div class="tab-content" id="languageTabsContent"></div>
+  </main>
+  
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2023 Bocaletto Luca. Tutti i diritti riservati.</p>
+      <div class="social-icons">
+        <a href="https://github.com/bocaletto-luca" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/bocalettoluca" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/bocalettoluca" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Script per regolare dinamicamente il padding-top di <main> in base all'altezza dell'header -->
+  <script>
+    function adjustMainPadding() {
+      const header = document.querySelector('header');
+      const main = document.querySelector('main');
+      const extraSpace = 20; // Spazio aggiuntivo in pixel
+      if (header && main) {
+        main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
+      }
+    }
+    window.addEventListener('load', adjustMainPadding);
+    window.addEventListener('resize', adjustMainPadding);
+  </script>
+  
+  <!-- Bootstrap Bundle JS (include Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Script per il fetch e la generazione dinamica dei repository e delle tab -->
+  <script>
+    async function fetchAllRepos() {
+      let page = 1;
+      let allRepos = [];
+      while (true) {
+        console.log("Caricamento pagina", page);
+        const response = await fetch(`https://api.github.com/users/bocaletto-luca/repos?per_page=100&page=${page}`);
+        if (response.status !== 200) {
+          console.error("Errore durante il fetch dei repository, status:", response.status);
+          break;
+        }
+        const repos = await response.json();
+        if (!Array.isArray(repos) || repos.length === 0) {
+          console.log("Fine fetch, pagina", page, "vuota");
+          break;
+        }
+        allRepos = allRepos.concat(repos);
+        page++;
+      }
+      console.log("Totale repository raccolti:", allRepos.length);
+      return allRepos;
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const loader = document.getElementById("repo-loader");
+      const languageTabs = document.getElementById("languageTabs");
+      const languageTabsContent = document.getElementById("languageTabsContent");
+      const totalElem = document.getElementById("repo-total");
+      const PAGE_SIZE = 6; // Numero di repository per pagina in ciascun tab
+
+      try {
+        const repos = await fetchAllRepos();
+        if (loader) loader.remove();
+
+        if (!repos || repos.length === 0) {
+          totalElem.innerText = "Nessun repository trovato o superato il limite delle API.";
+          return;
+        }
+        totalElem.innerText = "Totale repository: " + repos.length;
+
+        // Raggruppa i repository per linguaggio (usa "Other" se il campo è nullo)
+        const groups = {};
+        repos.forEach(repo => {
+          const lang = repo.language ? repo.language : "Other";
+          if (!groups[lang]) groups[lang] = [];
+          groups[lang].push(repo);
+        });
+
+        // Ordina i linguaggi in ordine decrescente in base al numero di repository
+        const sortedLanguages = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
+        console.log("Linguaggi ordinati per numero di repository:", sortedLanguages);
+
+        sortedLanguages.forEach(language => {
+          const reposGroup = groups[language];
+          const totalCount = reposGroup.length;
+          const safeLang = language.replace(/\s+/g, '-');
+          const tabId = 'tab-' + safeLang;
+
+          // Crea il bottone del tab come <li> con <button>
+          const navItem = document.createElement("li");
+          navItem.className = "nav-item";
+          navItem.role = "presentation";
+          const tabButton = document.createElement("button");
+          tabButton.className = "nav-link";
+          tabButton.id = tabId + "-tab";
+          tabButton.setAttribute("data-bs-toggle", "tab");
+          tabButton.setAttribute("data-bs-target", "#" + tabId);
+          tabButton.type = "button";
+          tabButton.role = "tab";
+          tabButton.setAttribute("aria-controls", tabId);
+          tabButton.setAttribute("aria-selected", "false");
+          tabButton.innerText = `${language} (${totalCount})`;
+          navItem.appendChild(tabButton);
+          languageTabs.appendChild(navItem);
+
+          // Crea il contenitore per il contenuto della tab
+          const tabPane = document.createElement("div");
+          tabPane.className = "tab-pane fade";
+          tabPane.id = tabId;
+          tabPane.role = "tabpanel";
+          tabPane.setAttribute("aria-labelledby", tabId + "-tab");
+          tabPane.innerHTML = `
+            <div class="row" id="group-${safeLang}-row"></div>
+            <div class="pagination-controls" id="group-${safeLang}-pagination"></div>
+          `;
+          languageTabsContent.appendChild(tabPane);
+
+          let currentPage = 1;
+          const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+          const rowContainer = tabPane.querySelector("div.row");
+          const paginationContainer = tabPane.querySelector(".pagination-controls");
+
+          function renderPage(page) {
+            rowContainer.innerHTML = "";
+            const start = (page - 1) * PAGE_SIZE;
+            const end = Math.min(start + PAGE_SIZE, totalCount);
+            for (let i = start; i < end; i++) {
+              const repo = reposGroup[i];
+              const title = repo.name;
+              const description = (repo.description && repo.description.trim().length > 0)
+                                    ? repo.description
+                                    : "Nessuna descrizione fornita.";
+              const url = repo.html_url;
+              const languageTag = repo.language ? repo.language : "Unknown";
+
+              const col = document.createElement("div");
+              col.className = "col-md-4 repo-card";
+              col.innerHTML = `
+                <div class="card bg-secondary text-light mb-3">
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title" title="${title}">${title}</h5>
+                    <p class="card-text flex-grow-1">${description}</p>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                      <small>Lingua: ${languageTag}</small>
+                      <a href="${url}" class="btn btn-primary btn-sm" target="_blank">Visualizza su GitHub</a>
+                    </div>
+                  </div>
+                </div>
+              `;
+              rowContainer.appendChild(col);
+            }
+            updatePaginationControls(page);
+          }
+
+          function updatePaginationControls(page) {
+            paginationContainer.innerHTML = "";
+            if (totalPages > 1) {
+              const prevBtn = document.createElement("button");
+              prevBtn.className = "btn btn-sm btn-secondary me-2";
+              prevBtn.innerText = "Precedente";
+              prevBtn.disabled = (page === 1);
+              prevBtn.onclick = () => { currentPage--; renderPage(currentPage); };
+              paginationContainer.appendChild(prevBtn);
+
+              const pageInfo = document.createElement("span");
+              pageInfo.innerText = `Pagina ${page} di ${totalPages}`;
+              paginationContainer.appendChild(pageInfo);
+
+              const nextBtn = document.createElement("button");
+              nextBtn.className = "btn btn-sm btn-secondary ms-2";
+              nextBtn.innerText = "Successivo";
+              nextBtn.disabled = (page === totalPages);
+              nextBtn.onclick = () => { currentPage++; renderPage(currentPage); };
+              paginationContainer.appendChild(nextBtn);
+            }
+          }
+
+          renderPage(currentPage);
+        });
+
+        // Attiva automaticamente il primo tab
+        const firstTabBtn = languageTabs.querySelector("button.nav-link");
+        if (firstTabBtn) {
+          firstTabBtn.click();
+        }
+      } catch (error) {
+        console.error("Errore nel fetch o nell'elaborazione dei repository:", error);
+        const loaderFallback = document.getElementById("repo-loader");
+        if (loaderFallback) {
+          loaderFallback.innerText = "Errore durante il caricamento dei repository. Riprova più tardi.";
+        }
+      }
+    });
+  </script>
+</body>
+</html>

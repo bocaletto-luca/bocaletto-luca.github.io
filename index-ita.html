@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bocaletto Luca | Home</title>
+  <meta name="description" content="Welcome to the official website of Bocaletto Luca – a computer programmer, artist, musician, and freelance writer. Discover innovative web projects and open source contributions.">
+  <meta name="keywords" content="Bocaletto Luca, programmer, open source, web development, GitHub">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bocaletto-luca.github.io/">
+  <meta name="author" content="Bocaletto Luca">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bocaletto Luca">
+  <meta property="og:description" content="Discover the innovative web projects and open source contributions of Bocaletto Luca.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bocaletto-luca.github.io/">
+  <meta property="og:image" content="URL_of_logo_or_image">
+  
+  <!-- Structured Data JSON‑LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bocaletto Luca",
+    "url": "https://bocaletto-luca.github.io/",
+    "sameAs": [
+      "https://github.com/bocaletto-luca"
+    ],
+    "jobTitle": "Computer Programmer, Artist, Musician, Freelance Writer"
+  }
+  </script>
+    <!-- Scripts: Load Header and Footer -->
+  <script>
+    fetch('include/header.html')
+      .then(response => {
+        if (!response.ok) throw new Error("Header not found");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    fetch('include/footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error("Footer not found");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+  
+
+  
+  <!-- Bootstrap CSS base -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  
+  <!-- Importazione del font Orbitron -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+  
+  <!-- FontAwesome (link semplificato) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="include/index.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+<!-- Include Header from /include/ -->
+  <div id="header-placeholder"></div>
+  
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <!-- Sezione Hero -->
+    <section class="hero">
+      <h1>Benvenuto su Bocaletto Luca</h1>
+      <p>Scopri i miei progetti, le competenze e tutto ciò che posso offrire.</p>
+      <a href="about.html" class="btn">Scopri di più</a>
+    </section>
+    
+    <!-- Sezione Le Mie Competenze -->
+    <section id="my-skills">
+      <h2>Le Mie Competenze</h2>
+      <div class="skills-row">
+        <!-- Card Frontend -->
+        <div class="skill-card">
+          <h3>Frontend</h3>
+          <div class="tech-icons">
+            <i class="fab fa-html5" title="HTML5"></i>
+            <i class="fab fa-css3-alt" title="CSS3"></i>
+            <i class="fab fa-js-square" title="JavaScript"></i>
+          </div>
+          <p>Utilizzo di HTML, CSS e JavaScript per creare interfacce moderne e responsive.</p>
+        </div>
+        <!-- Card Backend -->
+        <div class="skill-card">
+          <h3>Backend</h3>
+          <div class="tech-icons">
+            <i class="fab fa-php" title="PHP"></i>
+            <i class="fas fa-database" title="SQL"></i>
+            <i class="fab fa-python" title="Python"></i>
+          </div>
+          <p>Sviluppo di server scalabili e sicuri con tecnologie moderne e database relazionali.</p>
+        </div>
+        <!-- Card WebApp -->
+        <div class="skill-card">
+          <h3>WebApp</h3>
+          <div class="tech-icons">
+            <i class="fas fa-laptop-code" title="Web Application"></i>
+          </div>
+          <p>Realizzazione di applicazioni web dinamiche e interattive, integrate con soluzioni avanzate.</p>
+        </div>
+        <!-- Card Python -->
+        <div class="skill-card">
+          <h3>Python</h3>
+          <div class="tech-icons">
+            <i class="fab fa-python" title="Python"></i>
+          </div>
+          <p>Automatizzazione e analisi dati con Python per soluzioni scientifiche e web.</p>
+        </div>
+        <!-- Card Admin System -->
+        <div class="skill-card">
+          <h3>Admin System</h3>
+          <div class="tech-icons">
+            <i class="fab fa-windows" title="Windows"></i>
+            <i class="fab fa-linux" title="Linux"></i>
+            <i class="fab fa-android" title="Android"></i>
+          </div>
+          <p>Gestione di sistemi operativi, reti e infrastrutture IT per ambienti aziendali.</p>
+        </div>
+        <!-- Card Riparazioni -->
+        <div class="skill-card">
+          <h3>Riparazioni</h3>
+          <div class="tech-icons">
+            <i class="fas fa-desktop" title="PC Desktop"></i>
+            <i class="fas fa-laptop" title="Laptop"></i>
+            <i class="fas fa-tablet-alt" title="Tablet"></i>
+            <i class="fas fa-mobile-alt" title="Smartphone"></i>
+          </div>
+          <p>Esperienza nella riparazione di dispositivi, dai computer ai dispositivi mobili.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Eventuali altre sezioni opzionali possono essere aggiunte qui -->
+  </main>
+  
+<!-- Include Header from /include/ -->
+  <div id="footer-placeholder"></div>
+  
+  <!-- Script per regolare dinamicamente il padding-top di <main> in base all'altezza dell'header -->
+  <script>
+    function adjustMainPadding() {
+      const header = document.querySelector('header');
+      const main = document.querySelector('main');
+      const extraSpace = 20; // Spazio aggiuntivo in pixel
+      if (header && main) {
+        main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
+      }
+    }
+    window.addEventListener('load', adjustMainPadding);
+    window.addEventListener('resize', adjustMainPadding);
+  </script>
+  
+  <!-- Bootstrap Bundle JS (include Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

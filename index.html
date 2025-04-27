@@ -30,6 +30,30 @@
     "jobTitle": "Computer Programmer, Artist, Musician, Freelance Writer"
   }
   </script>
+    <!-- Scripts: Load Header and Footer -->
+  <script>
+    fetch('include/header.html')
+      .then(response => {
+        if (!response.ok) throw new Error("Header not found");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    fetch('include/footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error("Footer not found");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+  
+
   
   <!-- Bootstrap CSS base -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -39,283 +63,13 @@
   
   <!-- FontAwesome (link semplificato) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
-<!-- Stile personalizzato Neon Arancione e layout responsive -->
-  <style>
-    /* Variabili di base */
-    :root {
-      --neon-orange: #ff7f00;
-      --dark-bg: #000;
-      --light-text: #eee;
-      --font-main: 'Orbitron', sans-serif;
-    }
-    
-    /* Reset & Stile Generale */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      background-color: var(--dark-bg);
-      color: var(--light-text);
-      font-family: var(--font-main);
-      line-height: 1.6;
-    }
-    
-    a {
-      color: var(--neon-orange);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    a:hover {
-      color: #ffa726;
-    }
-    
-    /* HEADER, NAVBAR & Branding */
-    header {
-      background-color: var(--dark-bg);
-      border-bottom: 2px solid var(--neon-orange);
-      padding: 1rem 2rem;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-    header .branding {
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    header .branding img {
-      height: 60px;
-      filter: drop-shadow(0 0 5px var(--neon-orange));
-    }
-    header .branding h1 {
-      font-size: 2.2rem;
-      color: var(--neon-orange);
-      text-shadow: 0 0 10px var(--neon-orange);
-      margin: 0.5rem 0 0.2rem;
-    }
-    header .branding p {
-      font-size: 1.1rem;
-      color: var(--light-text);
-    }
-    
-    /* Navbar: Orizzontale su desktop, Verticale su mobile */
-    .navbar-always {
-      background: rgba(0, 0, 0, 0.9);
-    }
-    .navbar-always .navbar-nav {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 1rem;
-      padding: 0.5rem 0;
-      list-style: none;
-    }
-    .navbar-always .nav-item .nav-link {
-      font-size: 1.1rem;
-      color: var(--light-text);
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      transition: background 0.3s, color 0.3s;
-    }
-    .navbar-always .nav-item .nav-link:hover,
-    .navbar-always .nav-item .nav-link:focus {
-      background: var(--neon-orange);
-      color: var(--dark-bg);
-    }
-    @media (max-width: 768px) {
-      .navbar-always .navbar-nav {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-    
-    /* Language Selector (sotto il menu) */
-    .language-selector {
-      margin-top: 10px;
-      text-align: center;
-    }
-    .language-selector ul {
-      list-style: none;
-      display: inline-flex;
-      gap: 10px;
-      padding: 0;
-      margin: 0;
-    }
-    .language-selector img {
-      width: 20px;
-      height: auto;
-      border: 1px solid var(--light-text);
-      border-radius: 3px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .language-selector img:hover {
-      transform: scale(1.2);
-    }
-    
-    /* MAIN: Il padding-top verrà impostato via JS */
-    main.container {
-      padding-bottom: 2rem;
-    }
-    
-    /* Titoli e Testi Responsive */
-    main .text-center h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 1rem;
-      color: var(--neon-orange);
-      text-shadow: 0 0 8px var(--neon-orange);
-    }
-    main .lead {
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      margin-bottom: 1.5rem;
-    }
-    section {
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    section h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      color: var(--neon-orange);
-      text-shadow: 0 0 8px var(--neon-orange);
-      margin-bottom: 1rem;
-    }
-    section p {
-      font-size: clamp(1rem, 2.2vw, 1.1rem);
-      margin-bottom: 1rem;
-      line-height: 1.7;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    /* Sezione Competencies: Griglia dinamica */
-    section.competencies .competencies-grid {
-      display: grid;
-      gap: 1rem;
-      padding: 0 1rem;
-      grid-template-columns: 1fr; /* default: 1 colonna */
-    }
-    @media (min-width: 1024px) {
-      section.competencies .competencies-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 1400px) {
-      section.competencies .competencies-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 1920px) {
-      section.competencies .competencies-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    
-    /* Competency Cards: altezza fissa e contenuto centrato */
-    .competency-card {
-      height: 250px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 1rem;
-      border: 1px solid var(--neon-orange);
-      border-radius: 8px;
-      background: rgba(255, 127, 0, 0.1);
-      transition: transform 0.3s;
-      overflow: hidden;
-    }
-    .competency-card:hover {
-      transform: scale(1.05);
-    }
-    
-    /* Competency Details: contiene titolo e tech icons */
-    .competency-details {
-      text-align: center;
-    }
-    .competency-details h3 {
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: var(--neon-orange);
-      text-shadow: 0 0 5px var(--neon-orange);
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    /* Tech Icons: visualizzazioni delle icone sotto il titolo */
-    .tech-icons {
-      margin-top: 0.5rem;
-      display: inline-flex;
-      gap: 0.5rem;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--neon-orange);
-      justify-content: center;
-    }
-    
-    .competency-card p {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      padding: 0 0.5rem;
-    }
-    
-    /* FOOTER: Icone social per GitHub, LinkedIn, Twitter, YouTube, Facebook */
-    footer {
-      border-top: 2px solid var(--neon-orange);
-      padding: 1.5rem 2rem;
-      text-align: center;
-      margin-top: 2rem;
-      background: var(--dark-bg);
-      color: var(--light-text);
-    }
-    footer p {
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-    }
-    footer .social-icons a {
-      margin: 0 0.5rem;
-      font-size: 1.5rem;
-      color: var(--neon-orange);
-      transition: color 0.3s;
-    }
-    footer .social-icons a:hover {
-      color: #ffa726;
-    }
-  </style>
+  <link rel="stylesheet" href="include/index.css" />
+  <link rel="stylesheet" href="styles.css" />
+
 </head>
 <body>
-  <!-- HEADER: Branding, Navbar & Language Selector -->
-  <header>
-    <div class="branding">
-      <img src="logo.png" alt="Bocaletto Luca Logo">
-      <h1>Bocaletto Luca</h1>
-      <p>Official GitHub Page</p>
-    </div>
-    <div class="navbar-always">
-      <div class="container">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
-        </ul>
-      </div>
-    </div>
-    <!-- Language Selector -->
-    <div class="language-selector">
-      <ul>
-        <li><a href="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
-        <li><a href="index_ita.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
-        <li><a href="index_fr.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
-        <li><a href="index_es.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
-        <li><a href="index_de.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
-        <li><a href="index_pt.html"><img src="https://flagcdn.com/w20/pt.png" alt="Português" title="Português"></a></li>
-      </ul>
-    </div>
-  </header>
+<!-- Include Header from /include/ -->
+  <div id="header-placeholder"></div>
   
   <!-- MAIN CONTENT -->
   <main class="container">
@@ -394,32 +148,9 @@
     </section>
   </main>
   
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2023 Bocaletto Luca. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="https://github.com/bocaletto-luca" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/bocalettoluca" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://twitter.com/bocalettoluca" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
-    </div>
-  </footer>
-  
-  <!-- Script: Regola dinamicamente il padding-top di <main> in base all'altezza del <header> -->
-  <script>
-    function adjustMainPadding() {
-      const header = document.querySelector('header');
-      const main = document.querySelector('main.container');
-      const extraSpace = 20; // Spazio aggiuntivo in pixel
-      if (header && main) {
-        main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
-      }
-    }
-    window.addEventListener('load', adjustMainPadding);
-    window.addEventListener('resize', adjustMainPadding);
-  </script>
-  
+<!-- Include Header from /include/ -->
+  <div id="footer-placeholder"></div>
+    
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

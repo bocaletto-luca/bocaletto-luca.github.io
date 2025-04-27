@@ -1,71 +1,340 @@
-/* Global Reset & Font (puoi personalizzare in base alle tue necessità) */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+/* ========================================= */
+/* Variabili di Base                          */
+/* ========================================= */
+:root {
+  --neon-orange: #ff7f00;
+  --dark-bg: #000;
+  --light-text: #eee;
+  --font-main: 'Orbitron', sans-serif;
 }
 
-/* Branding: logo, titolo e motto */
-.branding {
-  text-align: center;
-  padding: 1rem 0;
-  background-color: #212529;
-  color: #fff;
-}
-.branding img {
-  width: 80px;
-  height: auto;
-}
-.branding h1 {
-  margin: 0.5rem 0 0.25rem;
-  font-size: 2rem;
-}
-.branding p {
-  margin: 0;
-  font-size: 1rem;
-  color: #ccc;
-}
-
-/* Menu di navigazione sempre visibile */
-.navbar-always {
-  background-color: #343a40;
-  padding: 0.5rem 1rem;
-}
-.navbar-always .navbar-nav {
-  display: flex;
+/* ========================================= */
+/* Reset e Stili Generali                     */
+/* ========================================= */
+* {
   margin: 0;
   padding: 0;
-  list-style: none;
-  flex-direction: column;  /* per default: verticale */
-  align-items: center;
+  box-sizing: border-box;
 }
-.navbar-always .nav-item {
-  margin: 0.5rem;
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  font-family: var(--font-main);
+  line-height: 1.6;
 }
-.navbar-always .nav-link {
-  color: #fff;
-  font-size: 1.1rem;
+
+a {
+  color: var(--neon-orange);
   text-decoration: none;
+  transition: color 0.3s;
 }
-.navbar-always .nav-link:hover {
-  text-decoration: underline;
+
+a:hover {
+  color: #ffa726;
 }
-/* Layout orizzontale per dispositivi larghi (min-width: 768px) */
-@media (min-width: 768px) {
-  .navbar-always .navbar-nav {
-    flex-direction: row;
-    justify-content: center;
+
+/* ========================================= */
+/* HEADER, NAVBAR & BRANDING                  */
+/* ========================================= */
+
+/* 
+Il markup nell'header (include/header.html) è il seguente:
+
+<header>
+  <div class="branding">
+    <img src="logo.png" alt="Bocaletto Luca Logo">
+    <h1>Bocaletto Luca</h1>
+    <p>Official GitHub Page</p>
+  </div>
+  <div class="navbar-always">
+    <div class="container">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="repository.html">Repository</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="language-selector">
+    <ul>
+      <li><a href="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
+      <li><a href="index_ita.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
+      <li><a href="index_fr.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
+      <li><a href="index_es.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
+      <li><a href="index_de.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
+      <li><a href="index_pt.html"><img src="https://flagcdn.com/w20/pt.png" alt="Português" title="Português"></a></li>
+    </ul>
+  </div>
+}
+*/
+
+/* Header Base */
+header {
+  background-color: var(--dark-bg);
+  border-bottom: 2px solid var(--neon-orange);
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Branding (logo, titolo, motto) centrati */
+.branding {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.branding img {
+  height: 60px;
+  filter: drop-shadow(0 0 5px var(--neon-orange));
+  display: block;
+  margin: 0 auto;
+}
+
+.branding h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--neon-orange);
+  text-shadow: 0 0 10px var(--neon-orange);
+  margin: 0.3rem 0;
+}
+
+.branding p {
+  font-size: 1.1rem;
+  color: var(--light-text);
+}
+
+/* Navbar Always (Menu) */
+/* Default: Desktop → menu orizzontale */
+.navbar-always {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 0.5rem 0;
+}
+
+.navbar-always .container {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: row;  /* Display orizzontale per desktop */
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.navbar-nav .nav-item .nav-link {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--light-text);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navbar-nav .nav-item .nav-link:hover,
+.navbar-nav .nav-item .nav-link:focus {
+  background: var(--neon-orange);
+  color: var(--dark-bg);
+}
+
+/* Responsive: Per schermi piccoli (≤768px) menu verticale */
+@media (max-width: 768px) {
+  .navbar-always .container {
+    flex-direction: column;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    align-items: center;
   }
 }
 
-/* Spazio per il contenuto: aggiungiamo un margine per non farlo scontrare con il menu */
-main {
-  margin-top: 20px;
+/* ========================================= */
+/* Language Selector                        */
+/* ========================================= */
+.language-selector {
+  margin-top: 10px;
+  text-align: center;
 }
 
-/* Footer */
-footer {
-  background-color: #212529;
-  color: #fff;
+.language-selector ul {
+  list-style: none;
+  display: inline-flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.language-selector img {
+  width: 20px;
+  height: auto;
+  border: 1px solid var(--light-text);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.language-selector img:hover {
+  transform: scale(1.2);
+}
+
+/* ========================================= */
+/* MAIN CONTENT                             */
+/* ========================================= */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.hero {
   text-align: center;
-  padding: 1rem 0;
+  padding: 4rem 1rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+  color: var(--neon-orange);
+  text-shadow: 0 0 8px var(--neon-orange);
+}
+
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin-bottom: 2rem;
+}
+
+.hero a.btn {
+  background: var(--neon-orange);
+  border: none;
+  color: var(--dark-bg);
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  transition: background 0.3s;
+}
+
+.hero a.btn:hover {
+  background: #ffa726;
+  color: var(--dark-bg);
+}
+
+/* ========================================= */
+/* Repository Section Header                */
+/* ========================================= */
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  color: var(--neon-orange);
+  text-shadow: 0 0 8px var(--neon-orange);
+}
+
+.page-header p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+/* ========================================= */
+/* Repository Cards                         */
+/* ========================================= */
+.repo-card {
+  flex: 1 1 calc(33.33% - 1rem);
+  min-width: 250px;
+}
+
+.repo-card .card {
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--neon-orange);
+  background: #1a1a1a;
+  color: var(--light-text);
+}
+
+.repo-card .card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.repo-card .card-text {
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.repo-card .card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+}
+
+.repo-card .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.repo-card .btn {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--neon-orange);
+  border: none;
+  color: var(--dark-bg);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.repo-card .btn:hover {
+  background: #ffa726;
+}
+
+/* ========================================= */
+/* Pagination Controls                      */
+/* ========================================= */
+.pagination-controls {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.pagination-controls button {
+  margin: 0 5px;
+  padding: 0.5rem 1rem;
+  background: var(--neon-orange);
+  color: var(--dark-bg);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.pagination-controls button:disabled {
+  background: #444;
+  cursor: not-allowed;
+}
+
+/* ========================================= */
+/* Footer                                   */
+/* ========================================= */
+footer .container {
+  text-align: center;
 }

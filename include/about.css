@@ -1,0 +1,227 @@
+<!-- Stile Personalizzato -->
+  /* Variabili */
+    :root {
+      --neon-orange: #ff7f00;
+      --dark-bg: #000;
+      --light-text: #eee;
+      --font-main: 'Orbitron', sans-serif;
+    }
+    
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      font-family: var(--font-main);
+      line-height: 1.6;
+    }
+    
+    a {
+      color: var(--neon-orange);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #ffa726;
+    }
+    
+    /* HEADER & NAVBAR */
+    header {
+      background-color: var(--dark-bg);
+      border-bottom: 2px solid var(--neon-orange);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    header .branding {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    header .branding img {
+      height: 60px;
+      filter: drop-shadow(0 0 5px var(--neon-orange));
+    }
+    header .branding h1 {
+      font-size: 2.2rem;
+      color: var(--neon-orange);
+      text-shadow: 0 0 10px var(--neon-orange);
+      margin: 0.5rem 0 0.2rem;
+    }
+    header .branding p {
+      font-size: 1.1rem;
+      color: var(--light-text);
+    }
+    
+    .navbar-always {
+      background: rgba(0, 0, 0, 0.9);
+    }
+    .navbar-always .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      list-style: none;
+    }
+    .navbar-always .nav-item .nav-link {
+      font-size: 1.1rem;
+      color: var(--light-text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .navbar-always .nav-item .nav-link:hover,
+    .navbar-always .nav-item .nav-link:focus {
+      background: var(--neon-orange);
+      color: var(--dark-bg);
+    }
+    @media (max-width: 768px) {
+      .navbar-always .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    
+    /* Language Selector */
+    .language-selector {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .language-selector ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+    }
+    .language-selector img {
+      width: 20px;
+      height: auto;
+      border: 1px solid var(--light-text);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .language-selector img:hover {
+      transform: scale(1.2);
+    }
+    
+    /* MAIN */
+    main.container {
+      padding-bottom: 2rem;
+    }
+    
+    main .text-center h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      color: var(--neon-orange);
+      text-shadow: 0 0 8px var(--neon-orange);
+    }
+    main .lead {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* About Me Section */
+    #about-me {
+      margin-bottom: 3rem;
+    }
+    #about-me h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+      color: var(--neon-orange);
+      text-shadow: 0 0 8px var(--neon-orange);
+      text-align: center;
+    }
+    #about-me p {
+      font-size: clamp(1rem, 2.2vw, 1.1rem);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: justify;
+    }
+    
+    /* My Skills Section with Progress Bars */
+    #my-skills {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    #my-skills h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+      color: var(--neon-orange);
+      text-shadow: 0 0 8px var(--neon-orange);
+    }
+    .skill-category {
+      margin-bottom: 2rem;
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .skill-category h3 {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      margin-bottom: 0.75rem;
+      color: var(--neon-orange);
+      border-bottom: 1px solid var(--neon-orange);
+      padding-bottom: 0.25rem;
+    }
+    .skill {
+      margin-bottom: 1rem;
+    }
+    .skill-name {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      margin-bottom: 0.25rem;
+      display: inline-block;
+      min-width: 120px;
+    }
+    .progress {
+      background-color: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 0.25rem;
+    }
+    .progress-bar {
+      background-color: var(--neon-orange);
+      width: 0%;  /* Stato iniziale; viene animato via JS */
+      height: 20px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 20px;
+      color: var(--dark-bg);
+      transition: width 2s ease-out;
+    }
+    
+    /* FOOTER */
+    footer {
+      border-top: 2px solid var(--neon-orange);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      margin-top: 2rem;
+      background: var(--dark-bg);
+      color: var(--light-text);
+    }
+    footer p {
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    footer .social-icons a {
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      color: var(--neon-orange);
+      transition: color 0.3s;
+    }
+    footer .social-icons a:hover {
+      color: #ffa726;
+    }

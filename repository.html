@@ -27,6 +27,29 @@
   }
   </script>
   
+    <!-- Scripts: Load Header and Footer -->
+  <script>
+    fetch('include/header.html')
+      .then(response => {
+        if (!response.ok) throw new Error("Header not found");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    fetch('include/footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error("Footer not found");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+  
   <!-- External Libraries -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
@@ -73,42 +96,7 @@
   <!-- Include Footer from /include/ -->
   <div id="footer-placeholder"></div>
   
-  <!-- Scripts: Load Header and Footer -->
-  <script>
-    fetch('include/header.html')
-      .then(response => {
-        if (!response.ok) throw new Error("Header not found");
-        return response.text();
-      })
-      .then(html => {
-        document.getElementById('header-placeholder').innerHTML = html;
-      })
-      .catch(err => console.error('Error loading header:', err));
 
-    fetch('include/footer.html')
-      .then(response => {
-        if (!response.ok) throw new Error("Footer not found");
-        return response.text();
-      })
-      .then(html => {
-        document.getElementById('footer-placeholder').innerHTML = html;
-      })
-      .catch(err => console.error('Error loading footer:', err));
-  </script>
-  
-  <!-- Script: Dynamic Main Padding -->
-  <script>
-    function adjustMainPadding() {
-      const header = document.querySelector('header');
-      const main = document.querySelector('main');
-      const extraSpace = 20;
-      if (header && main) {
-        main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
-      }
-    }
-    window.addEventListener('load', adjustMainPadding);
-    window.addEventListener('resize', adjustMainPadding);
-  </script>
   
   <!-- Bootstrap Bundle JS (with Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

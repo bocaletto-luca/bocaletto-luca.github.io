@@ -27,53 +27,18 @@
   }
   </script>
   
-  <!-- Bootstrap CSS -->
+  <!-- External Libraries -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  
-  <!-- Google Fonts: Orbitron -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
-  
-  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
-  <!-- style.css -->
-  <link rel="stylesheet" href="style.css"/>
-  <!-- Custom Styles -->
-  
+  <!-- Custom Style -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- HEADER (Hard-coded as specified) -->
-  <header>
-    <div class="nav-container">
-      <div class="nav-left">
-        <img src="logo.png" alt="Logo Bocaletto Luca">
-        <span class="logo-text">Bocaletto Luca</span>
-      </div>
-      <div class="nav-right">
-        <ul class="nav">
-          <li class="nav-item"><a class="nav-link" href="https://bocaletto-luca.github.io/">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="repository.html">Repositories</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
-        </ul>
-      </div>
-    </div>
-    <!-- Language Selector -->
-    <div class="language-selector">
-      <ul>
-        <li><a href="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="English" title="English"></a></li>
-        <li><a href="index_ita.html"><img src="https://flagcdn.com/w20/it.png" alt="Italiano" title="Italiano"></a></li>
-        <li><a href="index_fr.html"><img src="https://flagcdn.com/w20/fr.png" alt="Français" title="Français"></a></li>
-        <li><a href="index_es.html"><img src="https://flagcdn.com/w20/es.png" alt="Español" title="Español"></a></li>
-        <li><a href="index_de.html"><img src="https://flagcdn.com/w20/de.png" alt="Deutsch" title="Deutsch"></a></li>
-        <li><a href="index_pt.html"><img src="https://flagcdn.com/w20/pt.png" alt="Português" title="Português"></a></li>
-      </ul>
-    </div>
-  </header>
+  <!-- Include Header from /include/ -->
+  <div id="header-placeholder"></div>
   
   <!-- MAIN CONTENT -->
   <main class="container">
@@ -105,26 +70,38 @@
     <div class="tab-content" id="languageTabsContent"></div>
   </main>
   
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>© 2023 Bocaletto Luca. All rights reserved.</p>
-      <div class="social-icons">
-        <a href="https://github.com/bocaletto-luca" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/bocalettoluca" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://twitter.com/bocalettoluca" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
-      </div>
-    </div>
-  </footer>
+  <!-- Include Footer from /include/ -->
+  <div id="footer-placeholder"></div>
   
-  <!-- Script: Adjust main padding based on header height -->
+  <!-- Scripts: Load Header and Footer -->
+  <script>
+    fetch('include/header.html')
+      .then(response => {
+        if (!response.ok) throw new Error("Header not found");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+      })
+      .catch(err => console.error('Error loading header:', err));
+
+    fetch('include/footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error("Footer not found");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+  
+  <!-- Script: Dynamic Main Padding -->
   <script>
     function adjustMainPadding() {
       const header = document.querySelector('header');
       const main = document.querySelector('main');
-      const extraSpace = 20; // Additional spacing in pixels
+      const extraSpace = 20;
       if (header && main) {
         main.style.paddingTop = (header.offsetHeight + extraSpace) + 'px';
       }
@@ -133,7 +110,7 @@
     window.addEventListener('resize', adjustMainPadding);
   </script>
   
-  <!-- Bootstrap Bundle JS (includes Popper) -->
+  <!-- Bootstrap Bundle JS (with Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
   <!-- Script for fetching and displaying GitHub repositories -->
@@ -165,7 +142,7 @@
       const languageTabs = document.getElementById("languageTabs");
       const languageTabsContent = document.getElementById("languageTabsContent");
       const totalElem = document.getElementById("repo-total");
-      const PAGE_SIZE = 6; // Number of repositories per page per tab
+      const PAGE_SIZE = 6;
       
       try {
         const repos = await fetchAllRepos();
@@ -185,7 +162,7 @@
           groups[lang].push(repo);
         });
         
-        // Sort languages in descending order by repository count
+        // Sort languages descending by repository count
         const sortedLanguages = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
         console.log("Languages sorted by repository count:", sortedLanguages);
         

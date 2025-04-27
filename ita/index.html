@@ -27,7 +27,7 @@
   }
   </script>
     <script>
-    fetch('https://bocaletto-luca.github.io/include/header.html')
+    fetch('../include/header.html')
       .then(response => {
         if (!response.ok) throw new Error("Header not found");
         return response.text();
@@ -37,7 +37,7 @@
       })
       .catch(err => console.error('Error loading header:', err));
 
-    fetch('https://bocaletto-luca.github.io/include/footer.html')
+    fetch('../include/footer.html')
       .then(response => {
         if (!response.ok) throw new Error("Footer not found");
         return response.text();

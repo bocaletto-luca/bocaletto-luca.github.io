@@ -1,4 +1,4 @@
-# bocaletto-luca.github.io
+# 🌐 bocaletto-luca.github.io
 Official Page GitHub: Bocaletto Luca.
 Welcome to my personal website repository! This project represents my journey through technology, programming, system administration, and creativity, blending digital innovation with automation, electronics, and open-source contributions.
 

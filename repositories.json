@@ -1,0 +1,324 @@
+[
+  {
+    "name": "Analog-Clock",
+    "description": "The software \"Analog Clock\" is an application for displaying an analog clock on a graphical window. The clock shows the current time with hour and minute hands, as well as minute markers and hour numbers.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Analog-Clock"
+  },
+  {
+    "name": "Appointment-Management",
+    "description": "Appointment Manager is software designed to simplify the management and organization of personal or professional appointments. Developed by Luca Bocaletto, this version offers an intuitive user interface based on the PyQt6 library for building desktop applications in Python.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Appointment-Management"
+  },
+  {
+    "name": "Archive-USB-Format-Free",
+    "description": "Archive USB Format Free is an open-source application developed by Luca Bocaletto. This software offers a simple and efficient solution to format USB drives connected to your computer. Users can select the desired file system (FAT32 or NTFS) and the USB drive to format. Additionally, the application automatically detects connected USB drives,",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Archive-USB-Format-Free"
+  },
+  {
+    "name": "Atomic-Time-Synch",
+    "description": "Atomic Time Synch is a Python application that allows you to synchronize your system time with an atomic time source using the Network Time Protocol (NTP). It provides both manual and automatic time synchronization options and allows you to choose from different NTP servers.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Atomic-Time-Synch"
+  },
+  {
+    "name": "bocaletto-luca.github.io",
+    "description": "Official Page GitHub: Bocaletto Luca. Welcome to my personal website repository! This project represents my journey through technology, programming, system administration, and creativity, and open-source contributions.",
+    "license": "Other",
+    "language": "HTML",
+    "url": "https://github.com/bocaletto-luca/bocaletto-luca.github.io"
+  },
+  {
+    "name": "BootableUSB",
+    "description": "Bootable USB Creator is a Python script that provides a simple graphical user interface for creating bootable USB drives from ISO files. This tool is authored by Luca Bocaletto.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/BootableUSB"
+  },
+  {
+    "name": "Browser-Temporary-Files-Delete",
+    "description": "Browser Temporary Files Delete  è un'applicazione Python che aiuta gli utenti a eliminare i file temporanei dai browser web. Selezione dei browser da scannerizzare e da cui eliminare i file temporanei. Il software rileva dinamicamente i percorsi di cache dei browser web comuni e consente all'utente di eseguire operazioni di pulizia con facilità.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Browser-Temporary-Files-Delete"
+  },
+  {
+    "name": "BrowserWeb",
+    "description": "Web-Browser is a lightweight, customizable browser designed for seamless navigation. Built for efficiency, it provides fast access to web content with essential browsing features.",
+    "license": "GNU Lesser General Public License v2.1",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/BrowserWeb"
+  },
+  {
+    "name": "Calc",
+    "description": "Calc is a simple yet powerful graphical calculator application written in Python using the PyQt6 library for the user interface. This application allows users to perform basic mathematical operations, calculate percentages, and compute square and cubic roots in an intuitive and user-friendly manner.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Calc"
+  },
+  {
+    "name": "Chords-Note-Music",
+    "description": "The \"ChordNoteMusicDatabase\" database was designed to store information about musical chords in different keys. Contains a series of tables, each of which represents a musical note of the chromatic scale (C, C#, D, D#, E, F, F#, G, G#, A, A#, B) and the related information on the chords in Italian and English for that note.",
+    "license": "GNU General Public License v3.0",
+    "language": "Unknown",
+    "url": "https://github.com/bocaletto-luca/Chords-Note-Music"
+  },
+  {
+    "name": "Chorus-Audio-Effect",
+    "description": "\"Chorus\" is a Python application developed by Luca Bocaletto that allows you to create the audio effect known as Chorus. This application provides users with the ability to adjust various parameters of the Chorus effect to creatively modify audio. The Chorus effect is widely used in audio production to add depth and spatiality to sound...",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Chorus-Audio-Effect"
+  },
+  {
+    "name": "Compressor-Decompressor-Archives",
+    "description": "Compressor-Decompressor-Archives is a desktop application developed in Python using the tkinter library for the user interface. This application allows users to compress and decompress selected files, supporting ZIP and GZ archive formats. It also provides the ability to view archive information and its contents.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Compressor-Decompressor-Archives"
+  },
+  {
+    "name": "CW-Generator",
+    "description": "The CW (Morse) Generator is a versatile and powerful application for Morse communication enthusiasts and anyone interested in learning or practicing this classic language of communication. This software allows you to convert text to Morse code and vice versa, providing a complete suite of tools to create, interpret, and reproduce ...",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/CW-Generator"
+  },
+  {
+    "name": "Desktop-Recorder",
+    "description": "Desktop Recorder is a Python desktop application that allows you to record your screen in various video quality formats. You can choose from different quality options, including 480p, 720p, and 1080p for your recordings By Bocaletto Luca.",
+    "license": "MIT License",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Desktop-Recorder"
+  },
+  {
+    "name": "Dos-Commands-Wizard",
+    "description": "Dos Commands Wizard is a Python application that provides a graphical interface for interactively running DOS/Shell commands. The application allows users to input commands and execute them immediately or schedule their execution for a later time. It also offers the capability to manage a list of custom commands.",
+    "license": "MIT License",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Dos-Commands-Wizard"
+  },
+  {
+    "name": "Event-Calendar-Free",
+    "description": "Event Calendar Free is a GUI (Graphical User Interface) based event management application developed using the PyQt5 framework. This application allows users to view, add and delete events in an interactive calendar.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Event-Calendar-Free"
+  },
+  {
+    "name": "Files-Compressor-Encryption",
+    "description": "Files-Compressor-Encryption is a Python-based tool for compressing and encrypting files, ensuring efficient storage and secure data protection. Ideal for privacy-focused applications.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Files-Compressor-Encryption"
+  },
+  {
+    "name": "Gallery-Image",
+    "description": "The “Image Gallery in Python with Qt6 GUI” is an application that allows you to view and browse images from a specific directory on your computer.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Gallery-Image"
+  },
+  {
+    "name": "Ham-Radio-Logger",
+    "description": "Ham Radio Logger is a specialized software designed by Bocaletto Luca for amateur radio enthusiasts, aimed at simplifying the recording and management of radio communications efficiently and effectively. This application caters to a audience of ham radio operators, amateur radio station operators, and radio communication enthusiasts, offering ...",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Ham-Radio-Logger"
+  },
+  {
+    "name": "Info-PC-OS-Net",
+    "description": "Info PC/OS/NET è un'applicazione Python che raccoglie e visualizza informazioni sul tuo computer, sistema operativo e rete. Fornisce dettagli sul tuo hardware, software e configurazione di rete in un'interfaccia grafica amichevole.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Info-PC-OS-Net"
+  },
+  {
+    "name": "Input-PC-Recorder",
+    "description": "Input PC Recorder is a simple Python application for recording audio from your PC's input devices. It provides a user-friendly interface to select input devices, bit depth, and sample rate, and allows you to start and stop audio recordings.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Input-PC-Recorder"
+  },
+  {
+    "name": "IP-Port-Scanner",
+    "description": "Il software \"IP Port Scanner\" è un'applicazione Python basata su Tkinter che consente agli utenti di eseguire la scansione degli indirizzi IP e delle porte in una rete locale. Questa applicazione fornisce un'interfaccia utente intuitiva per eseguire scansioni IP e verificare lo stato delle porte aperte o chiuse su un determinato host.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/IP-Port-Scanner"
+  },
+  {
+    "name": "Mapping-Midi-NameNote-Dictionary",
+    "description": "This is the mapping for the conversion of the Midi signal received in the name of the note, it contains the dictionaries in English, Italian and English+Italian",
+    "license": "GNU General Public License v3.0",
+    "language": "Unknown",
+    "url": "https://github.com/bocaletto-luca/Mapping-Midi-NameNote-Dictionary"
+  },
+  {
+    "name": "Midi-Player",
+    "description": "MIDI Player is a desktop application that allows users to load and play MIDI files. The application provides an intuitive user interface to select a MIDI file, control playback, manage MIDI devices, and monitor the current playback time.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Midi-Player"
+  },
+  {
+    "name": "Mind-Maps-Free",
+    "description": "Mind Maps Free is a software application for creating, managing and organizing mind maps. This tool allows users to create customized mind maps, organize ideas and concepts in a hierarchical manner, and navigate through information intuitively.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Mind-Maps-Free"
+  },
+  {
+    "name": "MorseWaveTranslator",
+    "description": "The Morse Wave Translator software is an application designed to record audio signals and subsequently decode them into Morse code. The application leverages several Python libraries for this task, including PyQt5 for the creation of the graphical interface, sounddevice for audio recording, soundfile for reading and writing audio files, pygame ...",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/MorseWaveTranslator"
+  },
+  {
+    "name": "Movies-Database",
+    "description": "Movies-Database is a structured SQL collection of movie data, including titles, directors, genres, release years, and ratings. Ideal for film-related research or database projects.",
+    "license": "GNU General Public License v3.0",
+    "language": "Unknown",
+    "url": "https://github.com/bocaletto-luca/Movies-Database"
+  },
+  {
+    "name": "Paint-Free",
+    "description": "Paint Free is a Python application that offers a graphical interface for digital drawing. This intuitive tool allows users to explore their creativity through digital, offering a wide range of drawing capabilities.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Paint-Free"
+  },
+  {
+    "name": "Password-Manager",
+    "description": "Password Manager is a simple Python application for securely storing and managing your passwords. It uses PyQt5 for the graphical user interface and SQLite for database storage. Passwords are encrypted using the Fernet encryption library, ensuring the security of your sensitive data.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Password-Manager"
+  },
+  {
+    "name": "PhoneBook",
+    "description": "This is a Python application that implements a simple phone book with a graphical user interface (GUI) using PyQt5. The application allows users to add, view and delete phone contacts. Furthermore, it offers an \"About\" function to display information about the author of the application.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/PhoneBook"
+  },
+  {
+    "name": "ProcessMonitor",
+    "description": "Process Monitor is a simple Python application for monitoring and managing processes running on your computer. It provides a graphical user interface for viewing and interacting with processes, making it easier to keep track of system resource usage.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/ProcessMonitor"
+  },
+  {
+    "name": "PyPI-Search-Library",
+    "description": "PyPI Search Library is a Python application that allows you to quickly and easily search for Python libraries on PyPI (Python Package Index). This library was developed by Bocaletto Luca and provides an intuitive user interface for conducting searches within the vast and rich ecosystem of Python libraries available on PyPI. ",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/PyPI-Search-Library"
+  },
+  {
+    "name": "Reverb-Audio-Effect",
+    "description": "Reverb-Audio-Effect is a Python tool for applying reverb effects to audio files, enhancing sound depth and spatial quality. Ideal for music production and sound design.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Reverb-Audio-Effect"
+  },
+  {
+    "name": "SD-Card-Format",
+    "description": "SD-Card Format Free is a software application developed by Luca Bocaletto to simplify the process of formatting SD memory cards. This software offers an intuitive and user-friendly interface that allows users to quickly format their SD cards in FAT32 format.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/SD-Card-Format"
+  },
+  {
+    "name": "Search-Files",
+    "description": "Desktop application that allows users to search for files within a specific directory and view the results in a table. The user interface is simple and intuitive, allowing users to specify the name of the file to search for and the directory to search. The application also offers the ability to open found files directly from the interface.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Search-Files"
+  },
+  {
+    "name": "Send-Remote-Commands",
+    "description": "Send Remote Commands is a Python application developed using the tkinter GUI library and the socket module. It allows users to connect to a remote server, authenticate with a username and password, and send commands to the server.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Send-Remote-Commands"
+  },
+  {
+    "name": "Synthesizer-Basic",
+    "description": "No description available.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Synthesizer-Basic"
+  },
+  {
+    "name": "TextEditorQt",
+    "description": "Questo programma è un semplice editor di testo con un'interfaccia utente intuitiva, creato utilizzando il framework PyQt5 per la creazione di applicazioni desktop in Python. L'editor di testo offre molte delle funzionalità di base che ci si aspetta da un editor, insieme a alcune funzionalità avanzate come la formattazione del testo.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/TextEditorQt"
+  },
+  {
+    "name": "Timed-Shutdown-PC",
+    "description": "Timed Shutdown PC is a tkinter-based Python application that allows you to schedule your computer to shut down, restart, or sleep based on the specified time. It is a useful utility for automating some computer shutdown actions.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Timed-Shutdown-PC"
+  },
+  {
+    "name": "Translate",
+    "description": "Translate is a Python application that simplifies the process of translating text from one language to another using the Google Translate API. This open-source tool provides an easy-to-use graphical user interface for users to input text, select source and destination languages, and obtain translations quickly.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Translate"
+  },
+  {
+    "name": "TripleWaveGenerator",
+    "description": "Triple Multiple Wave Generator is a versatile audio generation software that allows you to create and manipulate audio signals with ease. Whether you're a musician, sound designer, or just curious about waveforms, this application provides a user-friendly interface for generating and exploring various types of sound waves.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/TripleWaveGenerator"
+  },
+  {
+    "name": "Tris2Player",
+    "description": "This is a two-player Tic-Tac-Toe game implemented in Python using the Tkinter library for the graphical user interface.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Tris2Player"
+  },
+  {
+    "name": "Videogames-Database",
+    "description": "Videogames-Database organizes video game data, covering titles, developers, genres, release dates, and platforms. This repository provides a reliable resource for gamers, researchers, and developers seeking structured game-related information. Whether you're building tools or analyzing trends, it's a great foundation.",
+    "license": "GNU General Public License v3.0",
+    "language": "Unknown",
+    "url": "https://github.com/bocaletto-luca/Videogames-Database"
+  },
+  {
+    "name": "Wikipedia-Search",
+    "description": "L'applicazione consente agli utenti di cercare informazioni su Wikipedia in diverse lingue utilizzando una semplice interfaccia grafica. È stato realizzato utilizzando il linguaggio di programmazione Python e la libreria Tkinter per la creazione dell'interfaccia utente.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Wikipedia-Search"
+  },
+  {
+    "name": "Windows-Autorun-Process-Manager",
+    "description": "The \"Windows Startup Applications Manager\" is a handy utility that allows users to manage the applications that launch automatically when their Windows computer starts up.",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/Windows-Autorun-Process-Manager"
+  },
+  {
+    "name": "World-Clock-With-Alarm",
+    "description": "World Clock With Alarm is a Python-based application that allows you to monitor the time in various time zones around the world and set personalized alarms. This software uses the tkinter module for the user interface and offers features like displaying the current time in a selected time zone and the ability to set alarms based on ...",
+    "license": "GNU General Public License v3.0",
+    "language": "Python",
+    "url": "https://github.com/bocaletto-luca/World-Clock-With-Alarm"
+  }
+]

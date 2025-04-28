@@ -79,7 +79,48 @@
 
   <link rel="stylesheet" href="include/about.css" />
   <link rel="stylesheet" href="styles.css" />
-  
+  <style>
+    /* Stile per la scheda tecnica */
+.tech-card {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 2px solid var(--neon-orange);
+  border-radius: 10px;
+  background: rgba(255, 127, 0, 0.15);
+  box-shadow: 0 0 10px var(--neon-orange);
+  text-align: center;
+}
+
+/* Titolo */
+.tech-card h2 {
+  font-size: 1.8rem;
+  color: var(--neon-orange);
+  text-shadow: 0 0 8px var(--neon-orange);
+  margin-bottom: 1rem;
+}
+
+/* Contenuto della scheda */
+.tech-info {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Righe della scheda */
+.tech-row {
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--neon-orange);
+}
+
+/* Etichette */
+.tech-row span {
+  font-weight: bold;
+  color: var(--neon-orange);
+}
+
+  </style>
 </head>
 <body>
 <!-- Include Header from /include/ -->

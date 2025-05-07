@@ -253,7 +253,7 @@
   },
   {
     "name": "Synthesizer-Basic",
-    "description": "No description available.",
+    "description": "Synthesizer Basic is a software application created by Luca Bocaletto that functions as a virtual MIDI synthesizer. This software is designed to receive MIDI input and generate sounds by emulating oscillators and different waveforms, allowing users to experiment and create music creatively.",
     "license": "GNU General Public License v3.0",
     "language": "Python",
     "url": "https://github.com/bocaletto-luca/Synthesizer-Basic"

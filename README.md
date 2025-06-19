@@ -2,6 +2,8 @@
 Official Page GitHub: Bocaletto Luca.
 Welcome to my personal website repository! This project represents my journey through technology, programming, system administration, and creativity, and open-source contributions.
 
+[![Test Online](https://img.shields.io/badge/Test%20Online-Click%20Here-brightgreen?style=for-the-badge)](https://bocaletto-luca.github.io/)
+
 ## 🌐 About this Website
 This website serves as a portfolio, showcasing my expertise in full-stack development, system administration, hardware repairs, and various projects related to web development, etc. The goal is to share knowledge, demonstrate capabilities, and inspire collaboration.
 

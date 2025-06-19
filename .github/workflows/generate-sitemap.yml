@@ -1,10 +1,14 @@
 name: Generate sitemap
 
+# 1) concedi permesso di scrittura sul repo al GITHUB_TOKEN
+permissions:
+  contents: write
+
 on:
   push:
     branches:
       - main
-  workflow_dispatch:    # ← trigger manuale senza bisogno di valore
+  workflow_dispatch:
 
 jobs:
   build-sitemap:
@@ -13,6 +17,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          # assicurati che persist-credentials sia true per usare GITHUB_TOKEN
+          persist-credentials: true
 
       - name: Install jq
         run: |
@@ -34,7 +41,7 @@ jobs:
           echo '    <priority>1.0</priority>' >> sitemap.xml
           echo '  </url>' >> sitemap.xml
 
-          # tutti i repo Pages abilitati
+          # tutti i repo con Pages abilitati
           curl -s "https://api.github.com/users/${USER}/repos?per_page=100" \
             | jq -r '.[] | select(.has_pages==true) | .name + " " + (.pushed_at[0:10])' \
             | while read repo date; do

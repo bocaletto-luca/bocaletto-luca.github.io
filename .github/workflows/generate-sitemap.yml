@@ -3,27 +3,30 @@ name: Generate sitemap
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:     # ← qui
+  workflow_dispatch:     # ← abilita il Run workflow manuale
 
 jobs:
   build-sitemap:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Install jq
-      run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
 
-    - name: Generate sitemap.xml
-      run: |
-        USER="bocaletto-luca"
-        TODAY=$(date +%F)
-        echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
-        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+      - name: Generate sitemap.xml
+        run: |
+          USER="bocaletto-luca"
+          TODAY=$(date +%F)
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-        # home page
-        cat <<EOF >> sitemap.xml
+          # home page
+          cat <<EOF >> sitemap.xml
   <url>
     <loc>https://${USER}.github.io/</loc>
     <lastmod>${TODAY}</lastmod>
@@ -32,24 +35,28 @@ jobs:
   </url>
 EOF
 
-        # fetch repos with Pages enabled and append each
-        curl -s "https://api.github.com/users/${USER}/repos?per_page=100" \
-        | jq -r '.[] | select(.has_pages==true) | .name + " " + (.pushed_at[:10])' \
-        | while read repo date; do
-            echo "  <url>" >> sitemap.xml
-            echo "    <loc>https://${USER}.github.io/${repo}/</loc>" >> sitemap.xml
-            echo "    <lastmod>${date}</lastmod>" >> sitemap.xml
-            echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-            echo "    <priority>0.8</priority>" >> sitemap.xml
-            echo "  </url>" >> sitemap.xml
-          done
+          # tutti i repo con Pages abilitate
+          curl -s "https://api.github.com/users/${USER}/repos?per_page=100" \
+          | jq -r '.[] | select(.has_pages==true) | .name + " " + (.pushed_at[:10])' \
+          | while read repo date; do
+              echo "  <url>" >> sitemap.xml
+              echo "    <loc>https://${USER}.github.io/${repo}/</loc>" >> sitemap.xml
+              echo "    <lastmod>${date}</lastmod>" >> sitemap.xml
+              echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
+              echo "    <priority>0.8</priority>" >> sitemap.xml
+              echo "  </url>" >> sitemap.xml
+            done
 
-        echo '</urlset>' >> sitemap.xml
+          echo '</urlset>' >> sitemap.xml
 
-    - name: Commit & push sitemap
-      run: |
-        git config user.name  "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add sitemap.xml robots.txt || exit 0
-        git commit -m "chore: update sitemap" || exit 0
-        git push
+      - name: Commit & push sitemap
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml robots.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update sitemap"
+            git push
+          else
+            echo "No changes to commit"
+          fi

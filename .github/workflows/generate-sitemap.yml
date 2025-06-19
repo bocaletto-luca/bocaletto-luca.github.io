@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch:    # ← trigger manuale senza bisogno di valore
 
 jobs:
   build-sitemap:
@@ -27,37 +27,35 @@ jobs:
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
           # home page
-          cat <<EOF >> sitemap.xml
-  <url>
-    <loc>https://${USER}.github.io/</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-EOF
+          echo '  <url>' >> sitemap.xml
+          echo "    <loc>https://${USER}.github.io/</loc>" >> sitemap.xml
+          echo "    <lastmod>${TODAY}</lastmod>" >> sitemap.xml
+          echo '    <changefreq>daily</changefreq>' >> sitemap.xml
+          echo '    <priority>1.0</priority>' >> sitemap.xml
+          echo '  </url>' >> sitemap.xml
 
-          # tutti i repo con Pages abilitati
+          # tutti i repo Pages abilitati
           curl -s "https://api.github.com/users/${USER}/repos?per_page=100" \
-          | jq -r '.[] | select(.has_pages==true) | .name + " " + (.pushed_at[:10])' \
-          | while read repo date; do
-              echo "  <url>" >> sitemap.xml
-              echo "    <loc>https://${USER}.github.io/${repo}/</loc>" >> sitemap.xml
-              echo "    <lastmod>${date}</lastmod>" >> sitemap.xml
-              echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-              echo "    <priority>0.8</priority>" >> sitemap.xml
-              echo "  </url>" >> sitemap.xml
-            done
+            | jq -r '.[] | select(.has_pages==true) | .name + " " + (.pushed_at[0:10])' \
+            | while read repo date; do
+                echo '  <url>' >> sitemap.xml
+                echo "    <loc>https://${USER}.github.io/${repo}/</loc>" >> sitemap.xml
+                echo "    <lastmod>${date}</lastmod>" >> sitemap.xml
+                echo '    <changefreq>monthly</changefreq>' >> sitemap.xml
+                echo '    <priority>0.8</priority>' >> sitemap.xml
+                echo '  </url>' >> sitemap.xml
+              done
 
           echo '</urlset>' >> sitemap.xml
 
       - name: Commit & push sitemap
         run: |
-          git config user.name "github-actions[bot]"
+          git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add sitemap.xml robots.txt
-          if ! git diff --cached --quiet; then
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
             git commit -m "chore: update sitemap"
             git push
-          else
-            echo "No changes to commit"
           fi

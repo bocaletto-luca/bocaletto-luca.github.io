@@ -2,8 +2,9 @@ name: Generate sitemap
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:     # ← abilita il Run workflow manuale
+    branches:
+      - main
+  workflow_dispatch: []     # trigger manuale
 
 jobs:
   build-sitemap:
